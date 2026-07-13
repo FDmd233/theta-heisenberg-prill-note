@@ -1,0 +1,1339 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[margin=1.08in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+\hypersetup{
+  pdftitle={Twisted Eckardt Periods, Uniform Prill-Exceptional Covers, and a Prym Fixed-Part Obstruction},
+  pdfauthor={FDmd233},
+  pdfsubject={Cubic threefolds, Raynaud bundles, Prym monodromy, and Putman--Wieland},
+  pdfkeywords={Eckardt point, F4, Raynaud bundle, Prill problem, Prym map, Putman--Wieland}
+}
+
+\numberwithin{equation}{section}
+\setcounter{MaxMatrixCols}{12}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=2pt,topsep=4pt}
+\setlist[itemize]{leftmargin=2.2em,itemsep=2pt,topsep=4pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbf C}
+\newcommand{\Q}{\mathbf Q}
+\newcommand{\Z}{\mathbf Z}
+\newcommand{\OO}{\mathcal O}
+\newcommand{\PP}{\mathbf P}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\cV}{\mathcal V}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Alb}{\operatorname{Alb}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Stab}{\operatorname{Stab}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\Sp}{\operatorname{Sp}}
+\newcommand{\SU}{\operatorname{SU}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\IC}{\operatorname{IC}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\GGG}{\mathrm{GGG}}
+
+\title[Twisted Eckardt periods and Prym obstructions]
+{Twisted Eckardt Periods, Uniform Prill-Exceptional Covers,\\
+and a Prym Fixed-Part Obstruction}
+\author{FDmd233}
+\date{13 July 2026}
+
+\subjclass[2020]{Primary 14H30, 14J30; Secondary 14D07, 14H40, 14K12, 20G41, 32G20, 57K20}
+\keywords{cubic threefold, Fano surface, Eckardt point, exceptional group $F_4$, twisted period map, Raynaud bundle, Prill's problem, Prym map, Putman--Wieland conjecture}
+
+\begin{document}
+
+\begin{abstract}
+I relate two constructions with finite-unitary coefficients: the Eckardt quotient of the Fano surface of a cubic threefold, whose convolution Tannaka group is $F_4$, and Raynaud's bundles without theta divisors on curves.  For an explicit marked Eckardt cubic, I prove that the twisted period differential is injective on the full seven-dimensional marked Eckardt tangent space.  Its second Higgs iterate has rank between $12$ and $21$ on a nonempty Zariski-open set of characters; the upper bound is forced by the Eckardt reflection.  For torsion characters the horizontal Tate line splits off, and the complementary rank-$26$ summand has period rank $7$ at the distinguished complex embedding.
+
+For every $g\ge2$, I then construct a single irreducible finite representation
+$\rho_g:\pi_1(\Sigma_g)\to \SU(g^g)$ which is Prill-exceptional for every marked complex structure and every point.  If $G_g$ is its image, then
+\[
+1+g^{2g}\le |G_g|\le g^{3g}.
+\]
+This gives a fixed topological Galois cover with at least $1+g^g$ sections of every fibre divisor and, for $g\ge3$, disproves the generic-global-generation conjecture for unitary local systems.  Independently, every Prill-exceptional connected \emph{\'etale} cover has degree at least $g+2$, and every such Galois cover has degree at least $1+(g+1)^2$.
+
+Finally, I prove that maximal Siegel rank at one point of a weight-one period map excludes every virtual constant subvariation.  Applied to the degree-$27$ and degree-$3$ Prym maps, this prevents flat classes on the smooth-Hurwitz parts of special Fano and Eckardt fibres from extending to finite-index constant factors.  These double-cover no-finite-orbit cases were already known; no new case of the general Putman--Wieland conjecture is claimed.  Neither the weight-two $F_4$ summand nor failure of generic global generation alone produces a finite monodromy orbit.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The two starting points of this paper have the same numerical shadow but live in different Hodge-theoretic categories.  Let $F$ be the Fano surface of lines on a smooth cubic threefold with an Eckardt point, let $E\subset F$ be the elliptic curve parametrizing the lines through that point, and let
+\[
+A=\Alb(F),\qquad B=A/E,\qquad u:F\longrightarrow B.
+\]
+The quotient contracts $E$ and satisfies
+\begin{equation}\label{eq:semismall-intro}
+Ru_*\C_F[2]\simeq \delta_X\oplus\delta_0,
+\qquad X=u(F),
+\end{equation}
+while the convolution Tannaka group of $\delta_X$ is the simple group $F_4$.  Under the resulting restriction of the Albert representation,
+\begin{equation}\label{eq:branching-intro}
+\mathbf{27}|_{F_4}=\mathbf 1\oplus\mathbf{26}.
+\end{equation}
+The first goal is to determine whether the $26$-dimensional term in \eqref{eq:branching-intro} varies maximally along the Eckardt locus, rather than merely identifying its fibrewise Tannaka symmetry.
+
+The second starting point is Raynaud's rank-$g^g$ bundle on a genus-$g$ curve.  After a determinant-normalized twist, it is a stable degree-zero bundle $V$ with finite monodromy such that
+\begin{equation}\label{eq:raynaud-intro}
+H^0(C,V)=0,
+\qquad H^0(C,V(p))\ne0\quad\text{for every }p\in C.
+\end{equation}
+Condition \eqref{eq:raynaud-intro} is precisely the nontrivial summand required for a fibre divisor on a finite \'etale cover to move.  A priori the finite representation depends on $C$.  The second goal is to remove that dependence.
+I call a finite \'etale cover $f:X\to C$ \emph{Prill-exceptional} if
+$h^0(X,\OO_X(f^{-1}(p)))\ge2$ for every $p\in C$; a finite representation is Prill-exceptional when its associated summand has the equivalent nonvanishing property in \eqref{eq:raynaud-intro}.
+
+Here are the main results.  The precise forms, including coefficient fields and marked-moduli qualifications, are stated in the body of the paper.
+
+\begin{theorem}[Eckardt twisted infinitesimal Torelli]\label{thm:intro-eckardt}
+For the marked Eckardt pair
+\[
+Y_0=\{x_0^2x_1+x_1^3+x_2^3+x_3^3+x_4^3=0\}\subset\PP^4,
+\qquad p_0=[1:0:0:0:0],
+\]
+let $T_E$ be the tangent space to the local moduli space of marked Eckardt pairs at $(Y_0,p_0)$.  Then $\dim T_E=7$.  There is a nonempty Zariski-open set
+\[
+\Omega\subset\Pic^0(B)\setminus\{0\}
+\]
+such that, for $M\in\Omega$ and $L=u^*M$, the infinitesimal Higgs map on $H^2(F,L)$ is injective on $T_E$.  Its second iterate satisfies
+\[
+12\le\rk\theta_L^{(2)}|_{\Sym^2T_E}\le21.
+\]
+The set $\Omega$ contains torsion points of arbitrarily large order.  For a torsion point, the horizontal Tate line in \eqref{eq:semismall-intro} splits off.  The complementary summand has Hodge numbers $(6,14,6)$ at every complex embedding of its cyclotomic field, and period rank $7$ along $T_E$ at the distinguished embedding defined by $M$.
+\end{theorem}
+
+The proof is an exact Jacobian-ring computation.  The image
+\[
+I_E=\mu(\Sym^2T_E)
+\]
+has dimension $27$.  The reflection identifies the two six-dimensional extreme Hodge spaces and makes the projected multiplication symmetric, which gives the global upper bound $\binom{6+1}{2}=21$.  A saturated rank-six limit at the trivial character produces a $12\times12$ determinant $-2^7 3^6$ and a flattened $7\times7$ determinant $-2^3 3^7$.  The latter proves injectivity of the first Higgs field by integrability.  The rank-six central space is the fibre of a direct-image bundle; it is not the ten-dimensional untwisted space $H^0(F,K_F)$.
+
+\begin{theorem}[Uniform Raynaud--Prill representation]\label{thm:intro-uniform}
+Let $g\ge2$ and $r=g^g$.  There is a nontrivial irreducible representation with finite image
+\[
+\rho_g:\pi_1(\Sigma_g,x_0)\longrightarrow \SU(r)
+\]
+such that, for every marked compact Riemann surface $C$ of genus $g$ and every $p\in C$, the associated bundle $V_{\rho_g,C}$ satisfies
+\[
+H^0(C,V_{\rho_g,C})=0,
+\qquad H^0(C,V_{\rho_g,C}(p))\ne0.
+\]
+If $G_g=\im\rho_g$, then
+\[
+1+g^{2g}\le |G_g|\le g^{3g}.
+\]
+The fixed topological Galois cover associated with $\ker\rho_g$ consequently satisfies
+\[
+h^0\!\left(X_C,\OO_{X_C}(f_C^{-1}(p))\right)\ge1+g^g
+\]
+for every complex structure and every point.
+\end{theorem}
+
+The uniformization is a finite-type argument, but two details are essential.  Schneider's stability theorem must be applied to the canonical Fourier--Mukai Raynaud bundle together with its theta-group equivariance.  On a finite level cover of moduli, the mapping class subgroup must fix each actual homomorphism $\rho_i$, not only its conjugacy class; otherwise a projective descent cocycle remains.  With these points in place, there are only finitely many possible marked representations, their all-points failure loci are Zariski closed, and irreducibility of the level cover forces one representation to work everywhere.
+
+For $g\ge3$, Theorem~\ref{thm:intro-uniform} gives a finite-unitary counterexample to Litt's generic-global-generation conjecture \cite[Conjecture~6.3.5]{Litt2024}: the bundle $V_{\rho_g,C}^{\vee}\otimes K_C$ is not generated at any point for any complex structure.  Since $|G_g|\ge1+g^{2g}>g^2$, the small-deck-group theorem of Landesman--Litt \cite[Theorem~1.2]{LandesmanLitt2023} does not decide the Putman--Wieland orbit question for this cover.  Failure of generic global generation alone does not produce a finite orbit.
+
+The same evaluation map gives a numerical constraint that is independent of Raynaud's construction.
+
+\begin{theorem}[Degree bounds]\label{thm:intro-degree}
+Let $C$ have genus $g\ge2$.  If a nontrivial stable degree-zero bundle $W$ of rank $r$ satisfies $H^0(C,W(p))\ne0$ for every $p$, and
+\[
+c=\min_{p\in C}h^0(C,W(p)),
+\]
+then $r\ge gc+1$.  Consequently, every connected Prill-exceptional finite \'etale cover of $C$ has degree at least $g+2$; in the Galois case the degree is at least $1+(g+1)^2$.
+\end{theorem}
+
+The Putman--Wieland connection is global and weight one.  The existence of a nonzero finite orbit is equivalent to the existence, after finite \'etale base change, of a nonzero constant rational subvariation.  The following rank obstruction therefore separates special isoperiodic fibres from finite-index monodromy.
+
+\begin{theorem}[Maximal-rank fixed-part obstruction]\label{thm:intro-fixed}
+Let $S$ be a connected smooth complex quasi-projective variety, and let $\mathbb V_{\Z}$ be a polarized integral variation of Hodge structure of type $\{(1,0),(0,1)\}$ and rank $2n$.  If its local period map has differential of rank $n(n+1)/2$ at one point of $S$, then $\mathbb V_{\Q}$ has no nonzero constant subvariation after any connected finite \'etale base change.
+\end{theorem}
+
+For the Prym map $P_6:\cR_6\to\cA_5$, both spaces have dimension $15$ and the generic degree is $27$ \cite[Theorem~I.2.1]{DonagiSmith1981}.  Theorem~\ref{thm:intro-fixed} excludes a finite orbit in its anti-invariant cohomology and gives a no-extension statement for flat classes on the smooth-Hurwitz part of a special Fano fibre.  The same argument applies to the degree-$3$ map $P_{3,4}$ and its special Eckardt fibre.  These are independent period-rank proofs of double-cover cases already covered by \cite[Theorem~1.2]{LandesmanLitt2023}; the ramified case belongs to the punctured-surface formulation and is not an unramified cover of a closed genus-three surface.
+
+The limitation is structural.  The $F_4$ calculation gives a nonisotrivial weight-two summand of rank $26$ over a cyclotomic field.  The uniform Raynaud representation gives failure of generic global generation in weight one.  A Putman--Wieland counterexample requires a rational flat class after finite-index base change.  Neither construction supplies that additional structure, while Theorem~\ref{thm:intro-fixed} rules it out for the maximal-rank Prym maps considered here.
+
+\section{The Eckardt quotient and its \texorpdfstring{$F_4$}{F4} Tannaka group}\label{sec:f4}
+
+All varieties in Sections~\ref{sec:f4}--\ref{sec:eckardt-period} are over $\C$.  Constructible complexes have complex coefficients.  For an integral subvariety $Z$ of an abelian variety, $\delta_Z$ denotes its perverse intersection complex, extended by zero.  The convolution Tannaka group $G(\delta_Z)$ is taken in the quotient by negligible complexes, following \cite{KramerWeissauer2015}.
+
+Consider
+\begin{equation}\label{eq:Y0}
+Y_0=\{F_0=0\}\subset\PP^4,
+\qquad
+F_0=x_0^2x_1+x_1^3+x_2^3+x_3^3+x_4^3,
+\end{equation}
+and $p_0=[1:0:0:0:0]$.  The five partial derivatives are
+\[
+2x_0x_1,\quad x_0^2+3x_1^2,\quad3x_2^2,\quad3x_3^2,\quad3x_4^2.
+\]
+They have no common projective zero, so $Y_0$ is smooth.  The tangent hyperplane at $p_0$ is $x_1=0$, and its section is the cone over the smooth Fermat plane cubic $x_2^3+x_3^3+x_4^3=0$.  Thus $p_0$ is an Eckardt point.
+
+Let $F=F(Y_0)$ be the Fano surface of lines.  Its Albanese variety $A$ has dimension five, and the Albanese map is an embedding \cite{ClemensGriffiths1972}.  The lines through $p_0$ form a smooth elliptic curve $E\subset F$.  Roulleau's reflection $\iota:F\to F$ fixes $E$ pointwise, acts by $+1$ on $T_0E$, and by $-1$ on $T_0A/T_0E$ \cite{Roulleau2009}.  Normalize the Albanese embedding by translating by a point of $E$ so that every coplanar triple of lines has sum zero.  This normalization leaves $E\subset A$ unchanged and gives
+\begin{equation}\label{eq:reflection-quotient}
+u\circ\iota=[-1]_B\circ u,
+\qquad B=A/E,
+\end{equation}
+where $u:F\to B$ is the quotient map.
+
+\begin{proposition}[The Eckardt $F_4$ quotient]\label{prop:f4-quotient}
+Put $X=u(F)\subset B$.  Then $u:F\to X$ is birational, its only positive-dimensional fibre is $E=u^{-1}(0)$, and
+\begin{equation}\label{eq:semismall}
+Ru_*\C_F[2]\simeq\delta_X\oplus\delta_0,
+\qquad \chi(B,\delta_X)=26.
+\end{equation}
+Moreover,
+\begin{equation}\label{eq:f4-group}
+G(\delta_X)\simeq F_4,
+\qquad
+\mathbf{27}|_{F_4}\simeq\mathbf1\oplus\mathbf{26}.
+\end{equation}
+Here $\mathbf{27}$ is the Albert representation of the simply connected group $E_6$ and $\mathbf{26}$ is the minimal representation of $F_4$.
+\end{proposition}
+
+\begin{proof}
+The tangent-bundle theorem identifies $\PP(T_sF)$ with the line $\ell_s\subset Y_0$ represented by $s$, inside $\PP(T_0A)=\PP^4$ \cite{ClemensGriffiths1972}.  Since $\PP(T_0E)=\{p_0\}$ \cite[Proposition~4]{Roulleau2009}, the differential of $u$ has a kernel precisely at the points representing lines through $p_0$, namely on $E$.  Thus $E$ is the only contracted curve.
+
+To compute the generic degree, project the lines $\ell_s$ from $p_0$.  If $u(s)=u(t)$ at a general point outside $B[2]$, the tangent-plane identity shows that $\ell_s$ and $\ell_t$ lie in the same plane through $p_0$.  The Eckardt plane-section decomposition says that the only possibilities away from $E$ are $t=s$ and $t=\iota(s)$.  In the second case \eqref{eq:reflection-quotient} gives $u(t)=-u(s)$, forcing $u(s)\in B[2]$.  Hence the generic degree is one.
+
+The map is semismall.  Its unique relevant exceptional stratum is the origin, and $E^2=-3$ \cite[Proposition~10]{Roulleau2009}.  Thus the local intersection form is nondegenerate of rank one.  The semismall decomposition theorem \cite{deCataldoMigliorini2002} therefore gives exactly one skyscraper summand.  Since $\chi(F)=27$ \cite{ClemensGriffiths1972}, taking Euler characteristics proves \eqref{eq:semismall}.
+
+For completeness, I recall the group-theoretic identification.  With the coplanar-triple normalization, the incidence correspondence supplies an invariant cubic in the convolution category.  Kr\"amer's Gauss-monodromy calculation identifies the connected derived Tannaka group of $\delta_F$ with $E_6$ on its minuscule $27$-dimensional module \cite{Kramer2016}; the invariant cubic and its full stabilizer then give $G(\delta_F)=E_6$ \cite{Kramer2022}.  Functoriality under $A\to B$ and \eqref{eq:semismall} give a closed subgroup $H=G(\delta_X)\subset E_6$ with
+\[
+\mathbf{27}|_H=\mathbf1\oplus V,
+\qquad \dim V=26.
+\]
+The translation stabilizer of $X$ is trivial.  To see this, factor $u$ through the normalization $F\to X^\nu\to X$.  The first map is an isomorphism away from $E$ and has no other exceptional curve.  The image $z$ of $E$ is singular: over a smooth surface point, the exceptional curves of a birational morphism from a smooth surface arise from point blow-ups and are rational, whereas $E$ is elliptic.  Thus $z$ is the unique singular point of $X^\nu$.  A translation preserving $X$ lifts to $X^\nu$, fixes $z$, and therefore fixes its image $0\in B$; the translation is zero.  Thus $\delta_X$ is nondivisible in the sense of Javanpeykar--Kr\"amer--Lehn--Maculan.  Their irreducibility theorem \cite[Proposition~3.3(2)]{JKLM2025} implies that $V|_{H^\circ}$ is irreducible.
+
+Let $v_0$ span the fixed line in the Albert algebra $J$.  If its cubic norm vanished, then $v_0$ would have Albert rank one or two.  The Hessian of the Albert cubic has kernel dimension respectively $17$ or $9$ at standard representatives of these two orbits.  On the other hand, $H^\circ$-equivariance and $J|_{H^\circ}=\mathbf1\oplus V$ allow only the kernel dimensions $0,1,26,27$, a contradiction.  Thus the norm of $v_0$ is nonzero.  Its stabilizer in $E_6$ is $F_4$ \cite{SpringerVeldkamp2000}, so $H\subset F_4$.  Finally, no proper positive-dimensional closed subgroup of $F_4$ in characteristic zero acts irreducibly on the minimal $26$-dimensional module \cite[Theorem~1 and Table~1.2]{LiebeckSeitz2004}.  Hence $H^\circ=F_4$, and $F_4=H^\circ\subset H\subset F_4$.  This proves \eqref{eq:f4-group}.
+\end{proof}
+
+\begin{remark}\label{rem:f4-not-monodromy}
+Proposition~\ref{prop:f4-quotient} identifies a fibrewise convolution Tannaka group.  It does not identify the connected geometric monodromy of a variation with $F_4$.  Such an identification requires an additional comparison of Hodge tensors or an equivalent normality argument.
+\end{remark}
+
+\section{The marked Eckardt branch and the reflection bound}\label{sec:eckardt-algebra}
+
+Let
+\[
+\iota(x_0,x_1,x_2,x_3,x_4)=(-x_0,x_1,x_2,x_3,x_4).
+\]
+The projective involution of $Y_0$ induces Roulleau's reflection on $F(Y_0)$ by the plane-section characterization, and both involutions are denoted by $\iota$.
+At the highly symmetric cubic \eqref{eq:Y0}, the unmarked Eckardt locus has several local branches.  Throughout this section, $T_E$ means the tangent space at $(Y_0,p_0)$ to the local moduli space of \emph{marked} Eckardt pairs, equivalently the local fixed branch determined by $p_0$.
+
+The Jacobian ring is
+\begin{equation}\label{eq:jacobian-ring}
+R=\C[x_0,\ldots,x_4]/(x_0x_1,x_0^2+3x_1^2,x_2^2,x_3^2,x_4^2).
+\end{equation}
+The standard Jacobian-ring identification $H^1(Y_0,T_{Y_0})\simeq R_3$, composed with the deformation isomorphism $H^1(Y_0,T_{Y_0})\simeq H^1(F,T_F)$, gives
+$H^1(F,T_F)\simeq R_3$; see the proof of \cite[Proposition~3.8]{KLM2026}.  Define
+\begin{align*}
+a_0&=x_2x_3x_4,&
+a_1&=x_1x_3x_4,&
+a_2&=x_1x_2x_4,&
+a_3&=x_1x_2x_3,\\
+a_4&=x_1^2x_4,&
+a_5&=x_1^2x_3,&
+a_6&=x_1^2x_2.
+\end{align*}
+
+\begin{lemma}\label{lem:eckardt-tangent}
+Under $H^1(F,T_F)\simeq R_3$,
+\[
+T_E=R_3^{\iota}=\langle a_0,\ldots,a_6\rangle.
+\]
+In particular, $\dim T_E=7$.
+\end{lemma}
+
+\begin{proof}
+After shrinking, choose an $\iota$-equivariant analytic $\operatorname{PGL}_5$-slice: the uniqueness of the reflection attached to a marked Eckardt point permits every nearby reflection to be analytically conjugated to the fixed involution $\iota$, and the marked point to $p_0$.  Every marked Eckardt deformation in this slice has an equation of the form
+\[
+x_0^2\ell(x_1,\ldots,x_4)+C(x_1,\ldots,x_4),
+\]
+where $\ell\ne0$ at a smooth marked Eckardt pair.  Conversely, every smooth invariant deformation of this form has $p_0$ as a marked Eckardt point: its tangent section $\ell=0$ is the cone with vertex $p_0$ over $C|_{\ell=0}=0$.  Hence the deformation functor of the marked branch is the $\iota$-fixed subfunctor.  A finite-order fixed locus is smooth in characteristic zero, and its tangent space is $R_3^{\iota}$.  Reduction of cubic monomials by \eqref{eq:jacobian-ring} gives exactly the seven displayed basis elements.
+\end{proof}
+
+Let
+\begin{equation}\label{eq:mu}
+\mu:\Sym^2H^1(F,T_F)\longrightarrow H^2(F,\wedge^2T_F)
+\end{equation}
+be cup product.  Kr\"amer--Litt--Maculan identify the relevant coefficient of $\mu$ with
+\begin{equation}\label{eq:nu}
+\nu:\Sym^2R_3\longrightarrow
+\Hom(\wedge^2R_1,\wedge^2R_4),
+\qquad
+\nu(f\odot g)(r\wedge s)=fr\wedge gs+gr\wedge fs.
+\end{equation}
+This is the Jacobian-ring formula in the proof of \cite[Proposition~3.8]{KLM2026}.
+
+\begin{proposition}\label{prop:rank27}
+The restricted cup product has kernel
+\begin{equation}\label{eq:kernel-mu}
+\ker(\mu|_{\Sym^2T_E})
+=\left\langle a_1a_6+a_2a_5+a_3a_4\right\rangle.
+\end{equation}
+Consequently,
+\[
+I_E:=\mu(\Sym^2T_E)
+\quad\text{has dimension }27.
+\]
+\end{proposition}
+
+\begin{proof}
+In the bases of Appendix~\ref{app:certificates}, exact row reduction of \eqref{eq:nu} gives the relation in \eqref{eq:kernel-mu}.  The appendix also records a $27\times27$ minor with determinant $-128$, so this is the entire kernel of $\nu|_{\Sym^2T_E}$.
+
+It remains to pass from $\nu$ to $\mu$.  The binary cubic $x_0^2x_1+x_1^3$ has three distinct roots, so $Y_0$ is projectively equivalent to the Fermat cubic.  At the Fermat cubic, \eqref{eq:nu} has rank $50$ \cite[Proposition~3.6]{KLM2026}.  The bicanonical section of lines of second type lies in $\ker\mu^\vee$, so $\rk\mu\le50$ \cite[Proposition~3.7]{KLM2026}.  Since $\nu$ factors through $\mu$, both maps have rank $50$ and therefore have the same kernel.  Restriction to $\Sym^2T_E$ proves the proposition.
+\end{proof}
+
+Let $\widehat B=\Pic^0(B)$ and take $0\ne M\in\widehat B$.  Let $\mathbb M$ be the unique unitary rank-one local system whose holomorphic bundle is $M$, and put
+\[
+\mathbb L=u^*\mathbb M,
+\qquad L=u^*M.
+\]
+For $0\le p\le2$, write
+\[
+H_L^p=H^{2-p}(F,\Omega_F^p\otimes L).
+\]
+Put $H_L^p=0$ otherwise.  The extreme Hodge spaces satisfy
+\[
+H_L^2=E_L=H^0(F,K_F\otimes L),
+\qquad
+(H_L^0)^\vee=E_{L^{-1}}=H^0(F,K_F\otimes L^{-1}).
+\]
+They both have dimension six by \cite[Lemma~3.3]{KLM2026}.  Let
+\[
+\pi_E:H^0(F,K_F^2)\longrightarrow I_E^\vee
+\]
+be the Serre-dual projection.
+
+On a simply connected analytic neighborhood of $(Y_0,p_0)$ in the marked Eckardt branch, use an Ehresmann trivialization of the pair $(F,E)$ to transport the character of $\mathbb L$.  It remains trivial on $E_s$ and therefore is pulled back from $B_s=\Alb(F_s)/E_s$.  The relative twisted cohomology is then a complex variation of Hodge structure.  For $\xi\in T_E$, its infinitesimal Higgs field
+\[
+\theta_L(\xi):H_L^p\longrightarrow H_L^{p-1}
+\]
+is contraction and cup product with the Kodaira--Spencer class $\xi$.  Its top-to-bottom second iterate factors through \eqref{eq:mu}; under Serre duality its coefficient map is the projected multiplication used below, as in \cite[Equation~(2.1) and the proof of Proposition~2.6]{KLM2026}.
+
+\begin{proposition}[Reflection bound]\label{prop:reflection-bound}
+For every $0\ne M\in\widehat B$, the top-to-bottom second Higgs iterate along $T_E$ satisfies
+\begin{equation}\label{eq:upper21}
+\rk\theta_L^{(2)}|_{\Sym^2T_E}\le21.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Equation \eqref{eq:reflection-quotient} gives $\iota^*L\simeq L^{-1}$.  Rigidify $M$ at the origin.  The theorem of the cube gives a rigidified isomorphism $[-1]^*M\simeq M^{-1}$; after pullback it may be normalized so that applying $\iota$ twice is the identity.  Because $\iota$ fixes $T_E$ pointwise, equivariance of cup product shows that it fixes $I_E$ pointwise.  Hence $\pi_E\iota^*=\pi_E$.
+
+Choose the involutive normalization
+\[
+\rho_L=\iota^*:E_L\xrightarrow{\sim}E_{L^{-1}},
+\qquad \rho_{L^{-1}}\rho_L=1,
+\]
+and define
+\[
+b_L(s,t)=\pi_E\bigl(s\,\rho_L(t)\bigr).
+\]
+Then
+\[
+b_L(t,s)=\pi_E\!\left(\iota^*(t\rho_L(s))\right)
+=\pi_E(\rho_L(t)s)=b_L(s,t),
+\]
+so $b_L$ factors through $\Sym^2E_L$.  By \cite[Equation~(2.1) and the proof of Proposition~2.6]{KLM2026}, the transpose of the coefficient map of $\theta_L^{(2)}$ on $I_E$ is exactly the projected multiplication $E_L\otimes E_{L^{-1}}\to I_E^\vee$.  Therefore
+\[
+\rk\theta_L^{(2)}|_{\Sym^2T_E}
+=\rk b_L
+\le\dim\Sym^2E_L
+=21.
+\]
+\end{proof}
+
+\section{Maximal infinitesimal variation on the marked branch}\label{sec:eckardt-period}
+
+The residue action of $\iota$ includes the determinant character: under
+$H^0(F,\Omega_F^1)\simeq R_1$, the vector $x_0$ is invariant and
+$x_1,\ldots,x_4$ are anti-invariant.  Let
+\begin{equation}\label{eq:alpha}
+\alpha\in R_1^\vee,
+\qquad
+\alpha(x_0)=0,
+\qquad
+\alpha(x_1)=\alpha(x_2)=\alpha(x_3)=\alpha(x_4)=1.
+\end{equation}
+The annihilation of the invariant line means that
+$\alpha\in T_0\widehat B\subset T_0\Pic^0(F)$.
+
+Choose a smooth analytic arc $\Delta\to\widehat B$ through zero with tangent
+$\alpha$, and let $\mathscr L$ be the induced Poincar\'e line bundle on
+$F\times\Delta$.  Write $p:F\times\Delta\to\Delta$ and set
+\begin{equation}\label{eq:direct-images}
+\mathscr E=p_*(K_F\otimes\mathscr L),
+\qquad
+\mathscr E^-=p_*(K_F\otimes\mathscr L^{-1}).
+\end{equation}
+
+\begin{lemma}[Saturated central fibre]\label{lem:saturated-limit}
+The sheaves $\mathscr E$ and $\mathscr E^-$ are locally free of rank six.  Their central fibres inject into $H^0(F,K_F)$ and satisfy
+\begin{equation}\label{eq:Ualpha}
+\mathscr E_0=\mathscr E^-_0
+=U_\alpha:=\wedge^2\ker\alpha,
+\qquad \dim U_\alpha=6.
+\end{equation}
+Multiplication of relative sections defines a regular morphism
+\begin{equation}\label{eq:relative-multiplication}
+\mathscr E\otimes\mathscr E^-
+\longrightarrow H^0(F,K_F^2)\otimes\OO_\Delta.
+\end{equation}
+In particular, its central value requires neither a pole nor a renormalization.
+\end{lemma}
+
+\begin{proof}
+Both direct images are torsion-free on the smooth curve $\Delta$, hence locally free.  Away from zero they have rank six by \cite[Lemma~3.3]{KLM2026}.  A relative section whose restriction at zero vanishes is divisible by a local parameter, so restriction embeds each central fibre into $H^0(F,K_F)$.  The first obstruction to extending a canonical form is cup product with $\alpha$ for $\mathscr E$ and with $-\alpha$ for $\mathscr E^-$.  Under the residue identifications, \cite[Lemma~3.4]{KLM2026} identifies this kernel with $\wedge^2\ker\alpha$, which has dimension six.  Rank and injectivity give \eqref{eq:Ualpha}.  Ordinary multiplication on $F\times\Delta$ gives \eqref{eq:relative-multiplication}; all sheaves involved are locally free, so the morphism is regular at zero.
+\end{proof}
+
+Compose \eqref{eq:relative-multiplication} with $\pi_E$, transpose, and precompose with $\mu|_{\Sym^2T_E}$.  This gives a morphism of vector bundles
+\begin{equation}\label{eq:relative-second}
+\overline\Theta^{(2)}:
+\Sym^2T_E\otimes\OO_\Delta
+\longrightarrow
+\mathcal Hom(\mathscr E,(\mathscr E^-)^\vee).
+\end{equation}
+For $t\ne0$, Serre duality and \cite[Equation~(2.1)]{KLM2026} identify it with the top-to-bottom second Higgs iterate.  At zero, it is the saturated limit obtained by restricting ordinary multiplication to
+$U_\alpha\otimes U_\alpha$.  Notice that
+$\overline\Theta^{(2)}_0$ is not the second Higgs field of the untwisted ten-dimensional space $H^0(F,K_F)$.
+
+For the exact computation, put
+\[
+z=x_0,
+\qquad
+w_1=x_1-x_4,
+\quad w_2=x_2-x_4,
+\quad w_3=x_3-x_4,
+\]
+and order a basis of $U_\alpha$ as
+\begin{equation}\label{eq:ubasis}
+\begin{array}{lll}
+u_0=z\wedge w_1,&u_1=z\wedge w_2,&u_2=z\wedge w_3,\\
+u_3=w_1\wedge w_2,&u_4=w_1\wedge w_3,&u_5=w_2\wedge w_3.
+\end{array}
+\end{equation}
+Formula \eqref{eq:nu} computes the matrix of \eqref{eq:relative-second} at zero.  The complete certificates are recorded in Appendix~\ref{app:certificates}.
+
+\begin{lemma}[The two certificate minors]\label{lem:minors}
+The map $\overline\Theta^{(2)}_0$ has rank exactly $12$.  Moreover, the flattening
+\begin{equation}\label{eq:flattening}
+\Phi_0:T_E\longrightarrow
+\Hom\!\left(T_E,\Hom(U_\alpha,U_\alpha^\vee)\right),
+\qquad
+\Phi_0(\xi)(\eta)=\overline\Theta^{(2)}_0(\xi\eta),
+\end{equation}
+is injective.
+\end{lemma}
+
+\begin{proof}
+The involution splits $U_\alpha=U_\alpha^+\oplus U_\alpha^-$ with dimensions $3+3$.  Since $I_E$ is fixed, the mixed part of the projected multiplication is zero.  At $t=0$ the two direct-image fibres coincide with $U_\alpha$, and ordinary multiplication is commutative; hence the surviving same-parity blocks factor through $\Sym^2U_\alpha^+\oplus\Sym^2U_\alpha^-$.  Its rank is therefore at most
+$\dim\Sym^2U_\alpha^++\dim\Sym^2U_\alpha^-=6+6=12$.
+The matrix in \eqref{eq:matrix12} is a $12\times12$ minor and has determinant
+$-2^7 3^6$, proving equality.
+
+For \eqref{eq:flattening}, the seven rows and columns displayed in
+\eqref{eq:matrix7} give a determinant $-2^3 3^7$.  Thus $\Phi_0$ has rank seven and is injective.
+\end{proof}
+
+\begin{theorem}[Maximal variation on the marked Eckardt branch]\label{thm:eckardt-main}
+There is a nonempty Zariski-open subset
+\[
+\Omega\subset\widehat B\setminus\{0\}
+\]
+such that, for every $M\in\Omega$ and $L=u^*M$, the full infinitesimal Higgs map
+\begin{equation}\label{eq:first-higgs}
+\theta_L|_{T_E}:T_E\longrightarrow
+\bigoplus_p\Hom(H_L^p,H_L^{p-1})
+\end{equation}
+is injective, and
+\begin{equation}\label{eq:rank-range}
+12\le\rk\theta_L^{(2)}|_{\Sym^2T_E}\le21.
+\end{equation}
+The open set $\Omega$ contains torsion points of arbitrarily large order.
+\end{theorem}
+
+\begin{proof}
+Extend the flattening in \eqref{eq:flattening} to $\Phi_t$ by using
+\eqref{eq:relative-second}.  Lemma~\ref{lem:minors} and openness of matrix rank imply that $\Phi_t$ is injective and that the second iterate has rank at least $12$ for all sufficiently small $t\ne0$.  Higgs integrability gives
+\[
+\theta_{L_t}^{(2)}(\xi,\eta)
+=\theta_{L_t}(\eta)\theta_{L_t}(\xi)
+=\theta_{L_t}(\xi)\theta_{L_t}(\eta).
+\]
+Therefore $\ker\theta_{L_t}\subseteq\ker\Phi_t$, and the first Higgs field is injective along $T_E$.  Proposition~\ref{prop:reflection-bound} gives the upper bound $21$.
+
+On $\widehat B\setminus\{0\}$, \cite[Lemma~3.3]{KLM2026} and cohomology and base change make the two Poincar\'e direct images algebraic vector bundles of rank six.  Multiplication and flattening are algebraic morphisms.  The two rank conditions define a Zariski-open locus; the punctured analytic arc meets it by Lemma~\ref{lem:minors}, so it is nonempty.  Denote this locus by $\Omega$.  Torsion points are Zariski dense in an abelian variety.  Since the torsion points of bounded order form a finite set, every nonempty open subset contains torsion points of arbitrarily large order.
+\end{proof}
+
+\begin{corollary}[The $26$-dimensional torsion summand]\label{cor:26summand}
+Let $M\in\Omega$ have finite order $n$, let $K=\Q(\zeta_n)$, and let
+$\chi:\pi_1(B)\to\mu_n\subset K^\times$ be the character determined by $M$.  Let $\tau_0:K\hookrightarrow\C$ be the embedding for which the associated holomorphic line bundle is $M$.  After passage to a finite level cover and restriction to a simply connected analytic neighborhood $S_E$ in the local marked Eckardt moduli space, write $\pi:\mathscr F\to S_E$ for the resulting Fano-surface family and $\mathbb L_\chi$ for the transported pullback of $\chi$, rigidified to be trivial on the relative elliptic divisor.  Then the $K$-local system
+\begin{equation}\label{eq:tate-splitting}
+\mathbb V_\chi=R^2\pi_*\mathbb L_\chi
+\simeq K(-1)\oplus\mathbb W_\chi,
+\qquad \rk_K\mathbb W_\chi=26
+\end{equation}
+as a horizontal direct sum.  For every embedding $\tau:K\hookrightarrow\C$, the Hodge numbers of
+$\mathbb W_{\chi,\tau}=\mathbb W_\chi\otimes_{K,\tau}\C$ are $(6,14,6)$.  For $\tau=\tau_0$, its period differential along $T_E$ has rank seven.  Consequently,
+$\operatorname{Res}_{K/\Q}\mathbb W_\chi$ has $\Q$-rank $26[K:\Q]$ and period differential of rank seven along $T_E$.
+\end{corollary}
+
+\begin{proof}
+Let $i:\mathscr E\hookrightarrow\mathscr F$ be the relative elliptic divisor.  Fibrewise triviality shows that $\mathbb L_\chi|_{\mathscr E}$ is pulled back from $S_E$; since $S_E$ is simply connected, the chosen rigidification makes this restriction trivial.  Relative Gysin and restriction are morphisms of variations of Hodge structure
+\[
+K(-1)\xrightarrow{i_*}R^2\pi_*\mathbb L_\chi
+\xrightarrow{i^*}K(-1).
+\]
+Their composite is multiplication by the fibrewise self-intersection $E_s^2=-3$.  Hence
+\[
+P=-\frac13\,i_*\circ i^*
+\]
+is a horizontal idempotent.  Its image is $K(-1)$ and its kernel is the rank-$26$ variation $\mathbb W_\chi$, proving \eqref{eq:tate-splitting}.
+
+For every embedding $\tau$, the character $\tau\chi$ is nontrivial.  The proof of \cite[Lemma~3.3]{KLM2026} gives
+\[
+H^j(F,\mathbb L_{\chi,\tau})=0\qquad(j\ne2).
+\]
+Thus $\dim_\C H^2(F,\mathbb L_{\chi,\tau})=\chi(F)=27$.  Its two extreme Hodge numbers are six by the same lemma, so its Hodge numbers are $(6,15,6)$.  Removing the Tate line gives $(6,14,6)$ for every $\tau$.
+
+For the distinguished embedding $\tau_0$, Theorem~\ref{thm:eckardt-main} gives rank seven; the Tate line has zero Higgs field, so this rank occurs on $\mathbb W_{\chi,\tau_0}$.  After restriction of scalars the period differential contains this component and has source $T_E$ of dimension seven, hence has rank exactly seven.
+\end{proof}
+
+\begin{remark}\label{rem:coeff-field}
+The rank $26$ in Corollary~\ref{cor:26summand} is over the character field $K$, or over $\C$ after choosing one embedding.  The underlying rational variation has rank $26[K:\Q]$, not $26$ in general.  Moreover, the result is a weight-two statement.  These two facts are essential when comparing it with Putman--Wieland.
+\end{remark}
+
+\section{Raynaud bundles and finite monodromy}\label{sec:raynaud}
+
+Let $C$ be a smooth projective connected curve of genus $g\ge2$, let
+$J=\Pic^0(C)$, and fix a symmetric theta divisor $\Theta$.  Let
+$i:C\hookrightarrow J$ be an Abel--Jacobi embedding.  With the conventional harmless inversion depending on the Fourier--Mukai normalization, define the canonical Raynaud bundle
+\begin{equation}\label{eq:FM-raynaud}
+\mathscr E_n=\mathcal F_J\bigl(\OO_J(-n\Theta)\bigr)[g].
+\end{equation}
+Set $R_n=i^*\mathscr E_n$.  Raynaud proves that $R_n$ is semistable and
+\begin{equation}\label{eq:kummer-raynaud}
+[n]^*\mathscr E_n\simeq
+\OO_J(n\Theta)\otimes H^0(J,\OO_J(n\Theta))^\vee,
+\end{equation}
+and
+\begin{equation}\label{eq:raynaud-properties}
+\rk R_n=n^g,
+\qquad \mu(R_n)=\frac gn,
+\qquad H^0(C,R_n\otimes\alpha)\ne0
+\quad(\alpha\in\Pic^0(C)).
+\end{equation}
+The last assertion follows on all of $\Pic^0(C)$ from Raynaud's generic assertion by upper semicontinuity \cite{Raynaud1982}.
+
+\begin{lemma}[Stability]\label{lem:raynaud-stable}
+The bundle $R_n=i^*\mathscr E_n$ is stable.
+\end{lemma}
+
+\begin{proof}
+This is \cite[Corollary~2.2]{Schneider2007}; I recall why the canonical Fourier--Mukai structure matters.  Formula \eqref{eq:kummer-raynaud} is equivariant for Mumford's theta group of $\OO_J(n\Theta)$.  Its weight-one Schr\"odinger module $H^0(J,\OO_J(n\Theta))$ is irreducible, and hence so is its dual \cite[Proposition~2.1(3)]{Schneider2007}.
+
+The pullback
+\[
+\widetilde C=C\times_{J,[n]}J
+\]
+is connected because $i_*:\pi_1(C)\to\pi_1(J)=H_1(C,\Z)$ is abelianization.  If a saturated proper subbundle of $R_n$ had the same slope, its pullback, after tensoring by the inverse of the line factor in \eqref{eq:kummer-raynaud}, would be a degree-zero subbundle of a trivial bundle on $\widetilde C$.  Such a subbundle is constant: dualize, choose a full set of generating sections, and use degree zero to see that their determinant never vanishes.  Descent would therefore give a proper invariant subspace of the Schr\"odinger module, contradicting irreducibility.  Raynaud's semistability then implies stability.
+\end{proof}
+
+Set
+\[
+r=g^g,
+\qquad R=R_g.
+\]
+Choose $M\in\Pic^{-1}(C)$ such that
+\begin{equation}\label{eq:det-root}
+M^{\otimes r}\simeq(\det R)^{-1};
+\end{equation}
+it exists because multiplication by $r$ on $J$ is surjective.  Put
+\begin{equation}\label{eq:VC}
+V_C=R\otimes M.
+\end{equation}
+Then $V_C$ is stable of degree zero with trivial determinant.  A nonzero section would produce a line subbundle of nonnegative degree, contrary to stability, so
+\begin{equation}\label{eq:VC-properties}
+H^0(C,V_C)=0,
+\qquad
+H^0(C,V_C(p))\ne0\quad(p\in C),
+\end{equation}
+where the second assertion follows from \eqref{eq:raynaud-properties} because $M(p)\in\Pic^0(C)$.
+
+\begin{proposition}[A bounded trivializing cover]\label{prop:trivializing-cover}
+The bundle $V_C$ is trivialized by a connected finite \'etale cover of degree at most $g^{3g}$.  Its Narasimhan--Seshadri representation is irreducible, unitary, has trivial determinant, and has finite image of order at most $g^{3g}$.
+\end{proposition}
+
+\begin{proof}
+Pull $C\to J$ back along $[g]:J\to J$.  The resulting connected Galois cover
+\[
+q:\widetilde C\longrightarrow C
+\]
+has degree $g^{2g}$: its subgroup is the kernel of
+$\pi_1(C)\to H_1(C,\Z/g)$.  Equations \eqref{eq:kummer-raynaud} and \eqref{eq:VC} give
+\[
+q^*V_C\simeq N^{\oplus r},
+\qquad
+N=\widetilde i^*\OO_J(g\Theta)\otimes q^*M.
+\]
+Taking determinants and using $\det V_C\simeq\OO_C$ gives $N^{\otimes r}\simeq\OO_{\widetilde C}$.  If $d\mid r$ is the exact order of $N$, the algebra
+\[
+\bigoplus_{a=0}^{d-1}N^{-a}
+\]
+defines an \'etale $\mu_d$-torsor trivializing $N$.  For $0<a<d$, the degree-zero line bundle $N^a$ is nontrivial and has no section.  Therefore
+\[
+H^0\!\left(\widetilde C,\bigoplus_{a=0}^{d-1}N^{-a}\right)=\C.
+\]
+Its coordinate algebra has no nontrivial idempotent, so the torsor is connected.  The composite cover has degree
+\[
+d g^{2g}\le g^g g^{2g}=g^{3g}.
+\]
+
+By the Narasimhan--Seshadri correspondence \cite{NarasimhanSeshadri1965}, the stable degree-zero bundle $V_C$ corresponds to an irreducible unitary representation $\rho_C$.  Pullback to the displayed cover is the trivial polystable bundle, hence the restriction of $\rho_C$ to the covering subgroup is trivial.  Therefore its image is finite and its order is at most the degree of the cover.  The determinant character of $\rho_C$ is the rank-one Narasimhan--Seshadri representation corresponding to $\det V_C\simeq\OO_C$, hence is trivial.  Thus $\rho_C$ takes values in $\SU(r)$.
+\end{proof}
+
+
+\section{A single Prill representation for every complex structure}\label{sec:uniform}
+
+Fix a pointed oriented closed surface $(\Sigma_g,x_0)$ and write
+$\pi=\pi_1(\Sigma_g,x_0)$.  Proposition~\ref{prop:trivializing-cover} produces, for each marked complex structure, an irreducible finite representation of rank $r=g^g$ and image order at most $g^{3g}$.  I now show that one representation works for all complex structures.
+
+\begin{lemma}[Finiteness of the possible representations]\label{lem:finite-reps}
+Up to $\GL_r(\C)$-conjugacy, there are only finitely many nontrivial irreducible representations
+\[
+\rho:\pi\longrightarrow\SL_r(\C)
+\]
+whose image has order at most $g^{3g}$.
+\end{lemma}
+
+\begin{proof}
+There are finitely many groups of bounded order: on a set of cardinality $m$, there are only finitely many multiplication tables.  A homomorphism from the $2g$-generated group $\pi$ to a fixed finite group $G$ is determined by the images of the generators, so there are at most $|G|^{2g}$ such homomorphisms.  Finally, a finite group has finitely many irreducible complex representations.  Retaining only faithful representations of dimension $r$ with trivial determinant proves the assertion.
+\end{proof}
+
+Average a positive Hermitian form over each finite image and choose representatives
+\begin{equation}\label{eq:finite-list}
+\rho_1,\ldots,\rho_N:\pi\longrightarrow\SU(r)
+\end{equation}
+of these conjugacy classes.  Let $\Gamma_{g,1}$ be the pointed mapping class group, acting on $\pi$ by actual automorphisms.  Since each $\rho_i$ takes values in a fixed finite matrix group, its orbit under precomposition is finite.  Define the exact stabilizer
+\[
+\Gamma_i=
+\{\gamma\in\Gamma_{g,1}:\rho_i\circ\gamma_*=\rho_i\}.
+\]
+Choose $\ell\ge3$ and put
+\begin{equation}\label{eq:exact-level}
+\Gamma'=\Gamma(\ell)\cap\bigcap_{i=1}^N\Gamma_i.
+\end{equation}
+Then $\Gamma'$ is torsion-free and of finite index.  The quotient of pointed Teichm\"uller space
+\[
+S=T_{g,1}/\Gamma'
+\]
+is a connected smooth quasi-projective variety, finite \'etale over a fine level cover of $\cM_{g,1}$.  It carries a universal pointed curve
+\begin{equation}\label{eq:universal-curve}
+\pi_{\mathcal C}:\mathcal C\longrightarrow S.
+\end{equation}
+
+The section splits the homotopy sequence and gives
+\[
+\pi_1(\mathcal C)\simeq\pi\rtimes\Gamma'.
+\]
+Because \eqref{eq:exact-level} fixes $\rho_i$ as an actual homomorphism, not merely up to conjugacy,
+\begin{equation}\label{eq:actual-descent}
+\widetilde\rho_i(\delta,\gamma)=\rho_i(\delta)
+\qquad(\delta\in\pi,\ \gamma\in\Gamma')
+\end{equation}
+is a homomorphism.  It defines a finite local system.  By the Riemann existence theorem the corresponding finite topological cover is algebraic, and finite-\'etale descent of its trivial bundle gives an algebraic flat bundle $\mathcal V_i$ on $\mathcal C$.  This exact descent is the reason for using the pointed mapping class group and the exact stabilizers in \eqref{eq:exact-level}.
+
+Put
+\[
+\mathcal F_i=\mathcal V_i^\vee\otimes\omega_{\mathcal C/S}.
+\]
+Every fibre $V_{i,s}$ is a nontrivial irreducible unitary bundle of degree zero, so $H^0(V_{i,s})=0$.  Serre duality and Riemann--Roch give
+\[
+H^1(F_{i,s})=0,
+\qquad h^0(F_{i,s})=r(g-1).
+\]
+Cohomology and base change make
+\[
+\mathcal H_i=(\pi_{\mathcal C})_*\mathcal F_i
+\]
+a vector bundle, and there is an evaluation map
+\begin{equation}\label{eq:universal-evaluation}
+\varepsilon_i:\pi_{\mathcal C}^*\mathcal H_i\longrightarrow\mathcal F_i.
+\end{equation}
+Let $D_i\subset\mathcal C$ be the determinantal closed subscheme defined by the maximal minors of $\varepsilon_i$; its support is the nonsurjectivity locus.
+
+\begin{lemma}[The all-points locus is closed]\label{lem:all-points-closed}
+The subset
+\[
+S_i=\{s\in S:C_s\subseteq D_i\}
+\]
+is Zariski closed.  A point $s$ lies in $S_i$ precisely when
+\[
+H^0(C_s,V_{i,s}(p))\ne0
+\qquad\text{for every }p\in C_s.
+\]
+\end{lemma}
+
+\begin{proof}
+For $p\in C_s$, the cohomology sequence of
+$0\to F_{i,s}(-p)\to F_{i,s}\to(F_{i,s})_p\to0$, followed by Serre duality, gives
+\begin{equation}\label{eq:evaluation-duality}
+\operatorname{coker}
+\bigl[H^0(C_s,F_{i,s})\to(F_{i,s})_p\bigr]^\vee
+\simeq H^0(C_s,V_{i,s}(p)).
+\end{equation}
+Thus the asserted pointwise equivalence holds.  The morphism $D_i\to S$ is proper.  Upper semicontinuity of fibre dimension shows that
+$\{s:\dim(D_i)_s\ge1\}$ is closed.  Since $C_s$ is an irreducible curve, a closed subset of $C_s$ has dimension one exactly when its support is all of $C_s$.  This closed set is $S_i$.
+\end{proof}
+
+\begin{theorem}[Uniform Raynaud--Prill theorem]\label{thm:uniform}
+Let $g\ge2$ and $r=g^g$.  There is a nontrivial irreducible finite representation
+\begin{equation}\label{eq:rho-g}
+\rho_g:\pi_1(\Sigma_g,x_0)\longrightarrow\SU(r)
+\end{equation}
+such that, for every marked compact Riemann surface $C$ of genus $g$ and every $p\in C$,
+\begin{equation}\label{eq:uniform-property}
+H^0(C,V_{\rho_g,C})=0,
+\qquad
+H^0(C,V_{\rho_g,C}(p))\ne0.
+\end{equation}
+If $G_g=\im\rho_g$, then
+\begin{equation}\label{eq:group-bounds}
+1+g^{2g}\le|G_g|\le g^{3g}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For each $s\in S$, the construction in Section~\ref{sec:raynaud} and Proposition~\ref{prop:trivializing-cover} supply an index $i$ for which $V_{i,s}$ is isomorphic to $V_{C_s}$ in \eqref{eq:VC}.  Hence \eqref{eq:VC-properties} and Lemma~\ref{lem:all-points-closed} give
+\[
+S=\bigcup_{i=1}^N S_i.
+\]
+The smooth connected variety $S$ is irreducible.  A finite union of proper closed subsets cannot equal an irreducible variety, so $S_j=S$ for some $j$.  Pulling back to Teichm\"uller space shows that the single marked representation $\rho_g=\rho_j$ has \eqref{eq:uniform-property} for every marked complex structure.
+
+Every representation in the finite list has image order at most $g^{3g}$, proving the upper bound in \eqref{eq:group-bounds}; the determinant-one condition was built into the list.  By definition $G_g$ acts faithfully and irreducibly in dimension $r$.  Since $r>1$, the sum-of-squares formula for irreducible representations of a finite group contains both this representation and the distinct trivial representation, so
+\[
+|G_g|=\sum_{\tau\in\operatorname{Irr}(G_g)}(\dim\tau)^2
+\ge1+r^2=1+g^{2g}.
+\]
+\end{proof}
+
+\begin{corollary}[A fixed topological Prill cover]\label{cor:fixed-prill}
+Let $f_C:X_C\to C$ be the connected Galois cover associated with $\ker\rho_g$.  It has the same topological covering type for every marked complex structure, degree $|G_g|$, and
+\begin{equation}\label{eq:prill-many-sections}
+h^0\!\left(X_C,\OO_{X_C}(f_C^{-1}(p))\right)
+\ge1+g^g
+\qquad(p\in C).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The regular $G_g$-module contains the trivial representation once and the irreducible representation \eqref{eq:rho-g} with multiplicity $r$.  Therefore
+\[
+(f_C)_*\OO_{X_C}
+\supset\OO_C\oplus V_{\rho_g,C}^{\oplus r}.
+\]
+Projection formula and \eqref{eq:uniform-property} give
+\[
+h^0\!\left(X_C,\OO_{X_C}(f_C^{-1}(p))\right)
+\ge h^0(C,\OO_C(p))+r h^0(C,V_{\rho_g,C}(p))
+\ge1+r.
+\]
+\end{proof}
+
+\begin{corollary}[Failure of generic global generation]\label{cor:ggg}
+For every $g\ge3$, the finite-unitary representation $\rho_g^\vee$ contradicts \cite[Conjecture~6.3.5]{Litt2024}.  More precisely, for every marked complex structure $C$, the bundle
+\[
+V_{\rho_g,C}^\vee\otimes K_C
+\]
+is not generated by global sections at any point of $C$.
+\end{corollary}
+
+\begin{proof}
+Equation \eqref{eq:evaluation-duality}, with $V=V_{\rho_g,C}$, identifies the dual of the evaluation cokernel at $p$ with $H^0(C,V(p))$.  This space is nonzero at every point by Theorem~\ref{thm:uniform}.  The ggg conjecture asserts generic global generation for the holomorphic bundle associated with any fixed unitary representation on a generic complex structure.  The dual representation fails that assertion for every complex structure.
+\end{proof}
+
+\section{Numerical constraints on Prill-exceptional covers}\label{sec:degree}
+
+The next estimate uses only stability, evaluation, and the vector-bundle Clifford inequality.  It applies well beyond the Raynaud construction.
+
+\begin{theorem}[Rank--corank inequality]\label{thm:rank-corank}
+Let $W$ be a nontrivial stable bundle of degree zero and rank $r$ on a curve $C$ of genus $g\ge2$.  Suppose
+\[
+H^0(C,W(p))\ne0\qquad(p\in C),
+\]
+and put
+\[
+c=\min_{p\in C}h^0(C,W(p)).
+\]
+Then
+\begin{equation}\label{eq:rank-corank}
+r\ge gc+1.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Set $F=K_C\otimes W^\vee$.  Then $F$ is stable of rank $r$, degree $2r(g-1)$, and
+\[
+h^0(F)=r(g-1),
+\]
+because $H^1(F)^\vee=H^0(W)=0$.  Let $U\subset F$ be the saturation of the image of the evaluation map
+\[
+H^0(F)\otimes\OO_C\longrightarrow F,
+\]
+and write $D=\deg U$.  By upper semicontinuity, $h^0(C,W(p))$ takes its minimum value $c$ on a nonempty open subset of $C$.  At a point of this subset, \eqref{eq:evaluation-duality} says that the evaluation map to the $r$-dimensional fibre $F_p$ has cokernel of dimension $c$.  Its generic rank is therefore $r-c$, and saturation does not change generic rank; hence
+\[
+\rk U=r-c.
+\]
+All sections of $F$ factor through $U$, and $U\subset F$, so
+\begin{equation}\label{eq:h0U}
+h^0(U)=h^0(F)=r(g-1).
+\end{equation}
+
+The bundle $U$ is generically globally generated.  Every quotient bundle of $U$ is therefore generically globally generated, and the determinant of such a quotient has a nonzero section; hence every Harder--Narasimhan slope of $U$ is nonnegative.  The maximal-slope Harder--Narasimhan subbundle of $U$ is a proper subbundle of the stable bundle $F$, so its slope, and hence every Harder--Narasimhan slope of $U$, is strictly less than $2g-2$.  Apply the vector-bundle Clifford inequality
+\[
+h^0(Q)\le\frac{\deg Q}{2}+\rk Q
+\]
+to each semistable Harder--Narasimhan factor and add; see \cite[Theorem~2.1]{BPGN1997}.  Equation \eqref{eq:h0U} yields
+\begin{equation}\label{eq:Dlower}
+D\ge2r(g-2)+2c.
+\end{equation}
+On the other hand, stability of $F$ and integrality of degree give the strict bound
+\begin{equation}\label{eq:Dupper}
+D\le2(r-c)(g-1)-1.
+\end{equation}
+Combining \eqref{eq:Dlower} and \eqref{eq:Dupper} gives
+$2cg\le2r-1$.  Thus $r>gc$, which is \eqref{eq:rank-corank}.
+\end{proof}
+
+\begin{corollary}[Degree bounds for covers]\label{cor:degree-bounds}
+Let $f:X\to C$ be a connected finite \'etale cover of a genus-$g$ curve, $g\ge2$, and assume
+\[
+h^0\!\left(X,\OO_X(f^{-1}(p))\right)\ge2
+\qquad(p\in C).
+\]
+Then
+\begin{equation}\label{eq:nongalois-degree}
+\deg f\ge g+2.
+\end{equation}
+If $f$ is Galois, then
+\begin{equation}\label{eq:galois-degree}
+\deg f\ge1+(g+1)^2.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+By projection formula,
+\[
+h^0\!\left(X,\OO_X(f^{-1}(p))\right)
+=h^0\!\left(C,f_*\OO_X\otimes\OO_C(p)\right).
+\]
+The finite permutation local system decomposes as
+\[
+f_*\OO_X\simeq\OO_C\oplus\bigoplus_j W_j^{\oplus m_j},
+\]
+where the $W_j$ are nontrivial stable finite-unitary bundles.  Since $g\ge2$, one has $h^0(\OO_C(p))=1$.  Upper semicontinuity makes each locus
+\[
+Z_j=\{p\in C:H^0(C,W_j(p))\ne0\}
+\]
+closed.  The hypothesis and the displayed decomposition show that these finitely many loci cover $C$.  Irreducibility of $C$ gives $Z_j=C$ for some $j$.  Theorem~\ref{thm:rank-corank}, with $c\ge1$, gives $\rk W_j\ge g+1$, and
+\[
+\deg f=\rk(f_*\OO_X)\ge1+\rk W_j\ge g+2.
+\]
+If $f$ is Galois, set $r_j=\rk W_j$.  Its regular representation contains $W_j$ with multiplicity $r_j$.  Hence
+\[
+\deg f\ge1+r_j^2\ge1+(g+1)^2,
+\]
+because $r_j\ge g+1$.
+\end{proof}
+
+The same evaluation quotient measures a common infinitesimal Higgs kernel.  This gives a precise bridge to the local linear algebra used in Putman--Wieland arguments.
+
+\begin{proposition}[Common Higgs kernel]\label{prop:common-higgs}
+In the notation of Theorem~\ref{thm:rank-corank}, let $Q=F/U$ and define
+\[
+K_W^{1,0}
+=\bigcap_{\xi\in H^1(C,T_C)}
+\ker\!\left[
+\theta_\xi:H^0(C,K_C\otimes W)\longrightarrow H^1(C,W)
+\right].
+\]
+Then
+\begin{equation}\label{eq:common-kernel-identification}
+K_W^{1,0}\simeq H^0(C,Q^\vee\otimes K_C^2)
+\end{equation}
+and
+\begin{equation}\label{eq:common-kernel-bound}
+\dim K_W^{1,0}
+\ge\max\{0,c(3g-1)-2r\}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Under Serre duality, the adjoint of the infinitesimal period map is trace multiplication
+\[
+H^0(K_C\otimes W)\otimes H^0(K_C\otimes W^\vee)
+\longrightarrow H^0(K_C^2).
+\]
+More explicitly, for $s\in H^0(K_C\otimes W)$, $t\in H^0(K_C\otimes W^\vee)$, and $\xi\in H^1(T_C)$,
+\[
+\langle\theta_\xi(s),t\rangle_{\mathrm{SD}}
+=\langle\xi,\operatorname{tr}(s\otimes t)\rangle_{\mathrm{SD}}.
+\]
+Thus a section in the first factor is killed for every tangent vector precisely when the corresponding homomorphism
+$F=K_C\otimes W^\vee\to K_C^2$ vanishes on the evaluation image.  It then vanishes on its saturation $U$, because a torsion sheaf has no nonzero map to the line bundle $K_C^2$.  It therefore factors uniquely through $Q$, proving \eqref{eq:common-kernel-identification}; the converse follows from the same Serre-duality identity.
+
+Since $\rk Q=c$ and $\deg Q=2r(g-1)-D$, Riemann--Roch gives
+\[
+\chi(Q^\vee\otimes K_C^2)
+=D+(3c-2r)(g-1).
+\]
+Using \eqref{eq:Dlower}, this is at least $c(3g-1)-2r$.  Since $h^0\ge\chi$, equation \eqref{eq:common-kernel-bound} follows.
+\end{proof}
+
+\begin{remark}\label{rem:kernel-not-flat}
+Proposition~\ref{prop:common-higgs} is a fibrewise first-order statement.  It neither makes $K_W^{1,0}$ Gauss--Manin horizontal nor gives it parabolic degree zero or a rational structure.  A Putman--Wieland finite orbit would instead produce, after finite level, a nonzero rational flat sublocal system; in Higgs terms, a degree-zero horizontal summand.  The proposition supplies none of these global properties.
+\end{remark}
+
+\section{Finite orbits and maximal-rank Prym maps}\label{sec:pw}
+
+I first record the exact dictionary between finite monodromy orbits and constant Hodge-theoretic factors.  Let $S$ be a connected smooth complex quasi-projective variety, let $\mathbb V_{\Z}$ be a polarizable integral variation of Hodge structure on $S$, and write $\Gamma=\pi_1(S,s)$.
+
+\begin{proposition}[Finite orbit dictionary]\label{prop:finite-orbit-dictionary}
+The following conditions are equivalent:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\Gamma$ has a nonzero finite orbit in $V_{s,\C}$;
+\item after a connected finite \'etale base change $T\to S$, the pulled-back local system has a nonzero global flat section;
+\item after a connected finite \'etale base change, $\mathbb V_{\Q}$ contains a nonzero constant $\Q$-subvariation of Hodge structure.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+A vector has finite orbit exactly when its stabilizer has finite index.  By the Riemann existence theorem, the corresponding finite topological cover of $S$ is algebraic and finite \'etale; taking the connected component determined by the stabilizer gives (ii), and the converse is immediate.
+
+If a finite-index subgroup $\Delta$ fixes a nonzero complex vector, then
+\[
+V_{\C}^{\Delta}=V_{\Q}^{\Delta}\otimes_{\Q}\C\ne0,
+\]
+because invariants of a rational representation commute with scalar extension.  The theorem of the fixed part makes the maximal trivial sublocal system of a polarizable variation a constant subvariation of Hodge structure \cite[Section~6(a)]{GriffithsSchmid1975}.  This proves (ii)$\Rightarrow$(iii); the reverse implication is immediate.
+\end{proof}
+
+The same dictionary holds for a smooth quasi-projective Deligne--Mumford stack admitting a finite \'etale surjective cover by a smooth quasi-projective variety: pull any alleged finite orbit or constant subvariation to a connected component of such a cover and apply Proposition~\ref{prop:finite-orbit-dictionary} there.
+
+\begin{theorem}[Maximal-rank fixed-part obstruction]\label{thm:no-fixed-part}
+Let $S$ be a connected smooth complex quasi-projective variety and let $\mathbb V_{\Z}$ be a polarizable integral variation of Hodge structure of type $\{(1,0),(0,1)\}$ and rank $2n$.  Suppose that at some $s\in S$ the differential of its local period map has rank
+\begin{equation}\label{eq:full-siegel-dimension}
+\rk(d\Phi_s)=\frac{n(n+1)}2.
+\end{equation}
+Then, for every connected finite \'etale map $q:T\to S$, the variation $q^*\mathbb V_{\Q}$ contains no nonzero constant subvariation.  Equivalently, neither the monodromy of $\mathbb V_{\C}$ nor that of any such pullback has a nonzero finite orbit.
+
+The same statement holds for a smooth Deligne--Mumford stack admitting a finite \'etale surjective cover by a smooth quasi-projective variety.
+\end{theorem}
+
+\begin{proof}
+Suppose that a constant subvariation
+$0\ne\mathbb U_{\Q}\subset q^*\mathbb V_{\Q}$ exists.  Polarizability gives an orthogonal decomposition
+\[
+q^*\mathbb V_{\Q}=\mathbb U_{\Q}\oplus\mathbb W_{\Q}.
+\]
+Write $\rk_{\Q}\mathbb U=2a$, where $1\le a\le n$.  On Hodge bundles,
+\[
+E^{1,0}=U^{1,0}\oplus W^{1,0},
+\qquad \rk U^{1,0}=a,
+\qquad \rk W^{1,0}=n-a.
+\]
+The constant summand has zero Higgs field.  The two summands are flat and orthogonal, so there are no off-diagonal Higgs terms.  Consequently the differential of the period map takes values in
+\[
+\Sym^2\bigl((W^{1,0})^\vee\bigr)
+\subset\Sym^2\bigl((E^{1,0})^\vee\bigr),
+\]
+and at every point of $T$,
+\begin{equation}\label{eq:period-rank-defect}
+\rk d(\Phi\circ q)
+\le\frac{(n-a)(n-a+1)}2
+<\frac{n(n+1)}2.
+\end{equation}
+Choose $t\in T$ above the point $s$ in \eqref{eq:full-siegel-dimension}.  Since $q$ is \'etale, $d(\Phi\circ q)_t$ has rank $n(n+1)/2$, contradicting \eqref{eq:period-rank-defect}.  Proposition~\ref{prop:finite-orbit-dictionary}, applied also after further finite covers, gives the finite-orbit formulation.  For a Deligne--Mumford stack, pass to a smooth finite level cover and apply the variety case.
+\end{proof}
+
+In particular, if $\dim S=n(n+1)/2$ and the classifying morphism
+$S\to\cA_{n,\delta}$ is dominant and generically finite, then the hypothesis holds on a nonempty open subset.  Maximal rank, rather than generic finiteness onto an arbitrary image, is essential: the map $B\mapsto A_0\times B$ may be generically finite onto a product locus while the associated variation contains the constant factor $H^1(A_0,\Q)$.
+
+\subsection{The degree-\texorpdfstring{$27$}{27} Prym map}
+
+Let $\cR_6$ be the stack of connected \'etale double covers
+\[
+\widetilde C\longrightarrow C,
+\qquad g(C)=6,
+\]
+and let
+\[
+P_6:\cR_6\longrightarrow\cA_5
+\]
+be the Prym map.  The anti-invariant local system
+\[
+\mathbb V_6^-=(R^1\widetilde f_*\Q)^-
+\]
+has rank ten and is the weight-one variation classified by $P_6$.  One has
+\[
+\dim\cR_6=15=\dim\cA_5,
+\]
+and Donagi--Smith proved that $P_6$ is dominant and generically finite of degree $27$ \cite[Theorem~I.2.1]{DonagiSmith1981}.  Adding full level $N\ge3$ to the curve and Prym lattice gives a smooth quasi-projective finite \'etale cover, so Theorem~\ref{thm:no-fixed-part} applies to this stack.
+
+\begin{corollary}[Virtual Prym fixed parts in genus six]\label{cor:P6}
+For every connected finite \'etale base change $\mathscr T\to\cR_6$, the variation $\mathbb V_6^-|_{\mathscr T}$ has no nonzero constant rational subvariation.  Equivalently, the anti-invariant Prym monodromy has no nonzero finite orbit.
+
+For a fixed connected \'etale double cover of a genus-six surface, the full liftable mapping-class-group action on $H^1$ has no nonzero finite orbit.  Thus the cover satisfies the Putman--Wieland no-finite-orbit conclusion in the liftable-stabilizer formulation.
+\end{corollary}
+
+\begin{proof}
+The first assertion is Theorem~\ref{thm:no-fixed-part}.  For the second, the rational deck decomposition is
+\[
+H^1(\widetilde C,\Q)=H^1(\widetilde C,\Q)^+
+\oplus H^1(\widetilde C,\Q)^-.
+\]
+The minus part is covered by the first assertion.  The plus part is pulled back from $H^1(C,\Q)$.  The stabilizer of the defining nonzero two-torsion class is finite index in the mapping class group, and its image in $\Sp_{12}(\Z)$ is finite index.  The standard symplectic representation has no nonzero vector fixed by a finite-index subgroup.  Thus neither summand has a nonzero finite orbit.
+\end{proof}
+
+This is not a new case of the Putman--Wieland conjecture: it already follows from \cite[Theorem~1.2]{LandesmanLitt2023}, because the deck group has order $2<6^2$.  The result above is an independent maximal-period-rank proof and will be used for the no-extension interpretation of special Prym fibres.
+
+At $(C,\eta)$, where $0\ne\eta\in\Pic^0(C)[2]$, the codifferential is
+\begin{equation}\label{eq:P6-codifferential}
+(dP_6)^*:\Sym^2H^0(C,K_C\otimes\eta)
+\longrightarrow H^0(C,K_C^2).
+\end{equation}
+Both sides have dimension $15$, and the degree theorem implies that \eqref{eq:P6-codifferential} is an isomorphism on a dense open subset; see also \cite[Proposition~7.5]{Beauville1977}.
+
+\begin{corollary}[Special Prym flat sections do not extend]\label{cor:no-thickening}
+Let $Z\to\cR_6$ be a connected smooth family contained in a fibre of $P_6$, for example a smooth-Hurwitz open of the Fano-surface fibre over the intermediate Jacobian of a cubic threefold \cite[Theorem~4.1]{CasalainaMartinZhang2021}.  Let $\mathscr T\to\cR_6$ be connected and finite \'etale, and let $Z'$ be a connected component of $Z\times_{\cR_6}\mathscr T$.  No nonzero flat section of $\mathbb V_6^-|_{Z'}$ extends to a global flat section of $\mathbb V_6^-|_{\mathscr T}$.
+\end{corollary}
+
+\begin{proof}
+An extension would be a nonzero monodromy-invariant vector on $\mathscr T$, contrary to Corollary~\ref{cor:P6}.
+\end{proof}
+
+The proper allowable-cover fibre is the Fano surface, whereas its intersection with the smooth Hurwitz stack is only a Zariski-open part.  Corollary~\ref{cor:no-thickening} makes no assertion about subvariations supported entirely on the boundary.
+
+\subsection{The ramified degree-\texorpdfstring{$3$}{3} analogue}
+
+Let $\cR_{3,4}$ parametrize triples $(C,\eta,D)$ with $g(C)=3$, $D$ reduced of degree four, and
+$\eta^{\otimes2}\simeq\OO_C(D)$.  The corresponding double cover is ramified at four points.  Its Prym has dimension four and polarization type $\delta=(1,2,2,2)$, up to polarized duality.  The Prym map
+\[
+P_{3,4}:\cR_{3,4}\longrightarrow\cA_{4,\delta}
+\]
+has equal source and target dimensions $10$ and is dominant of generic degree three \cite{NagarajRamanan1995,BardelliCilibertoVerra1995}; see also \cite[Corollary~0.3]{CasalainaMartinZhang2021}.  Adding full level $N\ge3$ gives a smooth quasi-projective finite \'etale cover, so Theorem~\ref{thm:no-fixed-part} applies.
+
+\begin{corollary}[Ramified Prym fixed parts]\label{cor:P34}
+After no connected finite \'etale base change of $\cR_{3,4}$ does its anti-invariant Prym variation contain a nonzero constant rational subvariation; equivalently, its monodromy has no nonzero finite orbit.
+
+For a fixed branched double cover $\widetilde C\to C$ in this Hurwitz component, the full liftable-stabilizer action on $H^1(\widetilde C,\Q)$ has no nonzero finite orbit.
+
+Let $E^\circ$ be the smooth-Hurwitz open of the special elliptic fibre in \cite[Theorem~5.1]{CasalainaMartinZhang2021}.  If $\mathscr T\to\cR_{3,4}$ is connected and finite \'etale and $E'$ is a connected component of $E^\circ\times_{\cR_{3,4}}\mathscr T$, then no nonzero flat anti-invariant Prym section on $E'$ extends to a global flat section on $\mathscr T$.
+\end{corollary}
+
+\begin{proof}
+The first assertion follows from maximal generic rank and Theorem~\ref{thm:no-fixed-part}.  For the full cohomology, use the rational deck decomposition
+\[
+H^1(\widetilde C,\Q)=H^1(\widetilde C,\Q)^+
+\oplus H^1(\widetilde C,\Q)^-.
+\]
+The minus part is the Prym variation.  The plus part is $H^1(C,\Q)$.  The forgetful map from the pure four-punctured mapping class group onto the genus-three mapping class group is surjective; therefore the image of the finite-index liftable stabilizer is finite index, as is its image in $\Sp_6(\Z)$.  The standard representation has no nonzero finite orbit.  Finally, an extension of a section from $E'$ would contradict the first assertion.
+\end{proof}
+
+This double-cover no-finite-orbit case was already known from \cite[Theorem~1.2]{LandesmanLitt2023}, since the deck group has order $2<3^2$.  The corollary records the independent Prym-period proof and its consequence for the special smooth-Hurwitz fibre; it makes no assertion about boundary-supported subvariations in the allowable-cover compactification.
+
+The codifferential at $(C,\eta,D)$ is
+\begin{equation}\label{eq:P34-codifferential}
+(dP_{3,4})^*:
+\Sym^2H^0(C,K_C\otimes\eta)
+\longrightarrow H^0(C,K_C^2(D)).
+\end{equation}
+Both spaces have dimension ten, so \eqref{eq:P34-codifferential} is an isomorphism at a general point; see \cite[Section~5.4]{CasalainaMartinZhang2021}.  Removing the four branch points gives an unramified double cover of a four-punctured genus-three surface, and filling the punctures upstairs recovers the original genus-seven covering curve.  Thus the anti-invariant variation is a punctured-surface higher-Prym variation in the sense of Putman--Wieland.  It is not the variation of an unramified cover of the closed genus-three surface.  The statement concerns the finite-index liftable stabilizer, not necessarily a characteristic subgroup acted on by the entire mapping class group.
+
+\subsection{The exact boundary of the comparison}
+
+For the geometric higher-Prym local system on a connected Hurwitz component, a Putman--Wieland finite orbit, a flat section after finite level, and a constant rational subvariation are equivalent by Proposition~\ref{prop:finite-orbit-dictionary}.  For the curve-cover variation considered by Litt, \cite[Proposition~6.3.2]{Litt2024} says that generic global generation precludes such a virtual section.  Its contraposition gives the one-way implication
+\begin{equation}\label{eq:logical-chain}
+\begin{aligned}
+\text{finite orbit}
+&\ \Longrightarrow\ 
+\text{nonzero rational flat section after finite level}\\
+&\ \Longrightarrow\
+\text{failure of generic global generation}.
+\end{aligned}
+\end{equation}
+Theorem~\ref{thm:uniform} establishes the last condition, but the implication cannot be reversed: it produces neither condition to its left.  Its deck group satisfies $|G_g|\ge1+g^{2g}>g^2$, so \cite[Theorem~1.2]{LandesmanLitt2023} does not settle this particular higher-Prym representation.  Conversely, Corollaries~\ref{cor:P6} and \ref{cor:P34} exclude the middle condition for the full Prym variations despite the presence of special positive-dimensional fibres.
+
+The $26$-dimensional summand in Corollary~\ref{cor:26summand} is a weight-two variation on Fano surfaces, defined over a cyclotomic character field.  A Putman--Wieland finite orbit in complex weight-one cohomology forces, after finite level, the existence of a nonzero rational flat class.  The rank-seven period calculation proves that the distinguished complex component of the $F_4$ summand is not isotrivial along the marked Eckardt branch; it does not change its weight or supply the missing rational flat class.  This is the precise relationship established here between the $F_4$, Raynaud--Prill, and Putman--Wieland constructions.
+
+\appendix
+
+\section{Exact Jacobian-ring certificates}\label{app:certificates}
+
+All entries below are obtained in the Artinian ring \eqref{eq:jacobian-ring}; hence the certificates are computations over $\Q$.  They are included in full so that the rank assertions do not depend on numerical linear algebra.  Products $a_i a_j$ and $u_k u_l$ denote the unnormalized products in the corresponding symmetric algebras; no factor $1/2$ is inserted.
+
+\subsection{The rank-\texorpdfstring{$27$}{27} restricted cup product}
+
+Use the basis
+\[
+R_4=\langle
+x_0x_2x_3x_4,
+x_1x_2x_3x_4,
+x_1^2x_3x_4,
+x_1^2x_2x_4,
+x_1^2x_2x_3
+\rangle
+\]
+and the socle generator $x_1^2x_2x_3x_4$.  The latter makes the perfect pairing
+$R_4\otimes R_1\to R_5\simeq\Q$ explicit and hence identifies
+$\wedge^2R_4$ with $(\wedge^2R_1)^\vee$.  This identification is used for the central and flattened matrices; the $27\times27$ certificate instead uses direct $\wedge^2R_4$-coordinates.
+
+Order the standard basis of $\wedge^2R_1$, and the basis of $\wedge^2R_4$ induced by the displayed $R_4$-basis, by
+\[
+01,02,03,04,12,13,14,23,24,34.
+\]
+Thus a row $(ij,kl)$ records the $kl$-coordinate of
+$\nu(\,cdot\,)(x_i\wedge x_j)$ in $\wedge^2R_4$.
+Take all columns $a_i a_j$, $0\le i\le j\le6$, except $a_3a_4$, and the following rows of the matrix of $\nu$:
+\begin{gather*}
+(01,01),(01,02),(01,03),(01,04),(02,03),(02,04),(03,04),\\
+(12,12),(12,13),(12,14),(12,23),(12,24),(12,34),\\
+(13,13),(13,14),(13,23),(13,24),(13,34),\\
+(14,14),(14,24),(14,34),\\
+(23,23),(23,24),(23,34),(24,24),(24,34),(34,34).
+\end{gather*}
+The resulting $27\times27$ determinant is $-128$.  Direct substitution in \eqref{eq:nu} gives
+\[
+\nu(a_1a_6+a_2a_5+a_3a_4)=0.
+\]
+These two facts prove \eqref{eq:kernel-mu}.
+
+\subsection{The central rank-\texorpdfstring{$12$}{12} minor}
+
+With columns
+\[
+\begin{split}
+&(u_0^2,u_0u_1,u_0u_2,u_1^2,u_1u_2,u_2^2;\\
+&\hspace{32mm}u_3^2,u_3u_4,u_3u_5,u_4^2,u_4u_5,u_5^2)
+\end{split}
+\]
+and rows
+\[
+(a_0^2,a_0a_1,a_0a_2,a_0a_4,a_0a_5,a_0a_6,
+a_1^2,a_1a_2,a_1a_4,a_1a_6,a_2^2,a_4^2),
+\]
+where rows are $T_E$-products and columns are $U_\alpha$-products, the relevant minor is
+\begin{equation}\label{eq:matrix12}
+\begin{pmatrix}
+-6&0&0&0&0&0&0&0&0&0&0&0\\
+0&-3&0&0&0&0&0&0&0&0&0&0\\
+0&0&-3&0&0&0&0&0&0&0&0&0\\
+0&0&0&0&-3&0&0&1&0&0&0&0\\
+0&3&0&6&3&0&-2&-1&0&0&0&0\\
+0&0&3&0&3&6&0&-1&0&-2&0&0\\
+0&0&0&0&0&0&-2&0&0&0&0&0\\
+0&0&0&0&0&0&0&-1&0&0&0&0\\
+0&0&0&0&0&0&0&0&1&0&0&0\\
+0&0&0&0&0&0&0&1&-1&0&-2&0\\
+0&0&0&0&0&0&0&0&0&-2&0&0\\
+0&0&0&0&0&0&0&0&0&0&0&-2
+\end{pmatrix},
+\qquad
+\det=-2^7 3^6.
+\end{equation}
+
+\subsection{The flattened rank-\texorpdfstring{$7$}{7} minor}
+
+Take columns $a_0,\ldots,a_6$ and rows
+\[
+(a_0,u_0^2),(a_0,u_0u_1),(a_0,u_0u_2),(a_0,u_1^2),
+(a_0,u_1u_2),(a_0,u_2^2),(a_1,u_0u_1).
+\]
+A row $(\eta,u_ku_l)$ and a column $\xi$ evaluate
+$\overline\Theta^{(2)}_0(\xi\eta)$ on $u_ku_l$.  The minor is
+\begin{equation}\label{eq:matrix7}
+\begin{pmatrix}
+-6&0&0&6&0&0&0\\
+0&-3&0&3&0&3&0\\
+0&0&-3&3&0&0&3\\
+0&0&0&0&0&6&0\\
+0&0&0&0&-3&3&3\\
+0&0&0&0&0&0&6\\
+-3&0&0&0&0&0&0
+\end{pmatrix},
+\qquad
+\det=-2^3 3^7.
+\end{equation}
+An exact rational-arithmetic verifier, \texttt{verify\_exact\_minors.py}, accompanies the source.  The displayed nonzero determinants themselves are the proof certificates; the script only reproduces them.
+
+\section*{Acknowledgments}
+
+GPT-5.6 sol was used for exploratory computation, proof checking, and language editing.  Responsibility for the statements and arguments remains with the author.
+
+\begin{thebibliography}{99}
+
+\bibitem{BPGN1997}
+L.~Brambila-Paz, I.~Grzegorczyk, and P.~E. Newstead,
+\emph{Geography of Brill--Noether loci for small slopes},
+J. Algebraic Geom. \textbf{6} (1997), 645--669.
+
+\bibitem{BardelliCilibertoVerra1995}
+F.~Bardelli, C.~Ciliberto, and A.~Verra,
+\emph{Curves of minimal genus on a general abelian variety},
+Compositio Math. \textbf{96} (1995), 115--147.
+
+\bibitem{Beauville1977}
+A.~Beauville,
+\emph{Vari\'et\'es de Prym et jacobiennes interm\'ediaires},
+Ann. Sci. \`Ecole Norm. Sup. (4) \textbf{10} (1977), 309--391.
+
+\bibitem{BBD1982}
+A.~Beilinson, J.~Bernstein, and P.~Deligne,
+\emph{Faisceaux pervers},
+Ast\'erisque \textbf{100} (1982), 5--171.
+
+\bibitem{CasalainaMartinZhang2021}
+S.~Casalaina-Martin and Z.~Zhang,
+\emph{The moduli space of cubic surface pairs via the intermediate Jacobians of Eckardt cubic threefolds},
+J. Lond. Math. Soc. (2) \textbf{104} (2021), no.~1, 1--34.
+
+\bibitem{ClemensGriffiths1972}
+C.~H. Clemens and P.~A. Griffiths,
+\emph{The intermediate Jacobian of the cubic threefold},
+Ann. of Math. (2) \textbf{95} (1972), 281--356.
+
+\bibitem{deCataldoMigliorini2002}
+M.~A.~A. de~Cataldo and L.~Migliorini,
+\emph{The hard Lefschetz theorem and the topology of semismall maps},
+Ann. Sci. \`Ecole Norm. Sup. (4) \textbf{35} (2002), 759--772.
+
+\bibitem{DonagiSmith1981}
+R.~Donagi and R.~C. Smith,
+\emph{The structure of the Prym map},
+Acta Math. \textbf{146} (1981), 25--102.
+
+\bibitem{GriffithsSchmid1975}
+P.~Griffiths and W.~Schmid,
+\emph{Recent developments in Hodge theory: a discussion of techniques and results},
+in \emph{Discrete Subgroups of Lie Groups and Applications to Moduli},
+Oxford Univ. Press, 1975, 31--127.
+
+\bibitem{JKLM2025}
+A.~Javanpeykar, T.~Kr\"amer, C.~Lehn, and M.~Maculan,
+\emph{The monodromy of families of subvarieties on abelian varieties},
+Duke Math. J. \textbf{174} (2025), 1045--1149.
+
+\bibitem{KLMExceptional2026}
+T.~Kr\"amer, C.~Lehn, and M.~Maculan,
+\emph{Exceptional Tannaka groups only arise from cubic threefolds},
+J. Reine Angew. Math. \textbf{830} (2026), 51--99.
+
+\bibitem{KLM2026}
+T.~Kr\"amer, D.~Litt, and M.~Maculan,
+\emph{$E_6$-local systems from cubic threefolds},
+arXiv:2604.20970 (2026).
+
+\bibitem{Kramer2016}
+T.~Kr\"amer,
+\emph{Cubic threefolds, Fano surfaces and the monodromy of the Gauss map},
+Manuscripta Math. \textbf{149} (2016), 303--314.
+
+\bibitem{Kramer2022}
+T.~Kr\"amer,
+\emph{Characteristic cycles and the microlocal geometry of the Gauss map, I},
+Ann. Sci. \`Ecole Norm. Sup. (4) \textbf{55} (2022), 1475--1527.
+
+\bibitem{KramerWeissauer2015}
+T.~Kr\"amer and R.~Weissauer,
+\emph{Vanishing theorems for constructible sheaves on abelian varieties},
+J. Algebraic Geom. \textbf{24} (2015), 531--568.
+
+\bibitem{LandesmanLitt2023}
+A.~Landesman and D.~Litt,
+\emph{An introduction to the algebraic geometry of the Putman--Wieland conjecture},
+European J. Math. \textbf{9} (2023), Article~40.
+
+\bibitem{LiebeckSeitz2004}
+M.~W. Liebeck and G.~M. Seitz,
+\emph{Subgroups of exceptional algebraic groups which are irreducible on an adjoint or minimal module},
+J. Group Theory \textbf{7} (2004), 347--372.
+
+\bibitem{Litt2024}
+D.~Litt,
+\emph{Motives, mapping class groups, and monodromy},
+arXiv:2409.02234v1 (2024).
+
+\bibitem{Looijenga1997}
+E.~Looijenga,
+\emph{Prym representations of mapping class groups},
+Geom. Dedicata \textbf{64} (1997), 69--83.
+
+\bibitem{NagarajRamanan1995}
+D.~S. Nagaraj and S.~Ramanan,
+\emph{Polarisations of type $(1,2,\ldots,2)$ on abelian varieties},
+Duke Math. J. \textbf{80} (1995), 157--194.
+
+\bibitem{NarasimhanSeshadri1965}
+M.~S. Narasimhan and C.~S. Seshadri,
+\emph{Stable and unitary vector bundles on a compact Riemann surface},
+Ann. of Math. (2) \textbf{82} (1965), 540--567.
+
+\bibitem{PutmanWieland2013}
+A.~Putman and B.~Wieland,
+\emph{Abelian quotients of subgroups of the mapping class group and higher Prym representations},
+J. Lond. Math. Soc. (2) \textbf{88} (2013), 79--96.
+
+\bibitem{Raynaud1982}
+M.~Raynaud,
+\emph{Sections des fibr\'es vectoriels sur une courbe},
+Bull. Soc. Math. France \textbf{110} (1982), 103--125.
+
+\bibitem{Roulleau2009}
+X.~Roulleau,
+\emph{Elliptic curve configurations on Fano surfaces},
+Manuscripta Math. \textbf{129} (2009), 381--399.
+
+\bibitem{Schneider2007}
+O.~Schneider,
+\emph{Sur la dimension de l'ensemble des points base du fibr\'e d\'eterminant sur $\mathcal{SU}_C(r)$},
+Ann. Inst. Fourier (Grenoble) \textbf{57} (2007), 481--490.
+
+\bibitem{SpringerVeldkamp2000}
+T.~A. Springer and F.~D. Veldkamp,
+\emph{Octonions, Jordan Algebras and Exceptional Groups},
+Springer Monographs in Mathematics, Springer, Berlin, 2000.
+
+\end{thebibliography}
+
+\end{document}
