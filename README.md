@@ -18,6 +18,8 @@ FDmd233 guided GPT-5.6 sol in developing, checking, and preparing this note.
   monodromy and nonzero spin obstruction.
 - `c5_degree5_character_check.py` -- independent matrix and equivariant
   character check.
+- `FIRST_PUBLICATION_RECORD.md` -- timestamped publication and integrity
+  record for the artifact commit.
 
 ## Reproduction
 
