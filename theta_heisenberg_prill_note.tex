@@ -1,0 +1,2486 @@
+\documentclass[11pt,reqno]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{aliascnt}
+\usepackage{xcolor}
+\usepackage[margin=1.12in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,
+  urlcolor=blue!45!black,
+  pdftitle={Theta--Heisenberg Untwisting, Uniform Prill Covers, and Abelian Brill--Noether Blocks},
+  pdfauthor={OpenAI},
+  pdfsubject={Algebraic geometry and finite Heisenberg representations},
+  pdfkeywords={Raynaud bundle, finite Heisenberg group, theta group, Prill problem, Brill--Noether locus}]{hyperref}
+
+\setlist{itemsep=2pt,topsep=4pt}
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\newaliascnt{question}{theorem}
+\newtheorem{question}[question]{Question}
+\aliascntresetthe{question}
+\theoremstyle{remark}
+\newaliascnt{example}{theorem}
+\newtheorem{example}[example]{Example}
+\aliascntresetthe{example}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+
+\usepackage[nameinlink,noabbrev]{cleveref}
+\crefname{theorem}{theorem}{theorems}
+\crefname{proposition}{proposition}{propositions}
+\crefname{lemma}{lemma}{lemmas}
+\crefname{corollary}{corollary}{corollaries}
+\crefname{definition}{definition}{definitions}
+\crefname{question}{question}{questions}
+\crefname{example}{example}{examples}
+\crefname{remark}{remark}{remarks}
+
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Nm}{Nm}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\mult}{mult}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Cliff}{Cliff}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\sign}{sign}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\cV}{\mathcal V}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\bC}{\mathbf C}
+\newcommand{\bG}{\mathbf G}
+\newcommand{\bZ}{\mathbf Z}
+\newcommand{\bQ}{\mathbf Q}
+\newcommand{\bP}{\mathbf P}
+\newcommand{\whA}{\widehat A}
+
+\title[Theta--Heisenberg Untwisting]{Theta--Heisenberg Untwisting, Uniform Prill Covers,\\
+and Abelian Brill--Noether Blocks}
+\author{OpenAI}
+\date{}
+
+\subjclass[2020]{14H30, 14H40, 14K25, 14D20, 20C15, 57K20}
+\keywords{Raynaud bundle, finite Heisenberg group, theta group, Prill's
+problem, Brill--Noether locus, Putman--Wieland conjecture}
+
+\begin{document}
+
+\begin{abstract}
+For integers \(g\geq2\) and \(n\geq2\) with \(n\mid g\), I construct a
+fixed finite unitary representation
+\[
+ \rho_{g,n}\colon\pi_1(\Sigma_g)\longrightarrow SU(n^g)
+\]
+such that, for every marked complex structure \(C\) on \(\Sigma_g\) and
+every \(L\in\Pic^{g/n}(C)\), the associated flat bundle satisfies
+\(H^0(C,\cV_{\rho_{g,n},C}\otimes L)\neq0\).  The construction identifies
+the projective Narasimhan--Seshadri monodromy of a Raynaud bundle with the
+Schr\"odinger representation of a finite theta group.
+
+I then prove a theta--Heisenberg untwisting theorem.  The rank-\(n^g\)
+bundle is realized as the direct image of an exact-order-\(n\) torsion
+line bundle from a degree-\(n^g\) cover; a cyclic cover removes this
+torsion and produces a
+connected ordinary cover of degree \(n^{g+1}\); its Galois closure has
+degree \(n^{2g+1}\).  These three degrees are sharp among covers retaining
+the fixed Schr\"odinger block.  Taking \(n=g\) gives, on every curve of
+genus \(g\), a connected \'etale cover of degree \(g^{g+1}\) for which
+every fibre moves in a pencil.  In genus two the degree is \(8\).
+
+To quantify the remaining gap toward global minimality, I prove a
+strict rank--corank inequality: a nontrivial
+stable degree-zero bundle \(W\), with
+\[
+ c=\min_p h^0(W(p))>0,
+\]
+satisfies \(\rk W\geq gc+2\).  This gives the lower bounds
+\(\deg f\geq gk+3\) for covers with at least \(k+1\) fibre sections and
+\(|\Gal(f)|\geq(g+2)(g+3)\) in the Galois Prill-exceptional case.
+In genus two I determine the minimum over all genus-two curves.  On the curve
+\(y^2=x^5-1\), a \(C_5\)-equivariant local system with natural
+\(A_5\)-monodromy has \(w_2=1\), while an equivariant Lefschetz
+calculation forces its two-dimensional theta obstruction to vanish.
+It therefore produces a connected Prill-exceptional cover of degree
+five; the strict rank bound shows that degree five is minimal.
+The same method extends to Fourier--Mukai bundles pulled back from
+arbitrary abelian quotients of a Jacobian, producing
+positive-dimensional abelian blocks in classical Brill--Noether loci.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Let \(C\) be a smooth projective complex curve and let
+\(f\colon X\to C\) be a connected finite \'etale cover.  The fibre over
+\(p\in C\) moves in a pencil precisely when
+\[
+ h^0\!\left(X,\cO_X(f^{-1}(p))\right)\geq2.
+\]
+Because this dimension is upper semicontinuous in \(p\), its generic
+value is its minimum.  Thus the condition for a general fibre is
+equivalent, in this setting, to the same inequality for every fibre.
+Prill's problem asks whether this can occur for a general fibre
+\cite[Chapter VI, Exercise D, p.~268]{ACGH}.  A
+degree-\(36\) construction on every genus-two curve was obtained by
+Landesman and Litt \cite{LandesmanLittPrill}.  The higher-genus question
+was subsequently recorded together with conjectures on generic global
+generation and horizontal generic vanishing in \cite[\S6.3]{LittMotives}.
+
+I prove that every fibre can move, simultaneously for every marked
+complex structure and in every genus \(g\geq2\).  The construction is
+explicit and topological.  It does not arise from a single isolated
+algebraic cover, but from a fixed finite local system whose cohomological
+support locus is the whole Picard variety.
+
+\begin{theorem}[Uniform Heisenberg--Raynaud local system]\label{thm:intro-uniform}
+Let \(g\geq2\), let \(n\geq2\) divide \(g\), and put
+\[
+ m=\frac gn,\qquad r=n^g.
+\]
+There is a fixed irreducible representation
+\[
+ \rho_{g,n}\colon\pi_1(\Sigma_g)\longrightarrow SU(r)
+\]
+with image of order \(n^{2g+1}\) such that, for every marked genus-\(g\)
+curve \(C\),
+\[
+ H^0(C,\cV_{\rho_{g,n},C}\otimes L)\neq0
+ \quad\text{for every }L\in\Pic^m(C).
+ \tag{1.1}\label{eq:intro-full-support}
+\]
+The bundle \(\cV_{\rho_{g,n},C}\) is stable of degree zero, has trivial
+determinant, and has no global sections.
+\end{theorem}
+
+The divisibility \(n\mid g\) has two simultaneous meanings.  It makes the
+Raynaud slope \(g/n\) integral, so that the Raynaud bundle can be
+normalized to degree zero by a line bundle.  It also kills the scalar
+obstruction to lifting the theta-group projective representation across
+the surface relation.  Thus the numerical slope and the topological
+surface obstruction are the same integrality condition.
+
+Lagrangian induction then realizes the high-rank cohomological witness
+as the direct image of a line bundle on a smaller cover; a cyclic torsor
+removes its residual scalar monodromy.
+
+\begin{theorem}[Theta--Heisenberg untwisting]\label{thm:intro-untwist}
+Under the hypotheses of \cref{thm:intro-uniform}, there is a factorization
+\[
+ X\xrightarrow{\,v\,}Y\xrightarrow{\,u\,}C
+\]
+with the following properties.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The cover \(u\) is connected Galois of degree \(r=n^g\).  There is
+an exact-order-\(n\) torsion line bundle \(\lambda\in\Pic^0(Y)\) such that
+\[
+ u_*\lambda\simeq\cV_{\rho_{g,n},C},\qquad
+ H^i(Y,\lambda\otimes u^*L)
+ \simeq H^i(C,\cV_{\rho_{g,n},C}\otimes L)
+ \tag{1.2}\label{eq:intro-exact-line}
+\]
+for every line bundle \(L\) and \(i=0,1\).
+\item The map \(v\) is the connected cyclic degree-\(n\) cover
+trivializing \(\lambda\).  Thus \(f=u\circ v\) has degree \(n^{g+1}\), and
+\[
+ h^0(X,f^*L)\geq h^0(C,L)+
+ h^0(C,\cV_{\rho_{g,n},C}\otimes L).
+ \tag{1.3}\label{eq:intro-section-bound}
+\]
+\item The Galois closure of \(f\) has degree \(n^{2g+1}\).
+\end{enumerate}
+The degrees \(r\), \(nr\), and \(nr^2\) are respectively minimal among
+connected twisted-line, ordinary, and Galois covers which retain the
+fixed Schr\"odinger local system.
+\end{theorem}
+
+For \(n=g\), equation \eqref{eq:intro-section-bound} applied to
+\(L=\cO_C(p)\) gives the following extension of the genus-two result to
+every genus.
+
+\begin{corollary}[Uniform Prill cover]\label{cor:intro-prill}
+For every \(g\geq2\) there is a fixed finite-index subgroup of
+\(\pi_1(\Sigma_g)\) such that, for every marked complex structure
+\(C\), the induced connected \'etale cover
+\[
+ f_{g,C}\colon X_{g,C}\longrightarrow C,
+ \qquad \deg f_{g,C}=g^{g+1},
+\]
+satisfies
+\[
+ h^0\!\left(X_{g,C},\cO_{X_{g,C}}(f_{g,C}^{-1}(p))\right)\geq2
+ \quad\text{for every }p\in C
+\]
+The topological cover is independent of \(C\).  It is non-Galois, and
+its Galois closure has degree \(g^{2g+1}\).
+\end{corollary}
+
+The number \(g^{g+1}\) is not asserted to be the minimum among all
+Prill-exceptional covers.  It is the exact minimum among transitive
+covers whose permutation local system contains the particular
+Raynaud--Schr\"odinger block in \cref{thm:intro-uniform}.  The distinction
+is essential.  I prove the sharper multiplicity law
+\[
+ \deg f=n^{g+1}\,
+ \mult_{\cV_{\rho_{g,n}}}(f_*\cO_X)
+ \tag{1.4}\label{eq:intro-pareto}
+\]
+for covers obtained from transitive sets of the finite Heisenberg group
+for which the displayed multiplicity is positive, and the corresponding
+inequality for arbitrary connected covers retaining the block.
+
+The construction has Brill--Noether consequences.  If
+\(d=n^{g+1}\), then
+\[
+ f^*\Pic^m(C)\subset W_{dm}^0(X),\qquad
+ f^*C^{(m)}\subset W_{dm}^1(X).
+\]
+For \(n\geq3\), the second locus has Brill--Noether number
+\[
+ \rho\bigl(g(X),1,dm\bigr)=d(2m-g+1)-3<0,
+\]
+although it contains an \(m\)-dimensional subvariety.  More generally,
+intermediate isotropic quotients give an exact degree--multiplicity
+trade-off and higher-rank Brill--Noether strata.
+
+I also obtain a lower bound that does not use finite monodromy.
+
+\begin{theorem}[Strict rank--corank inequality]\label{thm:intro-rank}
+Let \(W\) be a nontrivial stable vector bundle of degree zero and rank
+\(r\) on a curve of genus \(g\geq2\).  If
+\[
+ c=\min_{p\in C}h^0(C,W(p))\geq1,
+\]
+then
+\[
+ r\geq gc+2.
+\tag{1.5}\label{eq:intro-rank}
+\]
+\end{theorem}
+
+Consequently, if every fibre of a connected \'etale cover has at least
+\(k+1\) sections, then its degree is at least \(gk+3\).  A Galois
+Prill-exceptional cover has group order at least
+\((g+2)(g+3)\).  Together with the implication that a Putman--Wieland
+counterexample is Prill-exceptional
+\cite[Lemma 5.5]{LandesmanLittApplications}, this excludes closed
+Putman--Wieland counterexamples in these numerical ranges.  It does not
+give the converse implication and does not settle the Putman--Wieland
+conjecture outside those ranges.
+
+A later section extends the method away from the full Jacobian.  An
+ample line bundle on an abelian quotient of a Jacobian supplies a stable
+semihomogeneous bundle, a Lagrangian line descent, and a finite
+projective local system.  When its slope is integral, Heisenberg
+untwisting produces a classical rank-one Brill--Noether block on a
+finite cover.  Applied to a Prym subvariety, this gives a
+Prym-direction support block; it does not by itself give a finite orbit
+in Prym cohomology.
+
+\section{Finite Heisenberg groups and scalar lifting}
+
+\subsection{The standard Schr\"odinger representation}
+
+Fix a primitive \(n\)-th root of unity \(\zeta\).  Define
+\[
+ H_{g,n}=
+ \left\langle z,x_1,\ldots,x_g,y_1,\ldots,y_g\ \middle|\
+ \begin{array}{c}
+ z\text{ central},\quad z^n=x_i^n=y_i^n=1,\\
+ {}[x_i,x_j]=[y_i,y_j]=1,\quad [x_i,y_j]=z^{\delta_{ij}}
+ \end{array}
+ \right\rangle,
+\tag{2.1}\label{eq:heis-presentation}
+\]
+where \([a,b]=aba^{-1}b^{-1}\).  The relations collect every word into
+the following normal form; uniqueness follows from the faithful
+shift--clock action defined below.  Thus every element has a unique
+expression
+\[
+ z^c x_1^{u_1}\cdots x_g^{u_g}
+ y_1^{v_1}\cdots y_g^{v_g},
+\]
+so
+\[
+ |H_{g,n}|=n^{2g+1},\qquad Z(H_{g,n})=\langle z\rangle.
+\tag{2.2}\label{eq:heis-order}
+\]
+
+Let \(T=(\bZ/n)^g\), let \(S=\bC[T]\), and write \(e_t\) for its standard
+basis.  I use the central-weight convention dictated by the dual
+theta representation in \cref{eq:schneider-splitting} and define
+\[
+ x_i e_t=e_{t+e_i},\qquad
+ y_i e_t=\zeta^{t_i}e_t,\qquad
+ z e_t=\zeta^{-1}e_t.
+\tag{2.3}\label{eq:schrodinger}
+\]
+These matrices satisfy \eqref{eq:heis-presentation}.  The resulting
+representation
+\[
+ \tau_{g,n}\colon H_{g,n}\longrightarrow U(S)
+\]
+is faithful and irreducible, and \(\dim S=r=n^g\).  I call \(S\) the
+geometric Schr\"odinger module.  Its dual is the usual weight-one
+module; fixing the convention here removes any later \(S/S^\vee\)
+ambiguity.
+
+\begin{lemma}[Character and determinant]\label{lem:character}
+The character of \(S\) is
+\[
+ \chi_S(z^a)=r\zeta^{-a},\qquad
+ \chi_S(h)=0\quad(h\notin\langle z\rangle).
+\tag{2.4}\label{eq:sch-character}
+\]
+If \(g\geq2\), then \(\tau_{g,n}(H_{g,n})\subset SU(S)\).
+\end{lemma}
+
+\begin{proof}
+If the shift part of \(h\) is nonzero, its matrix has no diagonal
+entries.  If the shift part vanishes but the clock part is nonzero, its
+trace is a product containing a complete nontrivial geometric sum.  This
+proves \eqref{eq:sch-character}, while irreducibility follows at once
+from the simultaneous clock eigenspaces and the transitive action of the
+shifts.
+
+Each \(x_i\) is a product of \(n^{g-1}\) cycles of length \(n\), and the
+eigenvalues of \(y_i\) contain every \(n\)-th root with multiplicity
+\(n^{g-1}\).  Hence
+\[
+ \det x_i=\det y_i=(-1)^{(n-1)n^{g-1}}=1.
+\]
+For even \(n\), the last equality uses \(g\geq2\); for odd \(n\) it is
+immediate.  Finally, \(\det(\zeta^{-1}I)=\zeta^{-n^g}=1\).
+\end{proof}
+
+Set
+\[
+ A_{g,n}=H_{g,n}/\langle z\rangle\simeq(\bZ/n)^{2g}.
+\tag{2.5}\label{eq:heisenberg-quotient}
+\]
+The scalar commutator in the geometric Schr\"odinger module induces a
+perfect alternating pairing
+\[
+ e_n\colon A_{g,n}\times A_{g,n}\longrightarrow\mu_n,
+ \qquad e_n(\bar x_i,\bar y_j)=\zeta^{-\delta_{ij}}.
+\tag{2.6}\label{eq:weil-pairing}
+\]
+It is the inverse of the conventional Weil pairing attached to the dual
+section module.  The finite Stone--von Neumann theorem says that the
+fixed-central-weight irreducible projective representation is determined,
+up to projective equivalence, by this pairing
+\cite{MumfordTheta,Schneider}.
+
+\subsection{Sharpness and the degree--multiplicity law}
+
+For the remainder of this subsection, assume \(n\mid g\), put
+\(m=g/n\), write
+\[
+ \pi_g=\left\langle a_1,b_1,\ldots,a_g,b_g\ \middle|\
+ \prod_{i=1}^g[a_i,b_i]=1\right\rangle,
+\]
+and use the surface homomorphism
+\[
+ \varphi_{g,n}\colon\pi_g\longrightarrow H_{g,n},\qquad
+ a_i\longmapsto x_i,\quad b_i\longmapsto y_i.
+\]
+The relation holds because its image is \(z^g=1\).  Let
+\(\rho_{g,n}=\tau_{g,n}\circ\varphi_{g,n}\), and let
+\(\cV_{\rho_{g,n},C}\) denote its flat bundle on a marked curve.  The
+theta-theoretic support property of this bundle is proved in
+\cref{thm:uniform}; the degree statements below are purely
+representation-theoretic.
+
+The next theorem makes the minimality statement precise without making a
+claim about unrelated Prill constructions.
+
+\begin{theorem}[Three sharp degree bounds]\label{thm:three-optima}
+Let \(V=\cV_{\rho_{g,n},C}\), let \(r=n^g\), and let
+\(\varphi=\varphi_{g,n}\).
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Suppose \(u'\colon Y'\to C\) is connected and \(\eta\) is a
+rank-one finite local system on \(Y'\).  If \(V\) is a summand of
+\(u'_*\eta\), then \(\deg u'\geq r\).
+\item Suppose \(f'\colon X'\to C\) is connected and \(V\) occurs in
+\(f'_*\cO_{X'}\) with multiplicity \(q>0\).  Then
+\[
+ \deg f'\geq nrq=n^{g+1}q.
+\tag{2.7}\label{eq:arbitrary-cover-bound}
+\]
+If \(f'\) is the cover associated with a transitive \(H_{g,n}\)-set,
+equality holds:
+\[
+ \deg f'=nrq.
+\tag{2.8}\label{eq:exact-pareto}
+\]
+\item Suppose \(f'\) is connected Galois and \(V\) is a summand of
+\(f'_*\cO_{X'}\).  Then \(\deg f'\geq nr^2=n^{2g+1}\).
+\end{enumerate}
+The covers in \cref{thm:exact-untwisting} attain the three respective
+lower bounds.
+\end{theorem}
+
+\begin{proof}
+Let \(\Gamma\subset\pi_g\) be the subgroup defining a connected cover and
+put \(J=\varphi(\Gamma)\subset H=H_{g,n}\).  The map of coset sets
+\(\pi_g/\Gamma\to H/J\) is surjective, so
+\[
+ [\pi_g:\Gamma]\geq[H:J].
+\tag{2.9}\label{eq:index-comparison}
+\]
+
+For (i), Frobenius reciprocity gives a one-dimensional character of
+\(\Gamma\) occurring in \(S|_\Gamma\).  Its restriction to
+\(\Gamma\cap\ker\varphi\) is trivial because that subgroup acts as the
+identity on \(S\); hence it descends to a character of \(J\).
+Commutators in \(J\) act trivially on this line.  The faithful central
+character of \(S\) therefore shows that the image of \(J\) in
+\(A_{g,n}\) is isotropic.  A subgroup of a finite symplectic module of
+order \(r^2\) has order at most \(r\).  Writing \(\bar J\) for that
+image gives
+\[
+ |J|=|J\cap\langle z\rangle|\,|\bar J|\leq nr.
+\]
+Thus \([H:J]\geq r\).
+
+For (ii), Frobenius reciprocity gives
+\[
+ q=\dim(S^\vee)^J.
+\tag{2.10}\label{eq:multiplicity-invariants}
+\]
+This dimension is positive only if \(J\cap\langle z\rangle=1\).
+Using \cref{lem:character},
+\[
+ q=\frac1{|J|}\sum_{j\in J}\chi_{S^\vee}(j)
+ =\frac r{|J|}.
+\tag{2.11}\label{eq:average-character}
+\]
+Consequently,
+\[
+ [H:J]=\frac{nr^2}{|J|}=nrq.
+\]
+Together with \eqref{eq:index-comparison}, this proves
+\eqref{eq:arbitrary-cover-bound}; equality holds when
+\(\Gamma=\varphi^{-1}(J)\).
+
+For (iii), \(\Gamma\) is normal, so \(J\) is normal in \(H\).  The
+nonzero invariant space \((S^\vee)^J\) is then \(H\)-stable.
+Irreducibility gives \((S^\vee)^J=S^\vee\), and faithfulness gives
+\(J=1\).  Equation
+\eqref{eq:index-comparison} now yields \(\deg f'\geq|H|=nr^2\).
+\end{proof}
+
+\begin{remark}[Why the projective orbit is too small]\label{rem:projective-stabilizer}
+The stabilizer \(B=\langle z\rangle K\) has index \(r\), but its ordinary
+permutation module factors through \(H/\langle z\rangle\).  The centre
+therefore acts trivially on every constituent, so that permutation
+module cannot contain \(S\).  The degree-\(r\) stage retains \(S\) only
+after inserting the character line \(\lambda\).  Removing that scalar
+costs exactly the cyclic factor \(n\).
+\end{remark}
+
+\subsection{The isotropic tower}
+
+For \(0\leq k\leq g\), set
+\[
+ K_k=\langle y_1,\ldots,y_k\rangle,\qquad
+ \Gamma_k=\varphi_{g,n}^{-1}(K_k),
+\]
+and let \(f_k\colon X_k\to C\) be the associated cover.  Define
+\[
+ d_k=n^{2g+1-k},\qquad \mu_k=n^{g-k}.
+\tag{2.12}\label{eq:tower-numbers}
+\]
+
+\begin{proposition}[Exact compression tower]\label{prop:compression-tower}
+The covers \(f_k\) are connected and satisfy
+\[
+ \deg f_k=d_k,\qquad
+ \mult_S\bC[H_{g,n}/K_k]=\mu_k,\qquad
+ d_k=n^{g+1}\mu_k.
+\tag{2.13}\label{eq:tower-pareto}
+\]
+There is a tower
+\[
+ X_0\longrightarrow X_1\longrightarrow\cdots
+ \longrightarrow X_g\longrightarrow C
+\tag{2.14}\label{eq:cover-tower}
+\]
+in which every map \(X_{k-1}\to X_k\) is cyclic \'etale of degree \(n\).
+The cover \(X_0\to C\) is Galois with group \(H_{g,n}\); every
+\(X_k\to C\) for \(k>0\) is non-Galois and has the same Galois closure.
+Moreover,
+\[
+ (f_k)_*\cO_{X_k}
+ \simeq\cO_C\oplus
+ \cV_{\rho_{g,n},C}^{\oplus\mu_k}\oplus E_k
+\tag{2.15}\label{eq:tower-splitting}
+\]
+and, for every \(L\in\Pic^m(C)\),
+\[
+ h^0(X_k,f_k^*L)\geq h^0(C,L)+\mu_k.
+\tag{2.16}\label{eq:tower-sections}
+\]
+\end{proposition}
+
+\begin{proof}
+The order and multiplicity statements follow from
+\eqref{eq:average-character}.  The inclusions
+\(K_{k-1}\triangleleft K_k\) give the cyclic maps in
+\eqref{eq:cover-tower}.  Conjugating a nontrivial element of \(K_k\) by
+the corresponding \(x_i\) produces a nontrivial central factor; hence
+\(K_k\) is not normal for \(k>0\), and the same argument as in
+\cref{thm:exact-untwisting} shows that its core is trivial.
+The representation splitting and \eqref{eq:tower-sections} follow from
+Frobenius reciprocity, the projection formula, and
+\cref{thm:uniform}.
+\end{proof}
+
+\begin{corollary}[Prill's problem in every genus]\label{cor:prill-all-genus}
+Taking \(n=g\) and \(k=g\) gives a fixed topological cover whose
+holomorphic realization
+\(f_{g,C}\colon X_{g,C}\to C\), for every marked \(C\), is connected
+and \'etale of degree
+\[
+ g^{g+1}
+\]
+such that every fibre moves in a pencil.  It is fixed by the marking and
+works for every complex structure.  Its source has genus
+\[
+ 1+g^{g+1}(g-1).
+\tag{2.17}\label{eq:prill-source-genus}
+\]
+\end{corollary}
+
+\begin{proof}
+Here \(m=1\) and \(\mu_g=1\).  Apply
+\eqref{eq:tower-sections} to \(L=\cO_C(p)\) and use Riemann--Hurwitz.
+\end{proof}
+
+\begin{example}[Genus two]\label{ex:genus-two}
+For \(g=n=2\), put
+\(K=K_g=\langle y_1,y_2\rangle\).  The \(K\)-quotient cover, which is minimal among ordinary
+covers retaining the fixed Schr\"odinger block, has degree \(8\) and
+source genus \(9\); its Galois closure has degree \(32\).  If
+\(\alpha_1,\alpha_2,\alpha_3\) are the three nontrivial characters
+appearing in the annihilator of \(K\), then
+\[
+ f_*\cO_X\simeq
+ \cO_C\oplus\alpha_1\oplus\alpha_2\oplus\alpha_3\oplus V,
+\tag{2.18}\label{eq:genus-two-decomposition}
+\]
+where \(V\) is the rank-four Schr\"odinger--Raynaud bundle.  The strict
+rank theorem below forces
+\(\min_p h^0(V(p))=1\), and this minimum holds on a nonempty open set.
+For each nontrivial \(\alpha_i\), the curves \(C\) and
+\(C-\alpha_i\) in \(J(C)\) have no common component, so
+\(h^0(\alpha_i(p))=0\) for general \(p\).  Hence a general fibre has
+exactly two sections.
+This lowers the degree in the every-curve conclusion from \(36\) to
+\(8\), compared with \cite{LandesmanLittPrill}.  This construction is
+uniform over every genus-two curve, but it is not globally minimal.
+The degree-five example in \cref{thm:C5-degree-five} shows that the
+minimum over all genus-two curves and connected Prill-exceptional
+covers is five.
+
+The Galois closure gives a complementary sharp count.  Since the
+regular representation of \(H_{2,2}\) decomposes as
+\[
+ \widetilde f_*\cO_{\widetilde X}
+ \simeq
+ \bigoplus_{\eta\in\widehat{(\bZ/2)^4}}\alpha_\eta
+ \oplus V^{\oplus4},
+\]
+the degree-\(32\) cover has source genus \(33\), and every fibre has at least five
+sections.  On the same minimum-open set used above, all nontrivial
+\(\alpha_\eta(p)\) have no section, so a general fibre has exactly five.
+\end{example}
+
+
+\subsection{The surface scalar}
+
+Write
+\[
+ \pi_g=\left\langle a_1,b_1,\ldots,a_g,b_g\ \middle|\
+ \prod_{i=1}^g[a_i,b_i]=1\right\rangle.
+\]
+
+\begin{lemma}[Surface lifting obstruction]\label{lem:surface-lift}
+Let \(A\) be a finite abelian group equipped with a projective
+representation whose commutator is an alternating pairing
+\(e\colon A\times A\to\bC^*\).  For a homomorphism
+\(\alpha\colon\pi_g\to A\), a choice of lifts of
+\(\alpha(a_i),\alpha(b_i)\) to the associated central extension satisfies
+the surface relation if and only if
+\[
+ \kappa(\alpha):=
+ \prod_{i=1}^g e\bigl(\alpha(a_i),\alpha(b_i)\bigr)=1.
+\tag{2.19}\label{eq:surface-obstruction}
+\]
+The condition is independent of all chosen lifts.
+\end{lemma}
+
+\begin{proof}
+Changing a lift by a central scalar does not change a commutator.  The
+image of the defining surface relation is therefore exactly the product
+in \eqref{eq:surface-obstruction}.  If the product is one, arbitrary
+generator lifts define a homomorphism; if it is not one, no scalar
+change can repair the relation.
+\end{proof}
+
+For the mod-\(n\) abelianization in a marked symplectic basis,
+\(\kappa=\zeta^{-g}\).  Thus the standard projective Schr\"odinger
+representation has a finite linear surface lift precisely when
+\(n\mid g\).  Under this assumption define
+\[
+ \varphi_{g,n}\colon\pi_g\twoheadrightarrow H_{g,n},
+ \qquad a_i\longmapsto x_i,\quad b_i\longmapsto y_i,
+\tag{2.20}\label{eq:surface-heis-map}
+\]
+and set
+\[
+\rho_{g,n}=\tau_{g,n}\circ\varphi_{g,n}.
+\tag{2.21}\label{eq:rho-definition}
+\]
+The map is surjective because the commutators generate the centre.
+
+\section{Raynaud bundles and projective transport}
+
+\subsection{The theta-equivariant Fourier--Mukai bundle}
+
+Let \(C\) be a marked smooth projective curve of genus \(g\), let
+\(J=\Pic^0(C)\), and choose an Abel--Jacobi embedding
+\(\iota\colon C\hookrightarrow J\).  Choose a symmetric principal theta
+divisor \(\Theta\), and put \(N=\cO_J(n\Theta)\).  If
+\(\Phi_{\mathcal P}\) denotes the Fourier--Mukai transform for the
+normalized Poincar\'e bundle, set
+\[
+ F_n=\Phi_{\mathcal P}(N^{-1})[g],\qquad R_n=\iota^*F_n.
+\tag{3.1}\label{eq:raynaud-definition}
+\]
+Raynaud and Schneider prove the following facts
+\cite{Raynaud,Schneider}:
+\[
+ \rk R_n=n^g,\qquad \mu(R_n)=\frac gn,\qquad
+ H^0(C,R_n\otimes\alpha)\neq0
+ \quad(\alpha\in\Pic^0(C)),
+\tag{3.2}\label{eq:raynaud-support}
+\]
+and \(R_n\) is stable.  The key equivariant identity is
+\[
+ [n]^*F_n\simeq
+ \cO_J(n\Theta)\otimes
+ H^0(J,\cO_J(n\Theta))^\vee
+\tag{3.3}\label{eq:schneider-splitting}
+\]
+in the following precise equivariant sense; see
+\cite[Proposition 2.1(3)]{Schneider}.  Under the principal-polarization
+identification \(J\simeq\widehat J\), the polarization isogeny of
+\(\cO_J(n\Theta)\) is \([n]\).  Its theta group
+\(\cG_n=\cG(\cO_J(n\Theta))\) acts on the right-hand side of
+\eqref{eq:schneider-splitting}: the centre \(\bC^*\) has weight \(+1\)
+on the line-bundle factor and weight \(-1\) on the dual section factor.
+The tensor product therefore has central weight zero and carries an
+honest action of \(\cG_n/\bC^*=J[n]\).  A theta structure identifies
+the action on \(H^0(J,\cO_J(n\Theta))^\vee\) with the fixed geometric
+Schr\"odinger module \(S\) in \eqref{eq:schrodinger}.  Its commutator is
+the inverse Weil pairing, as prescribed by the chosen central-weight
+convention.
+
+Let
+\[
+ q\colon\widetilde C=C\times_{J,[n]}J\longrightarrow C.
+\tag{3.4}\label{eq:kummer-cover}
+\]
+The cover is connected: its monodromy is the surjective mod-\(n\)
+abelianization
+\(\pi_1(C)\twoheadrightarrow H_1(C,\bZ/n)\).  Restricting
+\eqref{eq:schneider-splitting} gives
+\[
+ q^*R_n\simeq\mathcal N\otimes S
+\tag{3.5}\label{eq:raynaud-pullback}
+\]
+for a line bundle \(\mathcal N\) on \(\widetilde C\), with the full theta
+group acting on the descent data.
+
+\begin{lemma}[Projective theta descent]\label{lem:projective-theta}
+After the marking identifies
+\(J[n]\) with \(A_{g,n}\), the projective bundle \(\bP(R_n)\) is the
+bundle associated to the fixed projective representation
+\[
+ \pi_g\longrightarrow A_{g,n}
+ \longrightarrow PGL(S)
+\tag{3.6}\label{eq:fixed-projective}
+\]
+given by the mod-\(n\) abelianization and the projective
+Schr\"odinger representation on \(S\).  Its projective conjugacy class
+is independent of \(C\), of
+the Abel--Jacobi base point, and of the chosen theta structure.
+\end{lemma}
+
+\begin{proof}
+Projectivizing \eqref{eq:raynaud-pullback} removes the line factor
+\(\mathcal N\), so \(q^*\bP(R_n)\) is the constant
+\(\bP(S)\)-bundle.  Write \(G=J[n]\) for the deck group.  Under the
+theta-equivariant form of \eqref{eq:schneider-splitting}, the descent
+isomorphism attached to \(a\in G\) is represented on
+\(\mathcal N\otimes S\) by
+\[
+ \ell_a\otimes T_a,
+\]
+where \(\ell_a\colon a^*\mathcal N\to\mathcal N\) is a line isomorphism
+and \(T_a\in GL(S)\) is a theta-group lift.  Replacing a lift by a scalar
+rescales \(\ell_a\) inversely, so \([T_a]\in PGL(S)\) is intrinsic.  The
+descent cocycle gives
+\([T_{a+b}]=[T_aT_b]\), while
+\[
+ T_aT_bT_a^{-1}T_b^{-1}=e_n(a,b)I.
+\]
+Thus the projective deck action is the constant Schr\"odinger action
+with commutator the inverse Weil pairing.  The cover \(q\) is the
+pullback of \([n]\) along the Abel--Jacobi map, hence its monodromy is
+the marked mod-\(n\) abelianization.  The marking and the convention in
+\eqref{eq:schrodinger} therefore identify the descent representation
+with \eqref{eq:fixed-projective}.
+
+Choose invariant Hermitian metrics on the finite theta representation
+and on the descended line factor.  The preceding cocycle then defines a
+unitary flat connection on \(\bP(R_n)\) whose holomorphic structure is
+the one obtained from theta descent.  The stable bundle \(R_n\) has a
+unique Hermitian--Einstein connection up to unitary scalar gauge, and its
+projectivization is flat.  Uniqueness identifies its projective
+connection with the descended unitary connection.  Thus algebraic theta
+descent and projective Narasimhan--Seshadri monodromy give the same
+projective local system.
+
+Changing the theta structure conjugates the projective representation.
+Changing the theta divisor or the Abel--Jacobi base point translates a
+semihomogeneous Fourier--Mukai bundle; the translation formula
+\(t_a^*F_n\simeq F_n\otimes P_b\), for a suitable
+\(P_b\in\Pic^0(J)\), changes its restriction only by a line twist.
+Consequently the projectivization is unchanged.  There is no even-level
+defect: since \(\bC^*\) is divisible,
+\[
+ H^2(A_{g,n},\bC^*)\simeq
+ \Hom(\wedge^2A_{g,n},\bC^*),
+\]
+so the projective cohomology class is determined by its commutator.
+Quadratic refinements affect extensions of symplectic automorphisms, not
+the marked projective representation used here.
+\end{proof}
+
+\subsection{Scalar transport of support loci}
+
+For a bundle \(E\) on \(C\), define
+\[
+ V_d^i(E)=
+ \{L\in\Pic^d(C):H^i(C,E\otimes L)\neq0\}.
+\tag{3.7}\label{eq:support-locus}
+\]
+
+\begin{lemma}[Projective scalar transport]\label{lem:scalar-transport}
+Let \(E\) and \(E'\) be vector bundles of the same rank on a curve.  If
+\(\bP(E)\simeq\bP(E')\) over the curve, then
+\[
+ E'\simeq E\otimes\alpha
+ \quad\text{for some line bundle }\alpha.
+\tag{3.8}\label{eq:scalar-twist}
+\]
+If \(\deg E=\deg E'\), then \(\alpha\in\Pic^0(C)\).
+Consequently,
+\[
+ V_d^i(E')=\alpha^{-1}V_d^i(E).
+\tag{3.9}\label{eq:support-translate}
+\]
+In particular, the property \(V_d^i(E)=\Pic^d(C)\) depends only on the
+projective local system.
+\end{lemma}
+
+\begin{proof}
+The two bundles define the same \(PGL_r\)-torsor.  Comparing lifts through
+\(1\to\bG_m\to GL_r\to PGL_r\to1\) shows that their transition matrices
+differ by a \(\bG_m\)-cocycle, which is a line bundle \(\alpha\).  This
+proves \eqref{eq:scalar-twist}.  Taking degrees gives
+\(\deg E'=\deg E+r\deg\alpha\), so equal degrees force
+\(\deg\alpha=0\).  Formula \eqref{eq:support-translate} follows by
+tensoring line bundles.
+\end{proof}
+
+\begin{theorem}[Heisenberg--Raynaud uniformization]\label{thm:uniform}
+Let \(g\geq2\), \(n\geq2\), and \(n\mid g\).  The representation
+\(\rho_{g,n}\) in \eqref{eq:rho-definition} satisfies all conclusions
+of \cref{thm:intro-uniform}.
+\end{theorem}
+
+\begin{proof}
+Put \(m=g/n\) and \(r=n^g\).  Choose
+\(M\in\Pic^{-m}(C)\) with
+\[
+ M^{\otimes r}\simeq(\det R_n)^{-1};
+\tag{3.10}\label{eq:det-normalization}
+\]
+such an \(M\) exists because multiplication by \(r\) is surjective on
+\(\Pic^0(C)\).  The bundle
+\[
+ W=R_n\otimes M
+\]
+is stable of degree zero and has trivial determinant.  By the
+Narasimhan--Seshadri theorem \cite{NarasimhanSeshadri}, it is associated
+to an irreducible unitary representation \(\sigma_C\).
+
+The projective local system of \(\sigma_C\) is the one in
+\cref{lem:projective-theta}.  The fixed finite representation
+\(\rho_{g,n}\) is a linear lift of the same projective representation by
+\cref{lem:surface-lift}.  Therefore
+\cref{lem:scalar-transport} gives an \(\alpha_C\in\Pic^0(C)\) such that
+\[
+ \cV_{\rho_{g,n},C}
+ \simeq R_n\otimes M\otimes\alpha_C.
+\tag{3.11}\label{eq:uniform-identification}
+\]
+For \(L\in\Pic^m(C)\), the line
+\(M\otimes\alpha_C\otimes L\) has degree zero.  Equation
+\eqref{eq:raynaud-support} now proves
+\[
+ H^0(C,\cV_{\rho_{g,n},C}\otimes L)\neq0.
+\]
+
+The representation is irreducible and nontrivial, so its degree-zero
+flat bundle is stable and has no global sections.  Triviality of the
+determinant follows directly from \cref{lem:character}.  Its image is
+the faithful Schr\"odinger image of \(H_{g,n}\), hence has order
+\(n^{2g+1}\).
+\end{proof}
+
+\begin{remark}[Logical scope]\label{rem:scope-uniform}
+The uniformity in \cref{thm:uniform} is not a compactness or
+finite-candidate argument.  It uses two exact inputs:
+theta-equivariant projective descent and invariance of the full Picard
+support condition under scalar twists.  A statement only along the Abel
+curve \(p\mapsto\cO_C(p)\) would not be sufficient for this transport.
+\end{remark}
+
+\section{Lagrangian descent and Heisenberg untwisting}
+
+\subsection{The three-step factorization}
+
+Put
+\[
+ K=\langle y_1,\ldots,y_g\rangle,\qquad
+ B=\langle z\rangle K.
+\tag{4.1}\label{eq:lagrangian-subgroups}
+\]
+Then \(K\simeq(\bZ/n)^g\), \(B=\langle z\rangle\times K\), and
+\[
+ |K|=r,\qquad |B|=nr.
+\tag{4.2}\label{eq:BK-orders}
+\]
+The subgroup \(B\) is normal in \(H_{g,n}\), since conjugation changes
+an element of \(B\) only by a central element.  Define
+\[
+ \chi\colon B\longrightarrow\mu_n,\qquad
+ \chi(z)=\zeta^{-1},\quad \chi(y_i)=1.
+\tag{4.3}\label{eq:chi}
+\]
+The line \(\bC e_0\subset S\) is a \(B\)-eigenline of character \(\chi\).
+It is cyclic under the shifts, and therefore
+\[
+ S\simeq\Ind_B^{H_{g,n}}\chi.
+\tag{4.4}\label{eq:monomial-schrodinger}
+\]
+
+\begin{theorem}[Exact untwisting]\label{thm:exact-untwisting}
+Let \(C\) be marked and retain the hypotheses of \cref{thm:uniform}.
+Let
+\[
+ \pi_B=\varphi_{g,n}^{-1}(B),\qquad
+ \pi_K=\varphi_{g,n}^{-1}(K).
+\]
+The corresponding covers form a diagram
+\[
+ X\xrightarrow{\,v\,}Y\xrightarrow{\,u\,}C
+\tag{4.5}\label{eq:untwisting-diagram}
+\]
+with the following properties.
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item The cover \(u\) is connected Galois of degree \(r\).
+\item The character \(\chi\circ\varphi_{g,n}|_{\pi_B}\) defines an
+exact-order-\(n\) torsion line bundle \(\lambda\) on \(Y\), chosen with
+the associated-bundle convention for which
+\[
+ u_*\lambda\simeq\cV_{\rho_{g,n},C}.
+\tag{4.6}\label{eq:push-line}
+\]
+If the opposite convention is used, \(\lambda\) is replaced by
+\(\lambda^{-1}\).
+\item The cover \(v\) is connected cyclic \'etale of degree \(n\),
+\(v^*\lambda\simeq\cO_X\), and
+\[
+ X\simeq
+ \Spec_Y\!\left(\bigoplus_{j=0}^{n-1}\lambda^{-j}\right)
+\tag{4.7}\label{eq:cyclic-spec}
+\]
+after a choice of \(\lambda^n\simeq\cO_Y\).
+\item For every line bundle \(L\) on \(C\) and \(i=0,1\),
+\[
+ H^i(Y,\lambda\otimes u^*L)
+ \simeq H^i(C,\cV_{\rho_{g,n},C}\otimes L).
+\tag{4.8}\label{eq:all-cohomology-line}
+\]
+\item The composite \(f=u\circ v\) has degree \(nr=n^{g+1}\), and
+\[
+ f_*\cO_X\simeq
+ \cO_C\oplus\cV_{\rho_{g,n},C}\oplus E
+\tag{4.9}\label{eq:ordinary-splitting}
+\]
+for a unitary degree-zero bundle \(E\).
+\item The Galois closure of \(f\) is the \(H_{g,n}\)-cover and has degree
+\(nr^2=n^{2g+1}\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Equation \eqref{eq:monomial-schrodinger} and the equivalence between
+finite-cover direct image and induction give \eqref{eq:push-line}.  The
+character is surjective because its restriction to the centre is
+faithful; hence \(\lambda\) has exact order \(n\).  Its kernel in
+\(\pi_B\) is exactly \(\pi_K\), which proves the assertions about \(v\)
+and \eqref{eq:cyclic-spec}.  Finite direct image is exact, and the
+projection formula proves \eqref{eq:all-cohomology-line}.
+
+The permutation module of the composite is
+\(\bC[H_{g,n}/K]=\Ind_K^{H_{g,n}}\mathbf1\).  Frobenius reciprocity and
+the fixed lines in both \(S\) and \(S^\vee\) show that it contains
+\(S\) once.  It also contains the trivial representation, proving
+\eqref{eq:ordinary-splitting}.
+
+It remains to determine the Galois closure.  If \(k\) belongs to the core
+of \(K\), then \([h,k]\in K\cap\langle z\rangle=1\) for every \(h\in H\).
+The nondegeneracy of \eqref{eq:weil-pairing} forces the image of \(k\) in
+\(H/\langle z\rangle\) to vanish, and then \(k=1\).  Thus the core is
+trivial.
+\end{proof}
+
+\subsection{Finite-symplectic theta untwisting}
+
+The preceding argument is not restricted to a homogeneous module
+\((\bZ/n)^{2g}\).  The following form is the group-theoretic engine
+needed for arbitrary polarization type.
+
+\begin{theorem}[Finite-symplectic theta untwisting]
+\label{thm:finite-symplectic-untwisting}
+Let \((A,e)\) be a finite abelian group with a perfect alternating
+pairing \(e\colon A\times A\to\mu_N\), where \(N\) is the exponent of
+\(A\), assume \(N\geq2\), and write \(|A|=r^2\).  Choose a Lagrangian
+decomposition \(A=L\oplus L'\), and let \(H_{\mathrm{sp}}(A)\) be the
+split finite Heisenberg model described in the proof.  Suppose a surface group admits a
+surjection
+\(\psi\colon\pi_1(C)\twoheadrightarrow H_{\mathrm{sp}}(A)\).  For a faithful
+central character, let \(S_A\) be the corresponding Schr\"odinger
+module and \(V_A\) its flat bundle.  Then there are connected covers
+\[
+ X_A\longrightarrow Y_A\longrightarrow C
+\]
+and an exact-order-\(N\) line bundle \(\lambda_A\in\Pic^0(Y_A)\) such
+that
+\[
+ \deg(Y_A/C)=r,\qquad
+ (u_A)_*\lambda_A\simeq V_A,
+\]
+the first map is the cyclic degree-\(N\) torsor trivializing
+\(\lambda_A\), and
+\[
+ (f_A)_*\cO_{X_A}\simeq\cO_C\oplus V_A\oplus E_A.
+\]
+Thus \(\deg f_A=Nr\), and the Galois closure of \(f_A\) is the
+\(H_{\mathrm{sp}}(A)\)-cover of degree \(Nr^2\).  For \(i=0,1\), finite direct image
+identifies the cohomology of \(V_A\otimes L\) with that of
+\(\lambda_A\otimes u_A^*L\).
+\end{theorem}
+
+\begin{proof}
+The elementary-divisor theorem for finite symplectic modules gives a
+decomposition
+\[
+ A=L\oplus L',\qquad |L|=|L'|=r,
+\]
+in which both summands are isotropic and the pairing between them is
+perfect.  Concretely, if
+\(A\simeq\bigoplus_i(\bZ/d_i)^2\), take one cyclic factor from each
+  hyperbolic plane.  The split finite model in the statement is
+\[
+ H_{\mathrm{sp}}(A)=\mu_N\times L\times L',
+\]
+with multiplication
+\[
+ (z,l,l')(w,m,m')=
+ \bigl(zw\,e(l',m),\ l+m,\ l'+m'\bigr).
+\]
+Its commutator is the prescribed pairing.  The projective cocycle class
+with commutator \(e\) is unique because
+\[
+ H^2(A,\bC^*)\simeq\Hom(\wedge^2A,\bC^*),
+\]
+and the finite Stone--von Neumann theorem gives the unique irreducible
+Schr\"odinger projective representation for each faithful central
+character.  This does not assert that every finite central extension
+with the same commutator is isomorphic to the split group.
+
+Put \(B=\mu_N\times L\).  For a faithful character
+\(\omega\colon\mu_N\to\bC^*\), extend it to
+\(\chi(z,l)=\omega(z)\) on \(B\).  Then
+\[
+ S_A\simeq\Ind_B^{H_{\mathrm{sp}}(A)}\chi,
+\]
+so \(\dim S_A=[H_{\mathrm{sp}}(A):B]=r\).  The group \(B\) is normal.  The subgroups
+\(\psi^{-1}(B)\) and \(\psi^{-1}(L)\) therefore define the asserted
+degree-\(r\) cover and its cyclic degree-\(N\) refinement.  Surjectivity
+of \(\psi\) and faithfulness of \(\omega\) show that the associated
+character line has exact order \(N\).  Induction, finite direct image,
+and the projection formula give the direct-image and cohomology
+identities.
+
+The permutation module \(\bC[H_{\mathrm{sp}}(A)/L]\) contains the trivial module and
+also \(S_A\), since the dual Schr\"odinger module has an \(L\)-fixed
+inducing line and Frobenius reciprocity applies.  Finally, the core of
+\(L\) is trivial.  Indeed, if
+\(l\in L\) belongs to every conjugate of \(L\), conjugation by every
+\(l'\in L'\) forces \(e(l',l)=1\); perfectness gives \(l=0\).  Hence the
+Galois closure has group \(H_{\mathrm{sp}}(A)\) and order \(Nr^2\).
+\end{proof}
+
+\begin{corollary}[Higher-divisor Prill condition]\label{cor:higher-prill}
+Let \(f=u\circ v\colon X\to C\) be the composite in
+\cref{thm:exact-untwisting}.  Then, for every effective divisor \(D\) of
+degree \(m=g/n\),
+\[
+ h^0\!\left(X,\cO_X(f^*D)\right)\geq2.
+\tag{4.10}\label{eq:higher-prill}
+\]
+More strongly, for every \(L\in\Pic^m(C)\),
+\[
+ h^0(X,f^*L)\geq h^0(C,L)+1.
+\tag{4.11}\label{eq:full-pic-pullback}
+\]
+\end{corollary}
+
+\begin{proof}
+Apply \eqref{eq:ordinary-splitting}, the projection formula, and
+\cref{thm:uniform}.  If \(D\) is effective, the trivial summand gives one
+section and the Schr\"odinger summand gives another.
+\end{proof}
+
+\section{Brill--Noether geometry of the compression tower}
+
+Retain \(m=g/n\), and let \(f_k\colon X_k\to C\) be the covers from
+\cref{prop:compression-tower}.  Put
+\[
+ G_k=g(X_k)=1+d_k(g-1),\qquad e_k=md_k.
+\tag{5.1}\label{eq:BN-numbers}
+\]
+I use the convention
+\[
+ W_e^s(X)=
+ \{L\in\Pic^e(X):h^0(X,L)\geq s+1\}.
+\]
+
+\begin{theorem}[Abelian and symmetric-product blocks]\label{thm:BN-blocks}
+For every \(0\leq k\leq g\),
+\[
+ f_k^*\Pic^m(C)\subset W_{e_k}^{\mu_k-1}(X_k)
+\tag{5.2}\label{eq:full-pic-BN}
+\]
+is a translate of an abelian subvariety of dimension \(g\).  Moreover,
+\[
+ f_k^*W_m^0(C)\subset W_{e_k}^{\mu_k}(X_k)
+\tag{5.3}\label{eq:effective-BN}
+\]
+contains the image of an \(m\)-dimensional symmetric product.  The
+corresponding Brill--Noether numbers are
+\[
+ \rho_k=
+ 1+d_k(g-1)
+ -\mu_k\bigl[d_k(g-1-m)+\mu_k\bigr]
+\tag{5.4}\label{eq:rho-full}
+\]
+and
+\[
+ \rho_k^+=
+ 1+d_k(g-1)
+ -(\mu_k+1)
+ \bigl[1+d_k(g-1-m)+\mu_k\bigr].
+\tag{5.5}\label{eq:rho-effective}
+\]
+\end{theorem}
+
+\begin{proof}
+Equation \eqref{eq:tower-sections} gives
+\(h^0(X_k,f_k^*L)\geq\mu_k\) for every \(L\in\Pic^m(C)\), and gives
+\(h^0(X_k,f_k^*L)\geq\mu_k+1\) when \(L\) is effective.  This proves the
+two inclusions, where \(C^{(m)}\to W_m^0(C)\) is the Abel--Jacobi map.
+
+The identity
+\[
+ \Nm_{f_k}\circ f_k^*=[d_k]\colon\Pic^0(C)\longrightarrow\Pic^0(C)
+\tag{5.6}\label{eq:norm-pull}
+\]
+shows that \(f_k^*\) has finite kernel.  Hence the first image has
+dimension \(g\).  Since \(m\leq g-1\), a general effective divisor of
+degree \(m\) has one section, so \(\dim W_m^0(C)=m\); the constructed
+second image therefore has dimension \(m\).  Substitution of
+\(G_k=1+d_k(g-1)\), \(e_k=md_k\), and the relevant values of \(s\) in
+\[
+ \rho(G,s,e)=G-(s+1)(G-e+s)
+\]
+gives \eqref{eq:rho-full} and \eqref{eq:rho-effective}.
+\end{proof}
+
+\begin{corollary}[Negative expected dimension]\label{cor:negative-BN}
+At the minimal ordinary layer \(k=g\), put \(d=n^{g+1}\) and write
+\(f=f_g\colon X=X_g\to C\).  Then
+\[
+ f^*\Pic^m(C)\subset W_{dm}^0(X),\qquad
+ f^*C^{(m)}\subset W_{dm}^1(X).
+\tag{5.7}\label{eq:minimal-BN}
+\]
+The second locus has
+\[
+ \rho\bigl(g(X),1,dm\bigr)=d(2m-g+1)-3.
+\tag{5.8}\label{eq:minimal-rho}
+\]
+If \(n\geq3\), this number is negative, although the constructed image
+\(f^*C^{(m)}\) has dimension \(m\).  In particular, for \(n=g\)
+and \(g\geq3\),
+\[
+ f^*C\subset W_d^1(X),\qquad
+ \rho\bigl(g(X),1,d\bigr)=d(3-g)-3<0.
+\tag{5.9}\label{eq:Prill-negative-rho}
+\]
+\end{corollary}
+
+\begin{proof}
+Here \(\mu_g=1\).  Formula \eqref{eq:minimal-rho} follows directly from
+\(g(X)=1+d(g-1)\).  If \(n\geq3\), then \(g\geq n\) and
+\[
+ 2m-g+1=\frac{2g}{n}-g+1\leq0;
+\]
+equality occurs only at the boundary \(g=n=3\), where the remaining
+term is \(-3\).
+\end{proof}
+
+Write
+\[
+ d_s(X)=\min\{\deg L:L\in\Pic(X),\ h^0(X,L)\geq s+1\}
+\]
+for the gonality sequence.
+
+\begin{corollary}[Gonality sequence and Clifford index]\label{cor:clifford-tower}
+For every effective divisor \(D\) of degree \(m\),
+\[
+ h^0(X_k,\cO_{X_k}(f_k^*D))\geq\mu_k+1,\qquad
+ h^1(X_k,\cO_{X_k}(f_k^*D))
+ \geq\mu_k+1+d_k(g-1-m).
+\tag{5.10}\label{eq:special-pullback}
+\]
+Consequently,
+\[
+ d_{\mu_k}(X_k)\leq e_k,\qquad
+ \Cliff(X_k)\leq e_k-2\mu_k.
+\tag{5.11}\label{eq:gonality-clifford}
+\]
+\end{corollary}
+
+\begin{proof}
+The first inequality is \eqref{eq:tower-sections}.  Riemann--Roch gives
+the second.  Since \(m\leq g/2\), both \(h^0\) and \(h^1\) are at least
+two, and the definitions of the gonality sequence and Clifford index
+give \eqref{eq:gonality-clifford}.
+\end{proof}
+
+\section{A strict rank--corank inequality}
+
+The argument in this section applies to arbitrary stable degree-zero
+bundles; neither finite monodromy nor the theta construction is used.
+
+\begin{theorem}[Strict rank--corank inequality]\label{thm:strict-rank}
+Let \(C\) have genus \(g\geq2\), and let \(W\) be a nontrivial stable
+bundle of degree zero and rank \(r\).  Set
+\[
+ c=\min_{p\in C}h^0(C,W(p)).
+\]
+If \(c\geq1\), then
+\[
+ r\geq gc+2.
+\tag{6.1}\label{eq:strict-rank}
+\]
+\end{theorem}
+
+\begin{proof}
+Set \(F=K_C\otimes W^\vee\).  Then \(F\) is stable of rank \(r\), degree
+\(2r(g-1)\), and
+\[
+ h^0(F)=r(g-1),\qquad h^1(F)=h^0(W)=0.
+\tag{6.2}\label{eq:F-sections}
+\]
+Let \(U\subset F\) be the saturation of the image of the evaluation map
+\[
+ H^0(F)\otimes\cO_C\longrightarrow F,
+\]
+and put \(s=\rk U\), \(D=\deg U\).  At a point where \(h^0(W(p))=c\),
+the cokernel of evaluation in the fibre of \(F\) has dimension \(c\):
+this follows from the exact sequence for \(F(-p)\), because
+\[
+ H^1(F(-p))^\vee\simeq H^0(W(p)).
+\]
+Consequently,
+\[
+ s=r-c,\qquad h^0(U)=h^0(F)=r(g-1).
+\tag{6.3}\label{eq:U-data}
+\]
+Indeed, every global section of \(F\) lands generically in the
+evaluation image and therefore factors through its saturation \(U\);
+the reverse inclusion of section spaces is tautological.
+
+The bundle \(U\) is generically globally generated.  Its minimal
+Harder--Narasimhan quotient is therefore generically globally generated
+and has nonnegative degree; hence every Harder--Narasimhan slope of
+\(U\) is nonnegative.  Its maximal-slope subbundle is a proper subbundle
+of the stable bundle \(F\), so every such slope is strictly less than
+\(2g-2\).  The vector-bundle Clifford inequality
+\cite[Theorem 2.1]{BrambilaPazGN}, applied to the semistable
+Harder--Narasimhan factors and then added, gives
+\[
+ h^0(U)\leq s+\frac D2.
+\]
+For a slope-zero factor, the same bound follows directly: generic global
+generation and degree zero make it trivial, so its number of sections is
+its rank.  Thus no endpoint outside the cited positive-slope range is
+being used.
+Together with \eqref{eq:U-data}, this yields
+\[
+ D\geq2r(g-2)+2c.
+\tag{6.4}\label{eq:D-lower}
+\]
+Stability of \(F\), integrality of \(D\), and \(s<r\) give
+\[
+ D\leq2s(g-1)-1.
+\tag{6.5}\label{eq:D-upper}
+\]
+Equations \eqref{eq:D-lower} and \eqref{eq:D-upper} first imply
+\(r\geq gc+1\).
+
+It remains to exclude the endpoint \(r=gc+1\).  Then
+\[
+ s=(g-1)c+1,
+\]
+and the two bounds for \(D\) differ by one.  Thus
+\[
+ D=2s(g-1)-e,\qquad e\in\{1,2\}.
+\tag{6.6}\label{eq:D-endpoint}
+\]
+Define
+\[
+ E=K_C\otimes U^\vee.
+\]
+Riemann--Roch, Serre duality, \eqref{eq:U-data}, and
+\eqref{eq:D-endpoint} give
+\[
+ \rk E=s,\qquad \deg E=e,\qquad h^0(E)=s+e-1.
+\tag{6.7}\label{eq:E-data}
+\]
+Writing \(Q=F/U\), saturation makes \(Q\) locally free.  Dualizing and
+tensoring by \(K_C\) gives a surjection
+\[
+ W\twoheadrightarrow E.
+\tag{6.8}\label{eq:W-to-E}
+\]
+Since \(\rk E=s=r-c<r\), every nonzero vector-bundle quotient of \(E\),
+composed with \eqref{eq:W-to-E}, is a proper vector-bundle quotient of
+the stable degree-zero bundle \(W\), and consequently has strictly
+positive degree.
+
+I next show that \(E\) is generically globally generated.  Let
+\(A\subset E\) be the saturation of its evaluation image, and suppose
+\(a=\rk A<s\).  The quotient \(E/A\) has positive degree, so
+\[
+ 0\leq\deg A\leq e-1.
+\]
+All sections of \(E\) factor through \(A\), hence \(h^0(A)=h^0(E)\).
+Choosing \(a\) generically independent sections of the generically
+generated bundle \(A\) gives
+\[
+ 0\longrightarrow\cO_C^a\longrightarrow A\longrightarrow T_A
+ \longrightarrow0,
+\]
+where \(T_A\) has length \(\deg A\).  It follows that
+\[
+ h^0(E)=h^0(A)\leq a+\deg A
+ \leq s+e-2,
+\]
+contrary to \eqref{eq:E-data}.  Thus \(E\) is generically globally
+generated.
+
+Choose \(s\) generically independent global sections.  Their determinant
+gives
+\[
+ 0\longrightarrow\cO_C^s\longrightarrow E\longrightarrow T
+ \longrightarrow0,\qquad \operatorname{length}T=e.
+\tag{6.9}\label{eq:E-evaluation}
+\]
+Dualizing gives
+\[
+ 0\longrightarrow E^\vee\longrightarrow\cO_C^s
+ \longrightarrow\mathcal Ext^1(T,\cO_C)\longrightarrow0.
+\tag{6.10}\label{eq:E-dual-evaluation}
+\]
+If \(s>e\), the map
+\(\bC^s\to H^0(\mathcal Ext^1(T,\cO_C))\), whose target has dimension
+\(e\), has a nonzero kernel.  The resulting section of \(E^\vee\) maps
+to a nonzero constant vector in \(\cO_C^s\), so it vanishes nowhere.
+Dualizing this line subbundle gives a quotient \(E\twoheadrightarrow
+\cO_C\), contradicting the positivity of all nonzero quotients of \(E\).
+Therefore \(s\leq e\).
+
+Since \(s=(g-1)c+1\geq2\) and \(e\leq2\), the only remaining case is
+\[
+ s=e=2,\qquad g=2,\qquad c=1.
+\tag{6.11}\label{eq:last-endpoint}
+\]
+Now \(E\) has rank two, degree two, and three global sections.  The
+wedge map
+\[
+ \wedge^2H^0(E)\longrightarrow H^0(\det E)
+\tag{6.12}\label{eq:wedge-map}
+\]
+is injective.  Indeed, every nonzero bivector in
+\(\wedge^2\bC^3\) is decomposable; a nonzero element of the kernel would
+give two independent sections contained in a line subbundle
+\(L\subset E\).  The quotient \(E/L\) has positive degree, so
+\(\deg L\leq1\), whereas \(h^0(L)\geq2\), impossible on a genus-two
+curve.  Injectivity in \eqref{eq:wedge-map} would imply
+\(h^0(\det E)\geq3\).  A degree-two line bundle on a genus-two curve has
+at most two sections.  This final contradiction excludes
+\eqref{eq:last-endpoint} and proves \eqref{eq:strict-rank}.
+\end{proof}
+
+\begin{corollary}[Degree and section bounds for covers]\label{cor:cover-lower-bound}
+Let \(f\colon X\to C\) be a connected finite \'etale cover of a
+genus-\(g\) curve.  If
+\[
+ \min_{p\in C}
+ h^0\!\left(X,\cO_X(f^{-1}(p))\right)\geq k+1
+\quad(k\geq1),
+\tag{6.13}\label{eq:k-sections}
+\]
+then
+\[
+ \deg f\geq gk+3.
+\tag{6.14}\label{eq:degree-lower}
+\]
+In particular, every connected Prill-exceptional \'etale cover has
+degree at least \(g+3\).
+\end{corollary}
+
+\begin{proof}
+Decompose the unitary permutation bundle as
+\[
+ f_*\cO_X\simeq
+ \cO_C\oplus\bigoplus_j W_j^{\oplus m_j},
+\tag{6.15}\label{eq:permutation-decomp}
+\]
+where the \(W_j\) are nontrivial stable degree-zero bundles.  Put
+\[
+ c_j=\min_p h^0(W_j(p)).
+\]
+The minimum of each upper-semicontinuous function is attained on a
+nonempty open subset.  On the intersection of these finitely many open
+sets, \eqref{eq:k-sections} gives
+\[
+ \sum_jm_jc_j\geq k.
+\]
+For every \(j\) with \(c_j>0\), \cref{thm:strict-rank} gives
+\(\rk W_j\geq gc_j+2\).  Hence
+\[
+ \deg f
+ =1+\sum_jm_j\rk W_j
+ \geq1+gk+2\sum_{c_j>0}m_j
+ \geq gk+3.
+\]
+\end{proof}
+
+\begin{corollary}[Galois lower bound]\label{cor:galois-lower}
+If a connected Galois \'etale cover \(f\colon X\to C\) is
+Prill-exceptional, then its deck group \(G\) satisfies
+\[
+ |G|\geq(g+2)(g+3).
+\tag{6.16}\label{eq:galois-order-lower}
+\]
+\end{corollary}
+
+\begin{proof}
+Write the regular decomposition as
+\[
+ f_*\cO_X\simeq\cO_C\oplus
+ \bigoplus_{\rho\neq\mathbf1}W_\rho^{\oplus r_\rho},
+ \qquad r_\rho=\rk W_\rho.
+\]
+On the common nonempty open set where every
+\(h^0(W_\rho(p))\) attains its minimum \(c_\rho\),
+Prill-exceptionality gives
+\(\sum_{\rho\neq\mathbf1}r_\rho c_\rho\geq1\).  Hence some nontrivial
+summand \(W=W_\rho\) has \(c=c_\rho>0\).  If \(r=\rk W\), then
+\(r\geq g+2\) by \cref{thm:strict-rank}.  The regular representation
+contains the trivial representation and \(W\) with multiplicity \(r\),
+so \(|G|>r^2\).  The degree of a complex irreducible character divides
+the group order by the Frobenius divisibility theorem
+\cite[\S6.5]{SerreFiniteGroups}; hence \(|G|\) is a
+multiple of \(r\), and
+\[
+ |G|\geq r(r+1)\geq(g+2)(g+3).
+\]
+\end{proof}
+
+\begin{corollary}[A numerical Putman--Wieland range]\label{cor:PW-range}
+A connected finite unramified cover of a closed genus-\(g\) surface with
+degree at most \(g+2\) cannot furnish a counterexample to the
+Putman--Wieland conjecture \cite{PutmanWieland}.  If the cover is Galois, the same conclusion
+holds whenever the deck group has order less than \((g+2)(g+3)\).
+\end{corollary}
+
+\begin{proof}
+Landesman and Litt prove that a closed Putman--Wieland counterexample is
+Prill-exceptional \cite[Lemma 5.5]{LandesmanLittApplications}.  Apply
+\cref{cor:cover-lower-bound,cor:galois-lower}.
+\end{proof}
+
+\begin{remark}[No converse]\label{rem:no-PW-converse}
+Prill-exceptionality is only a necessary condition for a
+Putman--Wieland counterexample.  The Heisenberg covers constructed here
+therefore do not by themselves produce finite homology orbits.  The
+large-monodromy theorem of Landesman--Litt--Sawin
+\cite{LandesmanLittSawin} applies in a complementary range in which the
+base genus is large compared with the representation rank; the ranks
+\(n^g\) considered here lie far outside that range.
+\end{remark}
+
+\subsection{The degree-five minimum in genus two}
+
+The numerical lower bound leaves degree five as the first possible
+value in genus two.  I first isolate its monodromy and theta
+obstruction, and then construct a symmetric example for which the
+obstruction vanishes.
+
+\begin{lemma}[Rank-four no-jump lemma]\label{lem:rank-four-no-jump}
+Let \(C\) have genus two, and let \(W\) be a nontrivial stable
+degree-zero bundle of rank four.  If
+\[
+ \min_{p\in C}h^0(C,W(p))\geq1,
+\]
+then
+\[
+ h^0(C,W(p))=1\qquad\text{for every }p\in C.
+\tag{6.17}\label{eq:rank-four-no-jump}
+\]
+\end{lemma}
+
+\begin{proof}
+The strict rank--corank inequality gives
+\(4\geq2c+2\), so the minimum is \(c=1\).  Put
+\[
+ F=K_C\otimes W^\vee,\qquad V=H^0(C,F).
+\]
+Then \(\dim V=4\), and the evaluation map
+\(V\otimes\cO_C\to F\) has generic rank three.  Its kernel \(M\) is a
+line subbundle; set \(A=M^\vee\).  Let \(V_0\subset V\) be the smallest
+constant subspace such that
+\(M\subset V_0\otimes\cO_C\), and put \(t=\dim V_0\).  Minimality gives
+an injection \(V_0^\vee\hookrightarrow H^0(C,A)\), and these sections
+generate \(A\).  If \(I_0\) is the image of
+\(V_0\otimes\cO_C\to F\) and \(U_0\) its saturation, then
+\[
+ \deg A=\deg I_0\leq\deg U_0\leq2(t-1)-1,
+\tag{6.18}\label{eq:A-upper}
+\]
+because \(F\) is stable of slope two.  The case \(t=1\) would give a
+constant linear relation among the elements of \(V=H^0(F)\), so
+\(t\geq2\).
+
+On a genus-two curve, a globally generated nontrivial line bundle with
+at least \(t\) sections has degree at least \(2,4,5\) for
+\(t=2,3,4\), respectively.  This contradicts
+\eqref{eq:A-upper} for \(t=2,3\), so \(t=4\) and \(\deg A\geq5\).
+Let \(I\) be the full evaluation image and \(U\) its saturation.  Then
+\(\rk U=3\), stability gives \(\deg U\leq5\), and
+\[
+ \deg U=\deg I+\operatorname{length}(U/I)
+       =\deg A+\operatorname{length}(U/I)\geq5.
+\]
+Consequently \(\deg A=\deg U=5\) and \(U=I\).  Evaluation is therefore
+surjective onto \(U\) at every point, and its cokernel in \(F_p\) has
+dimension one for every \(p\).  Serre duality identifies this cokernel
+with \(H^0(C,W(p))^\vee\), proving
+\eqref{eq:rank-four-no-jump}.
+\end{proof}
+
+\begin{proposition}[Degree-five monodromy reduction]
+\label{prop:degree-five-reduction}
+Let \(f\colon X\to C\) be a connected degree-five \'etale cover of a
+genus-two curve.  If every fibre moves in a pencil, then the monodromy
+group is \(A_5\) in its natural five-point action.  The augmentation
+bundle \(W\) is a stable oriented orthogonal bundle of rank four and
+satisfies
+\[
+ h^0(C,W(p))=1\quad(p\in C),\qquad
+ w_1(W)=0,\qquad \langle w_2(W),[C]\rangle=1.
+\tag{6.19}\label{eq:A5-topological-data}
+\]
+\end{proposition}
+
+\begin{proof}
+Decompose the augmentation local system into irreducible unitary
+summands.  On the common open set where all section dimensions are
+minimal, Prill-exceptionality forces one summand \(E\) to satisfy
+\(\min_p h^0(E(p))>0\).  By \cref{thm:strict-rank},
+\(\rk E\geq4\).  Since the full augmentation rank is four, the
+augmentation representation is irreducible.  It is therefore stable,
+and \cref{lem:rank-four-no-jump} gives the first assertion in
+\eqref{eq:A5-topological-data}.
+
+An irreducible augmentation representation is equivalent to
+two-transitivity of the five-point action: the number of orbits on
+ordered pairs is
+\(\dim\operatorname{End}_G(\bC^5)\).  The two-transitive subgroups of
+\(S_5\) are
+\[
+ \operatorname{AGL}_1(\mathbf F_5),\qquad A_5,\qquad S_5.
+\tag{6.20}\label{eq:degree-five-groups}
+\]
+For completeness, two-transitivity makes \(|G|\) divisible by
+\(5\cdot4\).  If \(|G|=20\), the action is sharply two-transitive and
+\(G=C_5\rtimes C_4\).  Subgroups of orders \(40\) and \(60\) not equal
+to \(A_5\) are excluded by intersecting with the simple group \(A_5\),
+and order \(120\) gives \(S_5\).
+
+It remains to use the orthogonal structure.  For a real orthogonal
+bundle \(E_{\mathbf R}\) of rank \(r\) and a theta characteristic
+\(\kappa\), the mod-two index formula \cite{AtiyahSpin} is
+\[
+ h^0(C,E_{\mathbf R}\otimes_{\mathbf R}\bC\otimes\kappa)
+ \equiv r h^0(C,\kappa)+q_\kappa(w_1(E_{\mathbf R}))
+ +\langle w_2(E_{\mathbf R}),[C]\rangle\pmod2,
+\tag{6.21}\label{eq:nonoriented-parity}
+\]
+where \(q_\kappa\) is the Riemann--Mumford quadratic refinement.  One
+may derive \eqref{eq:nonoriented-parity} from the mod-two index theorem
+by the splitting principle: for real line classes \(a_i\), use
+\(q_\kappa(\sum a_i)=\sum q_\kappa(a_i)+
+\sum_{i<j}a_i\smile a_j\).
+
+The six Weierstrass points give the six odd theta characteristics
+\(\kappa_i=\cO_C(w_i)\).  Equation
+\eqref{eq:rank-four-no-jump} and \eqref{eq:nonoriented-parity} imply
+\[
+ q_{\kappa_i}(w_1(W))+\langle w_2(W),[C]\rangle=1
+ \qquad(1\leq i\leq6).
+\tag{6.22}\label{eq:six-parities}
+\]
+For every nonzero \(a\in H^1(C,\mathbf F_2)\), the values
+\(q_\kappa(a)\), as \(q_\kappa\) ranges over the six odd quadratic
+forms, are one four times and zero twice.  This follows by the
+transitivity of \(\operatorname{Sp}_4(\mathbf F_2)\) on nonzero vectors
+and a direct count for one symplectic basis vector.  Hence the left side
+of \eqref{eq:six-parities} can be constant only if \(w_1(W)=0\), and
+then \(w_2(W)=1\).
+
+Finally, the determinant of the augmentation representation is the sign
+of the five-point permutation action.  Thus \(w_1(W)=0\) forces
+\(G\subset A_5\), and \eqref{eq:degree-five-groups} gives \(G=A_5\).
+\end{proof}
+
+\begin{proposition}[The remaining theta obstruction]
+\label{prop:A5-theta-obstruction}
+Let \(\rho\colon\pi_1(C)\twoheadrightarrow A_5\) be a genus-two
+surface representation whose natural oriented augmentation bundle
+\(W_\rho\) has \(w_2=1\).  Let \(\Theta\simeq C\subset J^1(C)\) be the
+Abel theta divisor, and let \(s_\rho\) be the determinant-of-cohomology
+theta section of \(W_\rho\), allowing \(s_\rho=0\).  After choosing the
+standard theta-line identification up to scalar and a nonzero Wronskian
+normalization, there is a unique one-form
+\(\omega_\rho\in H^0(C,K_C)\) such that
+\[
+ s_\rho|_\Theta=\operatorname{Wr}_C\,\omega_\rho,
+\tag{6.23}\label{eq:theta-obstruction}
+\]
+where a nonzero Wronskian
+\(\operatorname{Wr}_C\in H^0(C,K_C^3)\) has been chosen; it is
+well-defined up to scalar and has zero divisor equal to the six
+Weierstrass points.  The form \(\omega_\rho\) is unique relative to this
+normalization, and its vanishing is intrinsic.  The
+associated degree-five cover is Prill-exceptional if and only if
+\(\omega_\rho=0\).
+
+Moreover, it suffices to verify the Prill inequality at three distinct
+non-Weierstrass points: three such zeros force
+\(\omega_\rho=0\), since a nonzero holomorphic one-form on a genus-two
+curve has a zero divisor of degree two.
+\end{proposition}
+
+\begin{proof}
+For an oriented orthogonal bundle of rank four, Beauville's parity
+formula and theta-map lemma \cite[(1.3), Lemma 1.4]{BeauvilleOrthogonal}
+place the theta section in the odd eigenspace
+\(H^0(J^1(C),\cO(4\Theta))^-\) when \(w_2=1\).  In particular,
+\(h^0(C,W_\rho(w_i))\) is odd at every Weierstrass point, so
+\(s_\rho|_\Theta\) vanishes at all six points.  Adjunction gives
+\(\cO_{J^1(C)}(\Theta)|_\Theta\simeq K_C\), hence
+\(s_\rho|_\Theta\in H^0(C,K_C^4)\).  After choosing a nonzero
+Wronskian normalization, division gives the corresponding unique
+\(\omega_\rho\in H^0(C,K_C)\) in
+\eqref{eq:theta-obstruction}.
+
+By the defining property of the determinant-of-cohomology section,
+\[
+ s_\rho(\cO_C(p))=0
+ \quad\Longleftrightarrow\quad
+ H^0(C,W_\rho(p))\neq0.
+\]
+Thus every fibre moves exactly when the
+restriction in \eqref{eq:theta-obstruction} is identically zero, which
+is equivalent to \(\omega_\rho=0\).  The final assertion follows from
+\(\deg K_C=2\).
+\end{proof}
+
+\begin{lemma}[Equivariant form of the obstruction]
+\label{lem:equivariant-obstruction}
+Let a finite group \(H\) act on a genus-two curve \(C\), and suppose
+that the oriented orthogonal bundle \(W_\rho\) in
+\cref{prop:A5-theta-obstruction} is \(H\)-equivariant.  Put
+\[
+ V_C=H^0(C,K_C),\qquad
+ D_\rho=\det R\Gamma(C,W_\rho),
+\]
+and let \(\Delta_\rho\) be the one-dimensional \(H\)-character carried
+by the \(H\)-linearized trivial determinant line
+\(\det W_\rho\simeq\cO_C\).  Define the character line
+\[
+ \Xi_\rho=
+ D_\rho^{-1}\otimes\Delta_\rho^{-1}\otimes\det V_C.
+\tag{6.24}\label{eq:Xi-character}
+\]
+Then the intrinsic obstruction is an invariant tensor
+\[
+ \Omega_\rho\in(V_C\otimes\Xi_\rho)^H.
+\tag{6.25}\label{eq:equivariant-obstruction-space}
+\]
+In particular, if the invariant space in
+\eqref{eq:equivariant-obstruction-space} is zero, then the associated
+degree-five cover is Prill-exceptional.
+\end{lemma}
+
+\begin{proof}
+Let \(a\colon C\to J^1(C)\) be \(p\mapsto\cO_C(p)\), and use the
+inverse determinant-of-cohomology convention for the theta line
+\(\lambda_\rho\).  The exact sequence
+\[
+ 0\longrightarrow W_\rho\longrightarrow W_\rho(p)
+ \longrightarrow W_{\rho,p}\otimes T_pC\longrightarrow0
+\]
+gives the \(H\)-equivariant identity
+\[
+ a^*\lambda_\rho\simeq
+ D_\rho^{-1}\otimes\Delta_\rho^{-1}\otimes K_C^4.
+\tag{6.26}\label{eq:abel-theta-line-equivariant}
+\]
+The basis-free canonical Wronskian is a tensor
+\[
+ \mathfrak W_C\in
+ H^0(C,K_C^3)\otimes(\det V_C)^{-1}.
+\]
+Dividing the invariant restriction \(a^*s_\rho\) by
+\(\mathfrak W_C\) therefore gives precisely an invariant element of
+\(V_C\otimes\Xi_\rho\).  After bases are chosen in the character
+lines, this is the one-form \(\omega_\rho\) of
+\cref{prop:A5-theta-obstruction}; only its vanishing is independent of
+those choices.
+\end{proof}
+
+\begin{theorem}[A degree-five Prill cover and the genus-two minimum]
+\label{thm:C5-degree-five}
+Let
+\[
+ C:\ y^2=x^5-1.
+\]
+There exists a connected degree-five \'etale cover
+\(f\colon X\to C\) such that
+\[
+ h^0\!\left(X,\cO_X(f^{-1}(p))\right)\geq2
+ \qquad\text{for every }p\in C.
+\tag{6.27}\label{eq:C5-Prill-condition}
+\]
+Its monodromy group is \(A_5\) in the natural five-point action,
+\(g(X)=6\), and its \(A_5\)-Galois closure has degree \(60\) and genus
+\(61\).  Consequently
+\[
+ \min\!\left\{\deg f'\ \middle|\
+ \begin{array}{c}
+ C'\text{ is a genus-two curve},\\
+ f'\colon X'\to C'\text{ is connected and Prill-exceptional}
+ \end{array}
+ \right\}=\boxed{5}.
+\tag{6.28}\label{eq:genus-two-global-minimum}
+\]
+\end{theorem}
+
+\begin{proof}
+Fix a primitive fifth root \(\zeta\), and let
+\(\sigma(x,y)=(\zeta x,y)\).  The fixed points are
+\(P_\pm=(0,\pm i)\) and the point \(P_\infty\) at infinity.  The
+tangent multipliers of \(\sigma\) are \(\zeta,\zeta,\zeta^2\): at
+\(P_\pm\) use \(x\), while at infinity one may use
+\(t=x^2/y\), for which \(\sigma(t)=\zeta^2t\).  Hence
+\(C/\langle\sigma\rangle\simeq\mathbf P^1\) has signature
+\((0;5,5,5)\), with orbifold epimorphism
+\[
+ \Delta(5,5,5)=
+ \langle x_1,x_2,x_3\mid x_i^5=x_1x_2x_3=1\rangle
+ \longrightarrow\langle\sigma\rangle,
+ \qquad (x_1,x_2,x_3)\longmapsto(\sigma,\sigma,\sigma^3).
+\tag{6.29}\label{eq:C5-orbifold-map}
+\]
+
+In \(SL_2(\mathbf F_5)\), take
+\[
+ U_1=\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad
+ U_2=\begin{pmatrix}3&1\\1&4\end{pmatrix},\qquad
+ U_3=\begin{pmatrix}1&0\\1&1\end{pmatrix}.
+\tag{6.30}\label{eq:C5-SL-triple}
+\]
+Direct multiplication gives
+\[
+ U_1^5=U_2^5=U_3^5=I,\qquad U_1U_2U_3=-I.
+\tag{6.31}\label{eq:C5-SL-relations}
+\]
+Moreover \(U_1,U_3\) generate \(SL_2(\mathbf F_5)\), since they are
+the elementary upper and lower unipotent matrices.  If
+\(\bar U_i\) denotes the image in
+\(PSL_2(\mathbf F_5)\simeq A_5\), then
+\[
+ x_1\longmapsto(\bar U_1,\sigma),\qquad
+ x_2\longmapsto(\bar U_2,\sigma),\qquad
+ x_3\longmapsto(\bar U_3,\sigma^3)
+\tag{6.32}\label{eq:C5-extension-map}
+\]
+defines a homomorphism onto \(A_5\times C_5\).  Indeed, both
+projections are surjective, and \(A_5\) and \(C_5\) have no common
+nontrivial quotient.  Its restriction to the index-five surface
+kernel in \eqref{eq:C5-orbifold-map} is therefore surjective onto
+\(A_5\).  The natural five-point action gives a connected degree-five
+\'etale cover and an equivariant augmentation bundle
+\(W_\rho\).
+
+I next compute its spin obstruction.  The pullback of
+\(\operatorname{Spin}(4)\to SO(4)\) under the natural augmentation
+embedding is the Schur cover
+\[
+ 2\!\cdot\!A_5\simeq SL_2(\mathbf F_5).
+\]
+It is non-split: a splitting would embed the simple group \(A_5\) in
+\(\operatorname{Spin}(4)=SU(2)\times SU(2)\), so one projection would
+embed \(A_5\) in \(SU(2)\), which is impossible because \(SU(2)\) has
+only one element of order two whereas \(A_5\) has fifteen.
+Each order-five element of \(PSL_2(\mathbf F_5)\) has a unique lift
+whose fifth power is \(I\); the other lift has fifth power \(-I\).
+Thus the orbifold relations force the three lifts in
+\eqref{eq:C5-SL-triple}, whose product is \(-I\) by
+\eqref{eq:C5-SL-relations}.  The orbifold representation has a nonzero
+spin-lifting class.  Restriction to the surface subgroup preserves
+nonvanishing: with \(\mathbf F_2\)-coefficients,
+\(\operatorname{cor}\circ\operatorname{res}\) is multiplication by
+the index \(5\), hence is the identity.  Consequently
+\[
+ \langle w_2(W_\rho),[C]\rangle=1.
+\tag{6.33}\label{eq:C5-w2-one}
+\]
+
+It remains to kill the holomorphic obstruction.  Write
+\(\chi(\sigma)=\zeta\).  Pullback acts on canonical forms by
+\[
+ V_C=H^0(C,K_C)
+ =\left\langle\frac{dx}{y},\frac{x\,dx}{y}\right\rangle
+ \simeq\chi\oplus\chi^2,\qquad \det V_C=\chi^3.
+\tag{6.34}\label{eq:C5-Hodge-character}
+\]
+The augmentation character has value \(-1\) on every nontrivial
+five-cycle.  At infinity the action of \(\sigma\) on the fibre is the
+square of the third inertia element, which is still a nontrivial
+five-cycle.  Since \(H^0(C,W_\rho)=0\), Serre duality gives
+\(H^1(C,K_C\otimes W_\rho)=0\).  The holomorphic Lefschetz formula
+\cite{AtiyahBottLefschetz},
+with pullback linearization and denominator \(1-\lambda\), gives for
+\(1\leq k\leq4\)
+\[
+ \operatorname{Tr}\!\left(\sigma^k\mid
+ H^0(C,K_C\otimes W_\rho)\right)
+ =-\left(
+ \frac{2\zeta^k}{1-\zeta^k}
+ +\frac{\zeta^{2k}}{1-\zeta^{2k}}
+ \right).
+\tag{6.35}\label{eq:C5-Lefschetz-trace}
+\]
+For a nontrivial fifth root \(q\),
+\[
+ \frac{2q}{1-q}+\frac{q^2}{1-q^2}=q+q^2-1.
+\]
+It follows that
+\[
+ H^0(C,K_C\otimes W_\rho)
+ \simeq\mathbf1^{\oplus2}\oplus\chi^3\oplus\chi^4.
+\tag{6.36}\label{eq:C5-KW-character}
+\]
+With the convention
+\(D_\rho=\det H^0(C,W_\rho)\otimes
+\det H^1(C,W_\rho)^{-1}\), Serre duality and
+\eqref{eq:C5-KW-character} give
+\[
+ D_\rho=\chi^2.
+\]
+The representation \(A_5\times C_5\to SO(4)\) factors through
+\(A_5\), so its determinant character is trivial and
+\(\Delta_\rho=\mathbf1\).
+Therefore
+\[
+ \Xi_\rho=D_\rho^{-1}\otimes\Delta_\rho^{-1}\otimes\det V_C
+ =\chi,
+ \qquad
+ V_C\otimes\Xi_\rho=\chi^2\oplus\chi^3.
+\tag{6.37}\label{eq:C5-Xi-character}
+\]
+The latter representation has no invariants.  By
+\cref{lem:equivariant-obstruction}, \(\Omega_\rho=0\), and then
+\cref{prop:A5-theta-obstruction} gives
+\(H^0(C,W_\rho(p))\neq0\) for every \(p\in C\).  Since
+\[
+ f_*\cO_X\simeq\cO_C\oplus W_\rho,
+\]
+this is exactly \eqref{eq:C5-Prill-condition}.
+
+The genus statements follow from the unramified Riemann--Hurwitz
+formula.  Finally, \cref{cor:cover-lower-bound} gives degree at least
+\(2+3=5\) for every connected genus-two Prill-exceptional cover, so
+the constructed degree-five cover proves
+\eqref{eq:genus-two-global-minimum}.
+\end{proof}
+
+\begin{remark}[Reproducible finite certificates]
+The supplementary GAP certificate and independent Python character
+check verify the finite group generation, the lifted surface relation,
+and the \(C_5\)-character decomposition used above.  The construction only
+forces the generalized theta divisor to contain the Abel curve
+\(\Theta\simeq C\); it does not assert vanishing over all of
+\(\operatorname{Pic}^1(C)\).
+\end{remark}
+
+\section{Consequences for generic generation and horizontal vanishing}
+
+I record the exact implications for the questions formulated in
+\cite[\S6.3]{LittMotives}.  Throughout this section \(g\geq3\), and I
+take \(n=g\) in \cref{thm:uniform}.  Write \(V\) for the resulting
+rank-\(g^g\) flat bundle.
+
+\begin{proposition}[Failure of generic global generation]\label{prop:ggg-failure}
+The fixed irreducible finite-unitary representation dual to
+\(\rho_{g,g}\) has the following property for every marked complex
+structure:
+\[
+ K_C\otimes V^\vee
+\quad\text{is not generated by global sections at any point of }C.
+\tag{7.1}\label{eq:nowhere-ggg}
+\]
+Consequently, Conjectures 6.3.5 and 6.3.11 of
+\cite{LittMotives} are false.
+\end{proposition}
+
+\begin{proof}
+Since \(H^0(V)=0\), Serre duality gives
+\(H^1(K_C\otimes V^\vee)=0\).  From
+\[
+ 0\longrightarrow K_C\otimes V^\vee(-p)
+ \longrightarrow K_C\otimes V^\vee
+ \longrightarrow (K_C\otimes V^\vee)|_p
+ \longrightarrow0,
+\]
+the dual of the evaluation cokernel at \(p\) is
+\[
+ H^1(K_C\otimes V^\vee(-p))^\vee
+ \simeq H^0(V(p)).
+\tag{7.2}\label{eq:evaluation-dual}
+\]
+This space is nonzero for every \(p\) by \cref{thm:uniform}.  Hence
+evaluation fails to be surjective at every point, for every complex
+structure.  The cited conjectures predict generic, respectively global,
+generation for every fixed unitary representation on a generic complex
+structure, so this fixed representation refutes both predictions.
+\end{proof}
+
+\begin{proposition}[Failure of horizontal generic vanishing]\label{prop:HGV-failure}
+In the unpunctured case \(D=\varnothing\), the fixed monodromy
+\(\rho_{g,g}\) satisfies
+\[
+ H^0(C,V\otimes L)\neq0
+ \quad\text{for every marked complex structure and every }
+ L\in\Pic^1(C).
+\tag{7.3}\label{eq:horizontal-failure}
+\]
+Thus both the weak and strong forms of Conjecture 6.3.17 in
+\cite{LittMotives} fail.
+\end{proposition}
+
+\begin{proof}
+Equation \eqref{eq:horizontal-failure} is
+\cref{thm:uniform} with \(n=g\).  Apply Conjecture 6.3.17 with
+\(D=\varnothing\).  Its nondecreasing function has value \(1\) at
+\(g=3\), hence value at least \(1\) for every \(g\geq3\).  Taking the
+degree-one divisor \(Z=p\), the nonvanishing
+\(H^0(C,V(p))\neq0\) for every \(p\), and for every isomonodromic
+deformation, contradicts both the weak and strong forms.
+\end{proof}
+
+\begin{corollary}[Status of the adjacent questions]\label{cor:question-status}
+The construction has the following consequences.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item It answers Prill's problem affirmatively for every base genus
+\(g\geq2\), with every fibre moving.
+\item It disproves the unpunctured specialization, Conjecture 6.3.5, of
+the parabolic generic-generation Conjecture 6.3.4.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+The first statement is \cref{cor:prill-all-genus}.  The second is
+\cref{prop:ggg-failure} together with the logical relation among the
+conjectures stated in \cite[\S6.3]{LittMotives}.
+\end{proof}
+
+\begin{remark}[Scope of the consequences]\label{rem:adjacent-scope}
+The construction is unpunctured and supplies no conclusion for the
+genuinely punctured cases of Conjecture 6.3.4.  No implication is
+established here from these support-locus statements to a
+Putman--Wieland or Ivanov counterexample, a constant Prym variation, or
+an isotrivial Jacobian factor; see \cref{rem:no-PW-converse}.
+\end{remark}
+
+\section{Abelian support blocks and Lagrangian theta descent}
+
+This section isolates the construction from the special choice
+\(A=J(C)\).  It produces abelian blocks in support loci whenever a curve
+maps homologically onto an abelian variety.
+
+Let \(A\) be a complex abelian variety of dimension \(b\), let
+\(\widehat A=\Pic^0(A)\), and let \(N\) be an ample line bundle on \(A\).
+For \(a\in A=\Pic^0(\widehat A)\), write
+\(P_a=\mathcal P|_{\widehat A\times\{a\}}\) for the corresponding
+topologically trivial line bundle on \(\widehat A\).
+Write
+\[
+ \phi_N\colon A\longrightarrow\widehat A,\qquad
+ r=h^0(A,N),\qquad K(N)=\ker\phi_N.
+\tag{8.1}\label{eq:general-polarization}
+\]
+Thus \(|K(N)|=r^2\).  Let \(N_0\) be the exponent of \(K(N)\), and define
+the Fourier--Mukai bundle
+\[
+ F_N=\Phi_{\mathcal P}(N^{-1})[b]
+\quad\text{on }\widehat A.
+\tag{8.2}\label{eq:general-FM}
+\]
+For a morphism \(u\colon C\to\widehat A\), put \(R_{u,N}=u^*F_N\).
+
+\begin{theorem}[Lagrangian theta descent and abelian support]\label{thm:abelian-block}
+Assume that
+\[
+ u_*\colon H_1(C,\bZ)\twoheadrightarrow H_1(\widehat A,\bZ)
+\tag{8.3}\label{eq:H1-surjective}
+\]
+is surjective.  Then the following statements hold.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item The bundle \(R_{u,N}\) is stable of rank \(r\).  Its projective
+monodromy is the irreducible theta representation of the finite
+symplectic module \(K(N)\), with the central weight fixed by the dual
+section factor in \eqref{eq:general-mukai-splitting}.
+\item Let \(\beta_N\in H^2(\widehat A,\bQ)\) be defined by
+\[
+ \phi_N^*\beta_N=c_1(N).
+\tag{8.4}\label{eq:beta-definition}
+\]
+Then
+\[
+ \mu(R_{u,N})=\int_Cu^*\beta_N.
+\tag{8.5}\label{eq:general-slope}
+\]
+\item If
+\[
+ B_u=\im\!\left(
+ u^*\colon A=\Pic^0(\widehat A)\longrightarrow\Pic^0(C)\right),
+\tag{8.6}\label{eq:Bu}
+\]
+then
+\[
+ B_u\subset V_0^0(R_{u,N}).
+\tag{8.7}\label{eq:abelian-support}
+\]
+Here
+\(V_0^0(R_{u,N})=\{\alpha\in\Pic^0(C):
+H^0(C,R_{u,N}\otimes\alpha)\neq0\}\).
+\item After choosing a linearized maximal isotropic subgroup of
+\(K(N)\), there is a connected degree-\(r\) \'etale cover
+\(q\colon C_L\to C\) and a line bundle \(\mathcal L\) on \(C_L\) such
+that
+\[
+ R_{u,N}\simeq q_*\mathcal L,\qquad
+ H^i(C,R_{u,N}\otimes A_C)
+ \simeq H^i(C_L,\mathcal L\otimes q^*A_C)
+\tag{8.8}\label{eq:general-line-descent}
+\]
+for every line bundle \(A_C\) on \(C\) and \(i=0,1\).  Moreover,
+\[
+ \deg\mathcal L=\deg R_{u,N}
+ =r\,\mu(R_{u,N}).
+\tag{8.9}\label{eq:line-degree}
+\]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Mukai's isogeny formula, with its theta-group equivariance, gives
+\[
+ \phi_N^*F_N\simeq
+ (-1_A)^*N\otimes H^0(A,N)^\vee.
+\tag{8.10}\label{eq:general-mukai-splitting}
+\]
+The fibre product
+\[
+ \widetilde C=C\times_{\widehat A,\phi_N}A
+\]
+is connected by \eqref{eq:H1-surjective}.  Pulling
+\eqref{eq:general-mukai-splitting} to \(\widetilde C\) shows that
+\(R_{u,N}\) has the stated projective monodromy.
+
+The same identity makes the pullback of \(R_{u,N}\) a direct sum of
+copies of one line bundle, so \(R_{u,N}\) is semistable.  To prove
+stability, suppose a proper subbundle has the same slope.
+After pullback to \(\widetilde C\) and tensoring by the inverse of the
+line factor in \eqref{eq:general-mukai-splitting}, it becomes a
+degree-zero subbundle \(G\) of
+\(\cO_{\widetilde C}\otimes H^0(A,N)^\vee\).  Such a subbundle is
+constant.  Indeed, \(G^\vee\) is a globally generated degree-zero
+quotient of a trivial bundle.  Choosing \(\rk G\) generically independent
+sections produces a torsion quotient of length \(\deg G^\vee=0\), so
+\(G^\vee\simeq\cO_{\widetilde C}^{\oplus\rk G}\), and the inclusion of
+\(G\) is induced by a constant subspace
+\(W\subset H^0(A,N)^\vee\).  Equivariance of the deck descent forces
+\(W\) to be
+invariant under the full projective Schr\"odinger action, contrary to
+irreducibility unless \(W=0\) or \(W=H^0(A,N)^\vee\).  This proves (i).
+
+Taking first Chern classes in
+\eqref{eq:general-mukai-splitting} gives
+\[
+ \phi_N^*\!\left(\frac{c_1(F_N)}r\right)=c_1(N).
+\]
+Pullback to \(C\) proves (ii).
+
+For (iii), Mukai inversion \cite{Mukai} gives
+\[
+ \widehat\Phi_{\mathcal P}(F_N)\simeq(-1_A)^*N^{-1}
+\]
+in degree zero.  Thus \(F_N\) satisfies \(\mathrm{IT}_0\), has Euler
+characteristic one, and base change gives
+\[
+ h^0(\widehat A,F_N\otimes P_a)=1,\qquad
+ H^i(\widehat A,F_N\otimes P_a)=0\quad(i>0)
+\]
+for every \(a\in A\).  These one-dimensional spaces are the fibres of
+the transform line.  After trivializing that line over a nonempty open
+subset of \(A\), base change produces an evaluation morphism.  It is
+nonzero somewhere, since each fibre is a nonzero global section; hence it
+is nonzero at some point \(x_0\in\widehat A\).  Since \(F_N\) is simple
+semihomogeneous, translation by every
+\(t\in\widehat A\) has the form
+\[
+ t_t^*F_N\simeq F_N\otimes P_{\psi(t)}
+\tag{8.11}\label{eq:semihomogeneous-translation}
+\]
+for a suitable \(\psi(t)\in A\).  Translating the preceding family shows
+that, for every prescribed \(x\in\widehat A\), there is a nonempty open
+set \(U_x\subset A\) on which the corresponding section is nonzero at
+\(x\).
+
+Fix \(p\in C\) and take \(x=u(p)\).  For \(a\in U_x\), restriction gives
+\[
+ H^0(C,R_{u,N}\otimes u^*P_a)\neq0.
+\]
+The locus of \(a\) satisfying this inequality is closed by upper
+semicontinuity.  It contains a nonempty open subset of the irreducible
+variety \(A\), and hence it is all of \(A\).  This proves
+\eqref{eq:abelian-support}.  This continuous-generation argument is the
+general ample-polarization form of Raynaud's construction
+\cite[\S3]{Raynaud}.
+
+Finally, choose a maximal isotropic theta subgroup.  Standard
+Lagrangian descent for theta groups, in the form used in
+\cite[Proposition 2.1(2)]{Schneider}, gives an abelian variety
+\(\widehat A_L\), an isogeny
+\(\tau\colon\widehat A_L\to\widehat A\) of degree \(r\), and a line
+bundle \(N_L\) such that
+\[
+ F_N\simeq\tau_*N_L.
+\]
+The base change \(C_L=C\times_{\widehat A}\widehat A_L\) is connected by
+\eqref{eq:H1-surjective}.  Flat base change proves
+\eqref{eq:general-line-descent}.  Since \(q\) is \'etale,
+Riemann--Roch gives \(\deg\mathcal L=\deg q_*\mathcal L\), proving
+\eqref{eq:line-degree}.
+\end{proof}
+
+\begin{theorem}[Integral-slope Heisenberg untwisting]\label{thm:general-untwisting}
+In the setting of \cref{thm:abelian-block}, suppose
+\[
+ \mu=\mu(R_{u,N})\in\bZ.
+\tag{8.12}\label{eq:integral-slope}
+\]
+Assume in addition that \(K(N)\neq0\), equivalently \(N_0\geq2\).
+Then there is a finite irreducible unitary local system \(V\) of rank
+\(r\), a line bundle \(M\in\Pic^\mu(C)\), and a connected \'etale cover
+\[
+ f\colon Z\longrightarrow C,\qquad \deg f=N_0r,
+\tag{8.13}\label{eq:general-cover-degree}
+\]
+such that
+\[
+ R_{u,N}\simeq V\otimes M,\qquad
+ f_*\cO_Z\simeq\cO_C\oplus V\oplus E,
+\tag{8.14}\label{eq:general-splitting}
+\]
+Writing
+\(M+B_u:=\{M\otimes\alpha:\alpha\in B_u\}\subset\Pic^\mu(C)\), one has
+\[
+ h^0(Z,f^*L)\geq h^0(C,L)+1
+\quad\text{for every }L\in M+B_u.
+\tag{8.15}\label{eq:block-pullback-sections}
+\]
+The Galois closure has degree \(N_0r^2\).  Equivalently,
+\[
+ f^*(M+B_u)\subset W_{N_0r\mu}^0(Z).
+\tag{8.16}\label{eq:rank-one-block}
+\]
+\end{theorem}
+
+\begin{proof}
+For a projectively flat bundle \(E\) of rank \(r\) and degree \(d\), the
+exact sequence
+\[
+ 1\longrightarrow\mu_r\longrightarrow SL_r
+ \longrightarrow PGL_r\longrightarrow1
+\]
+associates to \(\bP(E)\) an obstruction
+\(o(E)\in H^2(C,\mu_r)\).  Under
+\(H^2(C,\mu_r)\simeq\bZ/r\), this class is \(d\bmod r\): twisting a
+\(GL_r\)-lift by a line bundle changes its determinant degree by a
+multiple of \(r\), and determinant reduction gives the converse.  Under
+the embedding \(\mu_r\subset\bC^*\), evaluation on \([C]\) is therefore
+\[
+ \exp(\pm2\pi i\,d/r),
+\tag{8.17}\label{eq:degree-obstruction}
+\]
+where the sign depends only on the commutator convention.  Here
+\(d/r=\mu\), so \eqref{eq:integral-slope} kills the surface obstruction.
+The projective theta class is determined by its commutator because
+\(H^2(K(N),\bC^*)\simeq
+\Hom(\wedge^2K(N),\bC^*)\).  It may therefore be represented by the
+split finite model \(H_{\mathrm{sp}}(K(N))\) constructed in
+\cref{thm:finite-symplectic-untwisting}:
+\[
+ 1\longrightarrow\mu_{N_0}\longrightarrow H_{\mathrm{sp}}(K(N))
+ \longrightarrow K(N)\longrightarrow1.
+\]
+Choosing lifts of surface generators in this model, the vanishing
+obstruction makes their product of commutators one; hence
+\cref{lem:surface-lift} gives a homomorphism
+\(\pi_1(C)\to H_{\mathrm{sp}}(K(N))\).  Its Schr\"odinger representation, with the
+central weight matching \eqref{eq:general-mukai-splitting}, defines
+\(V\).
+
+The finite lift is surjective.  Indeed, its projective image is all of
+\(K(N)\), while commutators of lifts generate \(\mu_{N_0}\) because the
+theta pairing is perfect and has exponent \(N_0\).
+
+Choose \(M_0\in\Pic^\mu(C)\).  The bundles \(R_{u,N}\) and
+\(V\otimes M_0\) have the same projectivization and the same degree.
+By \cref{lem:scalar-transport},
+\(R_{u,N}\simeq V\otimes M_0\otimes\alpha\) for some
+\(\alpha\in\Pic^0(C)\).  Setting \(M=M_0\otimes\alpha\) gives the first
+identity in \eqref{eq:general-splitting}.
+
+Equation \eqref{eq:abelian-support} now says
+\[
+ H^0(C,V\otimes L)\neq0
+\quad(L\in M+B_u).
+\tag{8.18}\label{eq:translated-support}
+\]
+Apply \cref{thm:finite-symplectic-untwisting} to this surjection.  It
+produces the degree-\(N_0r\) cover, places
+\(\cO_C\oplus V\) in its permutation local system, and gives the
+core-free Galois closure of degree \(N_0r^2\).  The projection formula
+and \eqref{eq:translated-support} prove
+\eqref{eq:block-pullback-sections}; its rank-one reformulation is
+\eqref{eq:rank-one-block}.
+\end{proof}
+
+\begin{corollary}[Prym-direction Brill--Noether block]\label{cor:prym-block}
+Let \(P\subset J(Y)\) be an abelian subvariety of dimension \(b\),
+endowed with a principal polarization \(\Xi\) not assumed to be the
+restriction of the theta polarization of \(J(Y)\).  Use the Jacobian
+principal polarization to identify \(J(Y)\simeq J(Y)^\vee\), and let
+\[
+ q_P\colon J(Y)\longrightarrow P^\vee
+\]
+be dual to the inclusion, and let
+\(u_P=q_P\circ\operatorname{AJ}_Y\).  If \(\widehat\Xi\) is the dual
+principal class, assume
+\[
+ D=\deg(u_P^*\widehat\Xi)\geq2.
+\tag{8.19}\label{eq:Prym-D}
+\]
+Then there is an \(M\in\Pic^1(Y)\) and a connected \'etale cover
+\[
+ f\colon Z\longrightarrow Y,\qquad
+ \deg f=D^{b+1},
+\tag{8.20}\label{eq:Prym-cover-degree}
+\]
+such that
+\[
+ f^*(M+u_P^*P)\subset W_{D^{b+1}}^0(Z).
+\tag{8.21}\label{eq:Prym-block}
+\]
+Its Heisenberg Galois closure has degree \(D^{2b+1}\).
+\end{corollary}
+
+\begin{proof}
+The kernel of \(q_P\) is connected, so \(u_P\) is surjective on integral
+first homology.  Apply \cref{thm:abelian-block} with
+\(A=P\) and \(N=\Xi^{\otimes D}\).  Then
+\[
+ r=D^b,\qquad K(N)=P[D],\qquad N_0=D.
+\]
+Since
+\[
+ \beta_N=\frac1D\,c_1(\widehat\Xi),
+\]
+\cref{eq:general-slope,eq:Prym-D} give
+\(\mu(R_{u_P,N})=1\).  Now apply
+\cref{thm:general-untwisting}.
+\end{proof}
+
+\begin{remark}[Prym boundary]\label{rem:Prym-boundary}
+If \(P\) is a proper abelian subvariety of \(J(Y)\), the translate
+\(M+u_P^*P\) is only a proper abelian block in \(\Pic^1(Y)\).  It need
+not contain the Abel curve \(p\mapsto\cO_Y(p)\).  Thus
+\cref{cor:prym-block} is a Brill--Noether statement, not a full Prill
+statement and not a claim about finite higher-Prym monodromy.
+The statement applies in particular to principally polarized Prym
+varieties; no principal polarization is asserted for an arbitrary
+ramified Prym.
+\end{remark}
+
+\section{Exact boundaries of the construction}
+
+I finish by isolating the hypotheses that cannot be removed formally.
+
+\begin{proposition}[Integrality is the flat lifting condition]\label{prop:integrality-boundary}
+Let \(E\) be a projectively flat bundle of rank \(r\) and degree \(d\)
+whose projective monodromy is a finite theta representation.  Its
+projective representation has a flat linear lift on \(C\) if and only if
+\[
+ r\mid d.
+\tag{9.1}\label{eq:integrality-iff}
+\]
+If the scalar obstruction has order \(s\), then pullback along a
+connected finite \'etale cover of degree \(\ell\) kills it if and only
+if \(s\mid\ell\).
+\end{proposition}
+
+\begin{proof}
+The obstruction class is \(d\bmod r\in H^2(C,\mu_r)\), as proved above,
+so it vanishes exactly when \(r\mid d\).  If \(p\colon C'\to C\) has
+degree \(\ell\), then
+\(p_*[C']=\ell[C]\); hence evaluation of \(p^*o(E)\) is the
+\(\ell\)-th power of the original scalar.  A scalar of exact order
+\(s\) is killed precisely when \(s\mid\ell\).
+\end{proof}
+
+This proposition concerns a flat lift of the projective representation;
+the bundle \(E\) itself is flat only when \(d=0\).  A lift inside the
+finite split theta model is obtained, when needed, by the construction
+in \cref{thm:finite-symplectic-untwisting}.
+
+For the Raynaud projective bundle at level \(n\), the scalar is
+\(\zeta^{-g}\), of order
+\[
+ \frac n{\gcd(n,g)}.
+\tag{9.2}\label{eq:raynaud-obstruction-order}
+\]
+Thus \(n\mid g\) is not a convenient sufficient assumption; it is the
+exact condition for a flat scalar lift on the original surface.  Killing
+the scalar after a base change does not transfer the full support
+property from \(\Pic(C)\) to the full Picard variety of the new curve.
+
+\begin{remark}[Marked versus characteristic]\label{rem:marked-characteristic}
+The homomorphism \(\varphi_{g,n}\) and every cover in the tower are fixed
+after choosing a marking.  Their kernels are not claimed to be
+characteristic subgroups of \(\pi_g\).  The projective theta class is
+symplectic, but linear lifts can be permuted by scalar characters under
+the mapping class group.
+\end{remark}
+
+\begin{remark}[Even and composite levels]\label{rem:even-composite}
+No primeness or parity hypothesis on \(n\) appears in the construction.
+The trace calculation, isotropic order bound, and exact
+degree--multiplicity law are valid over \(\bZ/n\).  Even-level quadratic
+refinements become relevant only when extending the symplectic group to
+a prescribed metaplectic action.  The fixed marked projective class is
+already determined by its commutator pairing.
+\end{remark}
+
+\begin{remark}[The three geometric outputs]\label{rem:three-outputs}
+The method separates three different kinds of information:
+\[
+ \begin{array}{ccl}
+ \text{theta-equivariant Fourier--Mukai splitting}
+   &\Longrightarrow&\text{finite projective monodromy},\\
+ \text{integral slope and scalar transport}
+   &\Longrightarrow&\text{a fixed flat support block},\\
+ \text{Lagrangian induction and cyclic untwisting}
+   &\Longrightarrow&\text{rank-one geometry on a finite cover}.
+ \end{array}
+\tag{9.3}\label{eq:three-outputs}
+\]
+The last step is what lowers the ordinary cover degree from
+\(n^{2g+1}\) to \(n^{g+1}\).  The middle step is what makes the
+construction uniform over marked complex structures.  Neither step
+alone implies fixed-part monodromy.
+\end{remark}
+
+\begin{thebibliography}{99}
+\small
+
+\bibitem{ACGH}
+E.~Arbarello, M.~Cornalba, P.~A.~Griffiths, and J.~Harris,
+\emph{Geometry of algebraic curves. Vol. I},
+Grundlehren Math. Wiss. \textbf{267}, Springer, New York, 1985.
+
+\bibitem{AtiyahSpin}
+M.~F.~Atiyah,
+Riemann surfaces and spin structures,
+\emph{Ann. Sci. \'Ecole Norm. Sup.} (4) \textbf{4} (1971), 47--62.
+
+\bibitem{AtiyahBottLefschetz}
+M.~F.~Atiyah and R.~Bott,
+A Lefschetz fixed point formula for elliptic complexes. II.
+Applications,
+\emph{Ann. of Math.} (2) \textbf{88} (1968), 451--491.
+
+\bibitem{BeauvilleOrthogonal}
+A.~Beauville,
+Orthogonal bundles on curves and theta functions,
+\emph{Ann. Inst. Fourier (Grenoble)} \textbf{56} (2006), 1405--1418.
+
+\bibitem{BrambilaPazGN}
+L.~Brambila-Paz, I.~Grzegorczyk, and P.~E.~Newstead,
+Geography of Brill--Noether loci for small slopes,
+\emph{J. Algebraic Geom.} \textbf{6} (1997), 645--669.
+
+\bibitem{LandesmanLittApplications}
+A.~Landesman and D.~Litt,
+Applications of the algebraic geometry of the Putman--Wieland
+conjecture,
+\emph{Proc. Lond. Math. Soc.} (3) \textbf{127} (2023), 116--133.
+
+\bibitem{LandesmanLittPrill}
+A.~Landesman and D.~Litt,
+Prill's problem,
+\emph{Algebraic Geometry} \textbf{11} (2024), 290--295.
+
+\bibitem{LandesmanLittSawin}
+A.~Landesman, D.~Litt, and W.~Sawin,
+Big monodromy for higher Prym representations,
+\emph{Geom. Topol.} \textbf{29} (2025), 2733--2782.
+
+\bibitem{LittMotives}
+D.~Litt,
+Motives, mapping class groups, and monodromy,
+arXiv:2409.02234v1, 2024.
+
+\bibitem{Mukai}
+S.~Mukai,
+Duality between \(D(X)\) and \(D(\widehat X)\) with its application to
+Picard sheaves,
+\emph{Nagoya Math. J.} \textbf{81} (1981), 153--175.
+
+\bibitem{MumfordTheta}
+D.~Mumford,
+\emph{Tata lectures on theta. I},
+Progress in Mathematics \textbf{28}, Birkh\"auser, Boston, 1983.
+
+\bibitem{NarasimhanSeshadri}
+M.~S.~Narasimhan and C.~S.~Seshadri,
+Stable and unitary vector bundles on a compact Riemann surface,
+\emph{Ann. of Math.} (2) \textbf{82} (1965), 540--567.
+
+\bibitem{PutmanWieland}
+A.~Putman and B.~Wieland,
+Abelian quotients of subgroups of the mapping class group and higher
+Prym representations,
+\emph{J. Lond. Math. Soc.} (2) \textbf{88} (2013), 79--96.
+
+\bibitem{Raynaud}
+M.~Raynaud,
+Sections des fibr\'es vectoriels sur une courbe,
+\emph{Bull. Soc. Math. France} \textbf{110} (1982), 103--125.
+
+\bibitem{Schneider}
+O.~Schneider,
+Sur la dimension de l'ensemble des points base du fibr\'e d\'eterminant
+sur \(SU_C(r)\),
+\emph{Ann. Inst. Fourier (Grenoble)} \textbf{57} (2007), 481--490.
+
+\bibitem{SerreFiniteGroups}
+J.-P.~Serre,
+\emph{Linear representations of finite groups},
+Graduate Texts in Mathematics \textbf{42}, Springer, New York, 1977.
+
+\end{thebibliography}
+
+\end{document}

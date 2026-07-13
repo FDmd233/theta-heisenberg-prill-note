@@ -1,19 +1,33 @@
-# Twisted Eckardt Periods and Prym Fixed-Part Obstruction
+# Theta--Heisenberg Untwisting and the Genus-Two Prill Minimum
 
-This repository contains a display preprint and its exact Jacobian-ring certificates.
+This repository contains the note
+*Theta--Heisenberg Untwisting, Uniform Prill Covers, and Abelian Brill--Noether Blocks*.
 
-The project connects the `littproblem13-f4` situation with `littproblem14`: the first part studies the twisted period variation of the rank-26 $F_4$ summand, while the second constructs uniform Raynaud--Prill representations and separates failure of generic global generation from the stronger finite-orbit condition.
+Its genus-two result constructs a connected degree-five etale cover over
+\(y^2=x^5-1\) for which every fibre moves in a pencil. Together with the
+general lower bound, this proves that the minimum degree, taken over all
+genus-two curves and connected Prill-exceptional covers, is five.
 
-Subject to complete verification of the cited geometric and Fourier--Mukai inputs, the uniform representation in the paper gives a counterexample to Litt's generic-global-generation (GGG) conjecture. It does **not** claim a new counterexample to the Putman--Wieland conjecture.
+FDmd233 guided GPT-5.6 sol in developing, checking, and preparing this note.
 
-GPT-5.6 sol was used for exploratory computation, proof checking, and language editing. The exact determinant certificates can be reproduced with:
+## Files
+
+- `theta_heisenberg_prill_note.pdf` -- compiled note.
+- `theta_heisenberg_prill_note.tex` -- LaTeX source.
+- `c5_degree5_certificate.g` -- exact GAP certificate for the surface
+  monodromy and nonzero spin obstruction.
+- `c5_degree5_character_check.py` -- independent matrix and equivariant
+  character check.
+
+## Reproduction
 
 ```text
-python verify_exact_minors.py
+latexmk -pdf -interaction=nonstopmode -halt-on-error theta_heisenberg_prill_note.tex
+gap -q c5_degree5_certificate.g
+python c5_degree5_character_check.py
 ```
 
-Files:
-
-- `Twisted_Eckardt_Periods_and_Prym_Fixed_Part_Obstruction.pdf`
-- `Twisted_Eckardt_Periods_and_Prym_Fixed_Part_Obstruction.tex`
-- `verify_exact_minors.py`
+The degree-five result only asserts that the generalized theta divisor
+contains the Abel curve, which is exactly what the Prill condition requires.
+It does not assert vanishing over all of `Pic^1(C)` and does not by itself
+produce a Putman--Wieland counterexample.
