@@ -6,7 +6,18 @@ This repository contains the note
 Its genus-two result constructs a connected degree-five etale cover over
 \(y^2=x^5-1\) for which every fibre moves in a pencil. Together with the
 general lower bound, this proves that the minimum degree, taken over all
-genus-two curves and connected Prill-exceptional covers, is five.
+genus-two curves and connected Prill-exceptional covers, is five. This is
+the absolute minimum, not a uniform one. The degree-five locus in
+\(\mathcal M_2\) is nonempty and proper, with every irreducible component
+of dimension one or two. Consequently a general genus-two curve has no
+degree-five example, and the minimum degree valid on every genus-two curve
+satisfies
+
+\[
+6\le d_{\mathrm{unif}}(2)\le 8.
+\]
+
+Degrees six and seven remain open.
 
 FDmd233 guided GPT-5.6 sol in developing, checking, and preparing this note.
 
@@ -18,6 +29,8 @@ FDmd233 guided GPT-5.6 sol in developing, checking, and preparing this note.
   monodromy and nonzero spin obstruction.
 - `c5_degree5_character_check.py` -- independent matrix and equivariant
   character check.
+- `a5_genus2_mcg_boundary_certificate.g` -- exact GAP certificate for the
+  nonzero-Schur mapping-class orbit and compact-type boundary normal form.
 - `FIRST_PUBLICATION_RECORD.md` -- timestamped publication and integrity
   record for the artifact commit.
 
@@ -27,6 +40,7 @@ FDmd233 guided GPT-5.6 sol in developing, checking, and preparing this note.
 latexmk -pdf -interaction=nonstopmode -halt-on-error theta_heisenberg_prill_note.tex
 gap -q c5_degree5_certificate.g
 python c5_degree5_character_check.py
+gap -q a5_genus2_mcg_boundary_certificate.g
 ```
 
 The degree-five result only asserts that the generalized theta divisor

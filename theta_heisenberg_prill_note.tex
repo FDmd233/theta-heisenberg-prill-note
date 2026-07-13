@@ -125,6 +125,13 @@ In genus two I determine the minimum over all genus-two curves.  On the curve
 calculation forces its two-dimensional theta obstruction to vanish.
 It therefore produces a connected Prill-exceptional cover of degree
 five; the strict rank bound shows that degree five is minimal.
+This is the absolute minimum, taken over all genus-two curves.  It is
+not uniform: the locus of genus-two curves admitting a degree-five
+Prill-exceptional cover is a nonempty proper closed algebraic locus,
+every irreducible component of which has dimension one or two.  Thus a
+general genus-two curve has no such degree-five cover, and the minimum
+degree valid on every genus-two curve satisfies
+\(6\leq d_{\mathrm{unif}}(2)\leq8\); degrees six and seven remain open.
 The same method extends to Fourier--Mukai bundles pulled back from
 arbitrary abelian quotients of a Jacobian, producing
 positive-dimensional abelian blocks in classical Brill--Noether loci.
@@ -290,6 +297,18 @@ counterexample is Prill-exceptional
 Putman--Wieland counterexamples in these numerical ranges.  It does not
 give the converse implication and does not settle the Putman--Wieland
 conjecture outside those ranges.
+
+In genus two, the absolute minimum and the uniform minimum differ.  The
+degree-five construction proves \(d_{\mathrm{abs}}(2)=5\), but a
+mapping-class orbit computation of Dunfield--Thurston and a separating
+degeneration show that degree five cannot work on every curve.  More
+precisely, the degree-five locus in \(\mathcal M_2\) is nonempty and
+proper, with every irreducible component of dimension one or two, and
+\[
+ 6\leq d_{\mathrm{unif}}(2)\leq8.
+\tag{1.6}\label{eq:intro-uniform-genus-two-range}
+\]
+The exact uniform value, six, seven, or eight, remains open.
 
 A later section extends the method away from the full Jacobian.  An
 ample line bundle on an abelian quotient of a Jacobian supplies a stable
@@ -1903,6 +1922,250 @@ forces the generalized theta divisor to contain the Abel curve
 \(\operatorname{Pic}^1(C)\).
 \end{remark}
 
+\subsection{Absolute and uniform minima in genus two}
+
+The minimum in \eqref{eq:genus-two-global-minimum} allows the curve to
+vary.  To separate this from the uniform problem, define
+\[
+ d_{\mathrm{abs}}(2)=
+ \min_{(C,f)}\deg f
+\]
+over all smooth genus-two curves \(C\) and connected Prill-exceptional
+\'etale covers \(f\), and define
+\[
+ d_{\mathrm{unif}}(2)=
+ \min\left\{d\ \middle|\
+ \begin{array}{c}
+ \text{every smooth genus-two curve admits a connected}\\
+ \text{degree-\(d\) Prill-exceptional \'etale cover}
+ \end{array}\right\}.
+\tag{6.38}\label{eq:absolute-uniform-definitions}
+\]
+Thus \cref{thm:C5-degree-five,cor:intro-prill} give
+\[
+ d_{\mathrm{abs}}(2)=5,
+ \qquad 5\leq d_{\mathrm{unif}}(2)\leq8.
+\tag{6.39}\label{eq:initial-uniform-range}
+\]
+The purpose of this subsection is to exclude the uniform value five.
+
+\begin{lemma}[Finite-union rigidity]\label{lem:finite-union-rigidity}
+Let \(M\) be a connected complex manifold, and let
+\(s_i\in H^0(M,E_i)\), \(1\leq i\leq N\), be finitely many holomorphic
+sections of holomorphic vector bundles.  If
+\(M=\bigcup_{i=1}^N Z(s_i)\), then one section \(s_i\) vanishes
+identically.
+\end{lemma}
+
+\begin{proof}
+A finite union of proper complex-analytic subsets cannot cover \(M\):
+by the Baire theorem one member would
+contain an open set, and the identity theorem would then make its section
+identically zero.
+\end{proof}
+
+The required finiteness and orbit information are available explicitly.
+Put
+\[
+ \mathcal A=
+ \operatorname{Epi}(\pi_1(\Sigma_2),A_5)/\operatorname{Aut}(A_5).
+\]
+Dunfield and Thurston computed that \(|\mathcal A|=2016\) and that the
+mapping class group has exactly two orbits
+\[
+ \mathcal A_1,\ \mathcal A_2,
+ \qquad |\mathcal A_1|=1440,
+ \qquad |\mathcal A_2|=576,
+\tag{6.40}\label{eq:DT-two-orbits}
+\]
+with the nonempty set of handlebody-extendible epimorphisms---indeed,
+there are \(19\) such classes---contained in
+\(\mathcal A_1\) \cite[Example 6.3 and \S6.12]{DunfieldThurston}.
+Their associated homology class is the Schur invariant
+\[
+ s(\rho)=\rho_*[\Sigma_2]\in H_2(A_5,\bZ)\simeq\bZ/2.
+\]
+It is invariant under the mapping class group and
+\(\operatorname{Aut}(A_5)\).  A handlebody map factors through a free
+group, whose second homology vanishes, so \(s=0\) on
+\(\mathcal A_1\).  For the natural augmentation embedding
+\(A_5\hookrightarrow SO(4)\), the pullback of
+\(\operatorname{Spin}(4)\to SO(4)\) is the Schur cover
+\(2.A_5\simeq SL_2(\mathbf F_5)\).  Consequently
+\[
+ s(\rho)=\langle w_2(W_\rho),[\Sigma_2]\rangle,
+\tag{6.41}\label{eq:Schur-equals-w2}
+\]
+The tuple in \cref{prop:A5-boundary-normal-form} has nonzero lifted
+surface relator.  Hence it belongs to \(\mathcal A_2\), and the nonzero
+Schur class is precisely that orbit.
+
+\begin{proposition}[Boundary normal form]
+\label{prop:A5-boundary-normal-form}
+There is an epimorphism
+\(\rho\colon\pi_1(\Sigma_2)\twoheadrightarrow A_5\) with
+\(w_2(W_\rho)=1\) and a smooth marked genus-two curve \(C\) for which
+the associated degree-five cover is not Prill-exceptional.
+\end{proposition}
+
+\begin{proof}
+Use the presentation
+\[
+ \pi_1(\Sigma_2)=
+ \langle a_1,b_1,a_2,b_2\mid[a_1,b_1][a_2,b_2]=1\rangle
+\]
+and set
+\[
+ a_1=b_1=(1\,2\,3\,4\,5),\qquad
+ a_2=(1\,2)(4\,5),\qquad
+ b_2=(1\,4)(2\,5).
+\tag{6.42}\label{eq:A5-boundary-tuple}
+\]
+Both handle commutators are trivial.  These permutations generate
+\(A_5\): a proper subgroup containing the displayed five-cycle lies in
+its dihedral normalizer, whereas \(a_2\) does not normalize that cyclic
+subgroup.  The first handle image is \(C_5\), while the second is a Klein
+four group with point orbits \(\{1,2,4,5\}\) and \(\{3\}\).  Hence the
+four-dimensional augmentation representation \(V\) satisfies
+\[
+ \dim V^{C_5}=0,
+ \qquad \dim V^{V_4}=1.
+\tag{6.43}\label{eq:boundary-invariant-dimensions}
+\]
+In the double cover \(SL_2(\mathbf F_5)\to A_5\), the lifted first
+commutator is \(+I\).  The inverse image of the second handle's Klein
+four group is quaternionic, so lifts of its two independent involutions
+have commutator \(-I\).
+Thus the lifted surface relator is \(-I\), proving
+\(w_2(W_\rho)=1\) by \eqref{eq:Schur-equals-w2}.
+
+Pinch the separating curve to obtain a compact-type curve
+\[
+ C_0=E_1\cup_qE_2.
+\]
+Because both handle commutators are trivial, the separating-node inertia
+is trivial.  The representation therefore defines a finite \'etale cover
+of \(C_0\) and extends over a separating smoothing.  Let \(W_i\) be the
+restriction of the augmentation bundle to \(E_i\).  On the first
+component, the \(C_5\)-action has no invariant vector, so
+\[
+ H^0(E_1,W_1)=0.
+\tag{6.44}\label{eq:E1-no-sections}
+\]
+On the second component the character decomposition is
+\[
+ W_2\simeq\cO_{E_2}\oplus L_1\oplus L_2\oplus L_3,
+\tag{6.45}\label{eq:E2-V4-splitting}
+\]
+where the \(L_i\) are the three nontrivial two-torsion line bundles.
+For a general point \(p\in E_2\), excluding the four points at which one
+of the unique degree-one sections vanishes at \(q\), evaluation is an
+isomorphism on every character line and hence
+\[
+ \operatorname{ev}_q\colon
+ H^0(E_2,W_2(p))\xrightarrow{\sim}(W_2)_q.
+\tag{6.46}\label{eq:E2-evaluation-isomorphism}
+\]
+
+The normalization sequence, with the two fibres identified by the
+covering local system, gives
+\[
+ 0\longrightarrow H^0(C_0,W_0(p))
+ \longrightarrow H^0(E_1,W_1)\oplus H^0(E_2,W_2(p))
+ \xrightarrow{\operatorname{ev}_{q,1}-\operatorname{ev}_{q,2}} W_q.
+\tag{6.47}\label{eq:boundary-normalization-sequence}
+\]
+Equations \eqref{eq:E1-no-sections} and
+\eqref{eq:E2-evaluation-isomorphism} show that
+\(H^0(C_0,W_0(p))=0\).  Now take a separating smoothing
+\(\mathcal C\to\Delta\) and a section \(p(t)\) with \(p(0)=p\).
+Trivial node inertia extends the finite local system, and hence its
+associated vector bundle, over the family.  Upper semicontinuity gives
+\[
+ H^0(C_t,W_t(p(t)))=0
+\]
+for all sufficiently small nonzero \(t\).  Such a smooth fibre is the
+required marked curve.
+\end{proof}
+
+\begin{theorem}[The uniform genus-two lower bound]
+\label{thm:uniform-genus-two-lower}
+The absolute and uniform genus-two minima satisfy
+\[
+ \boxed{d_{\mathrm{abs}}(2)=5},
+ \qquad
+ \boxed{6\leq d_{\mathrm{unif}}(2)\leq8}.
+\tag{6.48}\label{eq:genus-two-uniform-range}
+\]
+The cases \(d=6\) and \(d=7\) are not decided here.
+\end{theorem}
+
+\begin{proof}
+By \cref{prop:degree-five-reduction}, every degree-five
+Prill-exceptional cover has natural \(A_5\)-monodromy and \(w_2=1\), so
+all candidates lie in the single orbit \(\mathcal A_2\).  Notice that the
+quotient in \eqref{eq:DT-two-orbits} is by
+\(\operatorname{Aut}(A_5)\): since
+\(\operatorname{Aut}(A_5)=S_5\), its action on the natural five-point
+representation is conjugation in \(S_5\) and does not change the
+unlabelled degree-five cover.  For each of the finitely many candidates,
+determinant of cohomology and restriction to the universal Abel curve
+give the rank-two holomorphic obstruction section over Teichm\"uller
+space that globalizes \eqref{eq:theta-obstruction}; its zero locus is
+exactly the Prill-exceptional locus for that candidate.  If degree five
+were uniform, \cref{lem:finite-union-rigidity} would make one of these
+sections identically zero.  Thus one fixed member of \(\mathcal A_2\)
+would work for every marked complex structure.  Mapping-class
+transitivity on \(\mathcal A_2\) would
+then give the same property for the normal form
+\eqref{eq:A5-boundary-tuple}, contradicting
+\cref{prop:A5-boundary-normal-form}.  Thus
+\(d_{\mathrm{unif}}(2)\geq6\); the degree-eight construction in
+\cref{cor:intro-prill} gives the upper bound.  The absolute statement is
+\cref{thm:C5-degree-five}.
+\end{proof}
+
+\begin{proposition}[The degree-five locus in genus two]
+\label{prop:degree-five-locus}
+Let \(\mathcal P_5\subset\mathcal M_2\) be the locus of curves admitting
+a connected degree-five Prill-exceptional \'etale cover.  Then
+\(\mathcal P_5\) is a nonempty proper closed algebraic locus, and every
+irreducible component has dimension one or two.  In particular, a
+general genus-two curve admits no degree-five Prill-exceptional cover.
+\end{proposition}
+
+\begin{proof}
+The orbit \(\mathcal A_2\) defines a connected finite \'etale Hurwitz
+stack
+\[
+ \mathcal H^-_{A_5}\longrightarrow\mathcal M_2
+\]
+of degree \(576\) and dimension three.  Since \(\mathcal M_2\) is smooth
+and irreducible, this connected finite \'etale stack is smooth and
+irreducible.  The determinant-of-cohomology
+construction in \cref{prop:A5-theta-obstruction}, together with the
+universal Wronskian division, globalizes to a section
+\[
+ \Omega\in H^0(\mathcal H^-_{A_5},\mathbb E\otimes\Xi)
+\]
+of the rank-two Hodge bundle tensored by a line bundle.  More explicitly,
+the relative Weierstrass divisor on the universal Abel curve is Cartier;
+the parity statement makes the restricted theta section vanish along
+that divisor, so division by the relative Wronskian is algebraic.  The
+zero scheme of \(\Omega\)
+is exactly the Prill-exceptional locus on this Hurwitz component.  The
+example of \cref{thm:C5-degree-five} shows that \(Z(\Omega)\) is nonempty,
+whereas \cref{prop:A5-boundary-normal-form} shows that it is proper.
+
+Locally \(Z(\Omega)\) is cut out by two functions on the smooth
+three-dimensional stack \(\mathcal H^-_{A_5}\).  Krull's height theorem
+therefore gives dimension at least one for every irreducible component;
+properness gives dimension at most two.  The finite morphism to
+\(\mathcal M_2\) is closed and preserves the dimension of irreducible
+subvarieties.  Its image is precisely \(\mathcal P_5\), proving all the
+claims.
+\end{proof}
+
 \section{Consequences for generic generation and horizontal vanishing}
 
 I record the exact implications for the questions formulated in
@@ -2421,6 +2684,11 @@ Orthogonal bundles on curves and theta functions,
 L.~Brambila-Paz, I.~Grzegorczyk, and P.~E.~Newstead,
 Geography of Brill--Noether loci for small slopes,
 \emph{J. Algebraic Geom.} \textbf{6} (1997), 645--669.
+
+\bibitem{DunfieldThurston}
+N.~M.~Dunfield and W.~P.~Thurston,
+Finite covers of random \(3\)-manifolds,
+\emph{Invent. Math.} \textbf{166} (2006), no.~3, 457--521.
 
 \bibitem{LandesmanLittApplications}
 A.~Landesman and D.~Litt,
