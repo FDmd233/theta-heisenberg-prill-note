@@ -1,0 +1,6 @@
+*.md text eol=lf
+*.tex text eol=lf
+*.g text eol=lf
+*.py text eol=lf
+SHA256SUMS text eol=lf
+*.pdf binary
