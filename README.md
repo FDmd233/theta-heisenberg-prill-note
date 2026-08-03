@@ -17,7 +17,9 @@ satisfies
 6\le d_{\mathrm{unif}}(2)\le 8.
 \]
 
-Degrees six and seven remain open.
+Degrees six and seven are not excluded in the current note. However, the
+present structure suggests that the uniform minimum may be sharpened to
+\(d_{\mathrm{unif}}(2)=8\).
 
 FDmd233 guided GPT-5.6 sol in developing, checking, and preparing this note.
 
