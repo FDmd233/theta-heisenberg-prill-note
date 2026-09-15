@@ -21,7 +21,7 @@ Degrees six and seven are not excluded in the current note. However, the
 present structure suggests that the uniform minimum may be sharpened to
 \(d_{\mathrm{unif}}(2)=8\).
 
-AI-assisted tools were used during development, checking, and preparation of the note.
+FDmd233 guided GPT-5.6 sol in developing, checking, and preparing this note.
 
 ## Files
 
