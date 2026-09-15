@@ -40,14 +40,22 @@ jobs:
           sudo apt-get install -y -qq poppler-utils ripgrep
           pdfinfo theta_heisenberg_prill_note.pdf | grep -F 'Author:          Zhijie He'
           pdftotext theta_heisenberg_prill_note.pdf /tmp/paper.txt
-          if rg -n -i 'OpenAI|ChatGPT|GPT[- ]?[0-9]|Claude|Astra|Aristotle|undergraduate|thesis|defense|public version|private version|our conversation|chat history|prompt' /tmp/paper.txt; then
+          PATTERN='OpenAI|ChatGPT|GPT[- ]?[0-9]|Claude|Astra|Aristotle|\bundergraduate\b|\bthesis\b|\bdefense\b|public version|private version|our conversation|chat history|\bprompt\b'
+          if rg -n -i -P "$PATTERN" /tmp/paper.txt; then
             echo 'Forbidden context remains in PDF' >&2
             exit 1
           fi
-          if rg -n -i 'OpenAI|ChatGPT|GPT[- ]?[0-9]|Claude|Astra|Aristotle|undergraduate|thesis|defense|public version|private version|our conversation|chat history|prompt' README.md theta_heisenberg_prill_note.tex; then
+          if rg -n -i -P "$PATTERN" README.md theta_heisenberg_prill_note.tex; then
             echo 'Forbidden context remains in source text' >&2
             exit 1
           fi
+          mkdir -p /tmp/theta-render
+          pdftoppm -f 1 -singlefile -png -r 150 theta_heisenberg_prill_note.pdf /tmp/theta-render/page >/dev/null 2>&1
+      - name: Upload visual QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: theta-context-cleanup-qa
+          path: /tmp/theta-render/page.png
       - name: Commit cleanup
         run: |
           rm -f .github/workflows/conversation-trace-audit.yml .github/workflows/final-context-cleanup.yml
