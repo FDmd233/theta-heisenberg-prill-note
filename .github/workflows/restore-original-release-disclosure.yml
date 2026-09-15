@@ -1,0 +1,35 @@
+name: Restore original release disclosure
+
+on:
+  push:
+    paths:
+      - '.github/workflows/restore-original-release-disclosure.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore release description
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > /tmp/notes.txt <<'EOF'
+          First public display release.
+
+          Main idea: finite Heisenberg and theta-group representations turn Raynaud bundles into fixed finite local systems. Torsion-line and cyclic-cover untwisting then gives uniform Prill-exceptional covers, while a strict rank--corank inequality supplies lower bounds. In genus two, an explicit A5 local system on y^2=x^5-1 proves the absolute minimum d_abs(2)=5. A mapping-class/Schur-invariant argument and a separating degeneration show that degree five is not uniform, giving 6 <= d_unif(2) <= 8. GAP and Python certificates reproduce the finite calculations.
+
+          This paper was completed with the assistance of GPT-5.6 sol.
+          EOF
+          gh release edit v1.0.0 --notes-file /tmp/notes.txt
+      - name: Remove temporary workflow
+        run: |
+          rm -f .github/workflows/restore-original-release-disclosure.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Remove temporary disclosure restore workflow'
+          git push
