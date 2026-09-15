@@ -1,0 +1,59 @@
+name: Final context cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/final-context-cleanup.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Clean authorship and assistance wording
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('theta_heisenberg_prill_note.tex')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('pdfauthor={OpenAI}', 'pdfauthor={Zhijie He}')
+          s=s.replace('\\author{OpenAI}', '\\author{Zhijie He}')
+          p.write_text(s, encoding='utf-8')
+          p=Path('README.md')
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('FDmd233 guided GPT-5.6 sol in developing, checking, and preparing this note.', 'AI-assisted tools were used during development, checking, and preparation of the note.')
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Compile manuscript
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: theta_heisenberg_prill_note.tex
+          texlive_version: 2026
+      - name: Audit rebuilt PDF
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils ripgrep
+          pdfinfo theta_heisenberg_prill_note.pdf | grep -F 'Author:          Zhijie He'
+          pdftotext theta_heisenberg_prill_note.pdf /tmp/paper.txt
+          if rg -n -i 'OpenAI|ChatGPT|GPT[- ]?[0-9]|Claude|Astra|Aristotle|undergraduate|thesis|defense|public version|private version|our conversation|chat history|prompt' /tmp/paper.txt; then
+            echo 'Forbidden context remains in PDF' >&2
+            exit 1
+          fi
+          if rg -n -i 'OpenAI|ChatGPT|GPT[- ]?[0-9]|Claude|Astra|Aristotle|undergraduate|thesis|defense|public version|private version|our conversation|chat history|prompt' README.md theta_heisenberg_prill_note.tex; then
+            echo 'Forbidden context remains in source text' >&2
+            exit 1
+          fi
+      - name: Commit cleanup
+        run: |
+          rm -f .github/workflows/conversation-trace-audit.yml .github/workflows/final-context-cleanup.yml
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Use human authorship and neutral assistance wording'
+          git push
