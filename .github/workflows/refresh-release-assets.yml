@@ -1,0 +1,51 @@
+name: Refresh release assets
+
+on:
+  push:
+    paths:
+      - '.github/workflows/refresh-release-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh v1.0.0 description and assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cat > /tmp/release-notes.md <<'EOF'
+          Main idea: finite Heisenberg and theta-group representations turn Raynaud bundles into fixed finite local systems. Torsion-line and cyclic-cover untwisting then gives uniform Prill-exceptional covers, while a strict rank--corank inequality supplies lower bounds. In genus two, an explicit A5 local system on y^2=x^5-1 proves the absolute minimum d_abs(2)=5. A mapping-class/Schur-invariant argument and a separating degeneration show that degree five is not uniform, giving 6 <= d_unif(2) <= 8. GAP and Python certificates reproduce the finite calculations.
+
+          AI-assisted tools were used during development, checking, and preparation of the note.
+          EOF
+          gh release edit v1.0.0 --notes-file /tmp/release-notes.md
+          gh release upload v1.0.0 theta_heisenberg_prill_note.pdf --clobber
+          gh release upload v1.0.0 theta_heisenberg_prill_note.tex --clobber
+          gh release upload v1.0.0 SHA256SUMS --clobber
+      - name: Verify refreshed asset digests
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for pair in \
+            'theta_heisenberg_prill_note.pdf theta_heisenberg_prill_note.pdf' \
+            'theta_heisenberg_prill_note.tex theta_heisenberg_prill_note.tex' \
+            'SHA256SUMS SHA256SUMS'; do
+            set -- $pair
+            NAME=$1
+            FILE=$2
+            LOCAL=$(sha256sum "$FILE" | awk '{print $1}')
+            REMOTE=$(gh api repos/${GITHUB_REPOSITORY}/releases/tags/v1.0.0 --jq ".assets[] | select(.name==\"$NAME\") | .digest" | sed 's/^sha256://')
+            test "$LOCAL" = "$REMOTE"
+          done
+      - name: Remove temporary workflow
+        run: |
+          rm -f .github/workflows/refresh-release-assets.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Remove temporary release refresh workflow'
+          git push
