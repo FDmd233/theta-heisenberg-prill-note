@@ -1,6 +1,6 @@
 """Exact/numerical checks for the C5-equivariant degree-five theorem.
 
-Derived audit artifact; no manuscript files are modified.
+This script independently verifies the stated matrix and character calculations.
 """
 
 import cmath
