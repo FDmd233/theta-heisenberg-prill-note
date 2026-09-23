@@ -4,24 +4,20 @@ This repository contains the note
 *Theta--Heisenberg Untwisting, Uniform Prill Covers, and Abelian Brill--Noether Blocks*.
 
 Its genus-two result constructs a connected degree-five etale cover over
-\(y^2=x^5-1\) for which every fibre moves in a pencil. Together with the
+(y^2=x^5-1) for which every fibre moves in a pencil. Together with the
 general lower bound, this proves that the minimum degree, taken over all
 genus-two curves and connected Prill-exceptional covers, is five. This is
 the absolute minimum, not a uniform one. The degree-five locus in
-\(\mathcal M_2\) is nonempty and proper, with every irreducible component
+(mathcal M_2) is nonempty and proper, with every irreducible component
 of dimension one or two. Consequently a general genus-two curve has no
 degree-five example, and the minimum degree valid on every genus-two curve
 satisfies
 
-\[
-6\le d_{\mathrm{unif}}(2)\le 8.
-\]
+[
+6le d_{mathrm{unif}}(2)le 8.
+]
 
-Degrees six and seven are not excluded in the current note. However, the
-present structure suggests that the uniform minimum may be sharpened to
-\(d_{\mathrm{unif}}(2)=8\).
-
-FDmd233 guided GPT-5.6 sol in developing, checking, and preparing this note.
+Degrees six and seven remain open in the current note.
 
 ## Files
 
@@ -49,3 +45,7 @@ The degree-five result only asserts that the generalized theta divisor
 contains the Abel curve, which is exactly what the Prill condition requires.
 It does not assert vanishing over all of `Pic^1(C)` and does not by itself
 produce a Putman--Wieland counterexample.
+
+## AI assistance
+
+AI tools were used during parts of the development, checking, and preparation of the note. The mathematical statements and finite certificates are provided independently of that assistance.
