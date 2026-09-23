@@ -20,29 +20,29 @@ Degrees six and seven remain open in the current note.
 
 ## Files
 
-- \`theta_heisenberg_prill_note.pdf\` -- compiled note.
-- \`theta_heisenberg_prill_note.tex\` -- LaTeX source.
-- \`c5_degree5_certificate.g\` -- exact GAP certificate for the surface
+- `theta_heisenberg_prill_note.pdf` -- compiled note.
+- `theta_heisenberg_prill_note.tex` -- LaTeX source.
+- `c5_degree5_certificate.g` -- exact GAP certificate for the surface
   monodromy and nonzero spin obstruction.
-- \`c5_degree5_character_check.py\` -- independent matrix and equivariant
+- `c5_degree5_character_check.py` -- independent matrix and equivariant
   character check.
-- \`a5_genus2_mcg_boundary_certificate.g\` -- exact GAP certificate for the
+- `a5_genus2_mcg_boundary_certificate.g` -- exact GAP certificate for the
   nonzero-Schur mapping-class orbit and compact-type boundary normal form.
-- \`FIRST_PUBLICATION_RECORD.md\` -- timestamped publication and integrity
+- `FIRST_PUBLICATION_RECORD.md` -- timestamped publication and integrity
   record for the artifact commit.
 
 ## Reproduction
 
-\`\`\`text
+```text
 latexmk -pdf -interaction=nonstopmode -halt-on-error theta_heisenberg_prill_note.tex
 gap -q c5_degree5_certificate.g
 python c5_degree5_character_check.py
 gap -q a5_genus2_mcg_boundary_certificate.g
-\`\`\`
+```
 
 The degree-five result only asserts that the generalized theta divisor
 contains the Abel curve, which is exactly what the Prill condition requires.
-It does not assert vanishing over all of \`Pic^1(C)\` and does not by itself
+It does not assert vanishing over all of `Pic^1(C)` and does not by itself
 produce a Putman--Wieland counterexample.
 
 ## AI assistance
