@@ -27,6 +27,10 @@ Degrees six and seven remain open in the current note.
 - `a5_genus2_mcg_boundary_certificate.g` -- exact GAP certificate for the nonzero-Schur mapping-class orbit and compact-type boundary normal form.
 - `FIRST_PUBLICATION_RECORD.md` -- timestamped publication and integrity record for the artifact commit.
 
+## Independent verification
+
+- [Degree-five equivariant theta character and sign audit](verification/degree_five_equivariant_sign_audit.md). This checks the Lefschetz character, determinant-of-cohomology dualizations, and Wronskian twisting in the explicit genus-two construction. It does not certify the full Hurwitz-family globalization or the uniform all-genus theorem.
+
 ## Reproduction
 
 ~~~text
