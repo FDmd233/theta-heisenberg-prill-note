@@ -1,0 +1,32 @@
+name: Retain published PDF for independent visual QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/published-pdf-visual-qa.yml'
+      - 'theta_heisenberg_prill_note.pdf'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preserve-current-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout published files
+        uses: actions/checkout@v4
+      - name: Verify PDF files are present
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s 'theta_heisenberg_prill_note.pdf'
+          sha256sum 'theta_heisenberg_prill_note.pdf'
+      - name: Retain exact published PDF bytes
+        uses: actions/upload-artifact@v4
+        with:
+          name: theta-heisenberg-pdf-${{ github.sha }}
+          path: |
+            theta_heisenberg_prill_note.pdf
+          if-no-files-found: error
+          retention-days: 14
